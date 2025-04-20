@@ -490,7 +490,7 @@ public class Megaman : MonoBehaviour
             float hitForceX = 0.50f;
             float hitForceY = 1.5f;
             if (hitSideRight) hitForceX = -hitForceX;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.AddForce(new Vector2(hitForceX, hitForceY), ForceMode2D.Impulse);
         }
     }
@@ -544,7 +544,7 @@ public class Megaman : MonoBehaviour
         if (!rb.isKinematic)
         {
             float gravity = IsInWater() ? gravityScale * waterGravityScale : gravityScale;
-            rb.velocity += gravity * rb.mass * Vector2.down;
+            rb.linearVelocity += gravity * rb.mass * Vector2.down;
         }
     }
     #endregion
@@ -718,6 +718,15 @@ public class Megaman : MonoBehaviour
     #endregion
 
     #region Movement
+    /// <summary>
+    /// Returns whether the player character is currently moving.
+    /// Useful external scripts that need to check for player movement.
+    /// </summary>
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
+
     private void Move()
     {
         if (isSliding || isClimbing) return; // Player will use the slide or climbing if is true
@@ -735,12 +744,12 @@ public class Megaman : MonoBehaviour
             else
             {
                 // Check if direction has changed while falling
-                bool directionChangedWhileFalling = (Mathf.Sign(moveInput.x) != Mathf.Sign(rb.velocity.x)) && !IsGrounded();
+                bool directionChangedWhileFalling = (Mathf.Sign(moveInput.x) != Mathf.Sign(rb.linearVelocity.x)) && !IsGrounded();
 
                 if (useStepDelay && !hasStepped && IsGrounded() && !directionChangedWhileFalling)
                 {
                     // Apply step
-                    rb.velocity = new Vector2(moveInput.x * stepDistance, rb.velocity.y);
+                    rb.linearVelocity = new Vector2(moveInput.x * stepDistance, rb.linearVelocity.y);
                     stepTimer -= Time.deltaTime; // Decrease the step timer
 
                     if (stepTimer <= 0)
@@ -753,7 +762,7 @@ public class Megaman : MonoBehaviour
                 else
                 {
                     // Apply normal speed if direction has changed while falling or step is not applicable
-                    rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
+                    rb.linearVelocity = new Vector2(moveInput.x * speed, rb.linearVelocity.y);
                     hasStepped = true; // Ensure stepping is not applied in these cases
                 }
             }
@@ -763,7 +772,7 @@ public class Megaman : MonoBehaviour
             // Stop movement when no input
             isMoving = false;
             hasStepped = false;
-            rb.velocity = new Vector2(0, rb.velocity.y); // Stop movement when no input
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Stop movement when no input
         }
 
         if (moveInput.x > 0 && !facingRight)
@@ -799,7 +808,7 @@ public class Megaman : MonoBehaviour
             isJumping = false;
             extraJumpCount = maxExtraJumps;  // Reset extra jumps
         }
-        else if (rb.velocity.y < 0)
+        else if (rb.linearVelocity.y < 0)
         {
             isFalling = true;
         }
@@ -812,7 +821,7 @@ public class Megaman : MonoBehaviour
         }
 
         // Cancel jumping state when player is falling or reaches jump peak
-        if (isJumping && rb.velocity.y <= 0)
+        if (isJumping && rb.linearVelocity.y <= 0)
         {
             isJumping = false;
         }
@@ -849,9 +858,9 @@ public class Megaman : MonoBehaviour
         }
 
         // Variable jump height (reduce upward velocity if jump button is released mid-air)
-        if (!jumpButtonPressed && rb.velocity.y > 0 && inAirFromJump)
+        if (!jumpButtonPressed && rb.linearVelocity.y > 0 && inAirFromJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
         }
     }
 
@@ -859,8 +868,29 @@ public class Megaman : MonoBehaviour
     {
         isJumping = true;
         inAirFromJump = true;
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         lastJumpTime = Time.time;
+    }
+
+    private void ApplyCornerCorrection()
+    {
+        if (!IsGrounded() && IsFrontCollision() && !IsColAbove())
+        {
+            Vector2 position = (Vector2)transform.position;
+            
+            // Move a small step upwards
+            float cornerCorrectionHeight = 0.5f;
+            Vector2 correctionPos = position + Vector2.up * cornerCorrectionHeight;
+
+            // Check if after moving up, thereâ€™s still a collision
+            bool stillColliding = Physics2D.OverlapBox(correctionPos + frontCheckOffset, frontCheckSize, 0f, groundLayer) != null;
+
+            if (!stillColliding)
+            {
+                // Apply the correction
+                transform.position = correctionPos;
+            }
+        }
     }
     #endregion
 
@@ -1097,14 +1127,14 @@ public class Megaman : MonoBehaviour
         // Stop sliding if conditions are met
         if (exitSlide || slideTimeLength >= slideDuration && !isTouchingTop || !IsGrounded())
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             isSliding = false;
             slideButtonRelease = true;
         }
         else
         {
             // Apply sliding force
-            rb.velocity = new Vector2(slideSpeed * (facingRight ? 1f : -1f), rb.velocity.y);
+            rb.linearVelocity = new Vector2(slideSpeed * (facingRight ? 1f : -1f), rb.linearVelocity.y);
         }
     }
 
@@ -1219,13 +1249,13 @@ public class Megaman : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         animator.speed = 1;
         transform.position = new Vector3(ladder.transform.position.x, transform.position.y, transform.position.z); // Align the player with the ladder's X position
-        rb.velocity = new Vector2(0, moveInput.y * climbSpeed);
+        rb.linearVelocity = new Vector2(0, moveInput.y * climbSpeed);
     }
 
     private void PauseClimbing()
     {
         // Stop vertical movement and animation
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         animator.speed = 0;
     }
 
@@ -1237,7 +1267,7 @@ public class Megaman : MonoBehaviour
             isClimbing = false;
             animator.speed = 1;
             rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -1470,7 +1500,7 @@ public class Megaman : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(new Vector3(ladder.transform.position.x, ladder.posBottomHandlerY, transform.position.z), 0.2f);
 
-            // Optionally, draw a line to indicate the ladder’s full height
+            // Optionally, draw a line to indicate the ladderï¿½s full height
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(new Vector3(ladder.transform.position.x, ladder.posTopHandlerY, transform.position.z),
                             new Vector3(ladder.transform.position.x, ladder.posBottomHandlerY, transform.position.z));

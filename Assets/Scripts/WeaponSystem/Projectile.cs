@@ -27,7 +27,7 @@ public abstract class Projectile : MonoBehaviour
         direction = facingRight ? Vector2.right : Vector2.left;
 
         // Set velocity
-        rb.velocity = bulletSpeed * direction;
+        rb.linearVelocity = bulletSpeed * direction;
 
         AudioManager.Instance.Play(data.weaponClip);
         // Flip sprite based on direction

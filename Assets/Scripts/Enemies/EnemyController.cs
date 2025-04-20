@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
             freezeEnemy = true;
             animatorSpeed = animator.speed;
             rb2dConstraints = rb.constraints;
-            freezeVelocity = rb.velocity;
+            freezeVelocity = rb.linearVelocity;
             animator.speed = 0;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
@@ -64,7 +64,7 @@ public class EnemyController : MonoBehaviour
             freezeEnemy = false;
             animator.speed = animatorSpeed;
             rb.constraints = rb2dConstraints;
-            rb.velocity = freezeVelocity;
+            rb.linearVelocity = freezeVelocity;
         }
     }
 

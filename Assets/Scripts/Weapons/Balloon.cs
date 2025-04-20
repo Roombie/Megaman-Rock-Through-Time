@@ -45,7 +45,7 @@ public class Balloon : MonoBehaviour
             Explode();
         }
 
-        rb.velocity = new Vector2(0, riseSpeed);
+        rb.linearVelocity = new Vector2(0, riseSpeed);
     }
 
     private IEnumerator FlashBeforeDestroy()
@@ -65,7 +65,7 @@ public class Balloon : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (playerRb != null && playerRb.velocity.y < 0) // Check if the player is falling
+            if (playerRb != null && playerRb.linearVelocity.y < 0) // Check if the player is falling
             {
                 Debug.Log("Player landed on the balloon!");
                 isSteppedOn = true;

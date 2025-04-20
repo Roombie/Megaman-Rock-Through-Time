@@ -187,6 +187,23 @@ MonoBehaviour:
     m_Key: GameOver_GameOverTitle
     m_Metadata:
       m_Items: []
+  - m_Id: 69250235132375040
+    m_Key: OptionsMenu_KeyboardConfigurationTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69380258082418688
+    m_Key: OptionsScreen/OptionsMenu/Page 2 - Keyboard Controls/Rush&Beat Keyboard
+      Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69872712586092544
+    m_Key: WaitingText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69872837744123904
+    m_Key: DuplicateBindingWarning
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

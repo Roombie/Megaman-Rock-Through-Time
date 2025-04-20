@@ -95,11 +95,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 171442070085632
-    m_Localized: "\xBFABAJO + SALTAR = DESLIZAR?"
+    m_Localized: "\xBFABAJO+SALTAR=DESLIZAR?"
     m_Metadata:
       m_Items: []
   - m_Id: 172720514916352
-    m_Localized: GUARDAR Y SALIR
+    m_Localized: SALIR
     m_Metadata:
       m_Items: []
   - m_Id: 175429347434496
@@ -188,6 +188,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1018948970602496
     m_Localized: FIN DEL JUEGO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69250235132375040
+    m_Localized: "CONFIGURACI\xD3N DE TECLADO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69380258082418688
+    m_Localized: RUSH & BEAT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69872712586092544
+    m_Localized: Esperando entrada...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 69872837744123904
+    m_Localized: "\xA1Asignaci\xF3n duplicada detectada!"
     m_Metadata:
       m_Items: []
   references:

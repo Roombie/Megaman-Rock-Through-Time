@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 90c3c3009d93380408662596f2dd2413
   m_SerializeEntries:
   - m_GUID: b381e59cbd3f94e42956a656c5e2d826
-    m_Address: Assets/LocalSettings/Tables/UI_OptionsMenu Shared Data.asset
+    m_Address: Assets/LocalSettings/Tables/GameText Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

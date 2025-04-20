@@ -29,7 +29,7 @@ public class MegaBuster : Projectile
         AudioManager.Instance.Play(currentChargeLevel.weaponClip);
 
         // Set initial velocity based on direction and bullet speed
-        rb.velocity = bulletSpeed * direction;
+        rb.linearVelocity = bulletSpeed * direction;
     }
 
     private void Update()
