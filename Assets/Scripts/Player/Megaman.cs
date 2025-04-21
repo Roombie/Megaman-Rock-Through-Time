@@ -541,7 +541,7 @@ public class Megaman : MonoBehaviour
     #region Gravity
     public void ApplyGravity()
     {
-        if (!rb.isKinematic)
+        if (rb.bodyType != RigidbodyType2D.Kinematic)
         {
             float gravity = IsInWater() ? gravityScale * waterGravityScale : gravityScale;
             rb.linearVelocity += gravity * rb.mass * Vector2.down;

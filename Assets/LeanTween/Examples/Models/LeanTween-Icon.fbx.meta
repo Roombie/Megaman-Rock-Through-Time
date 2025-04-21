@@ -75,3 +75,10 @@ ModelImporter:
       data:
         first: 33
         second: a25a3200
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3595
+  packageName: LeanTween
+  packageVersion: 2.51
+  assetPath: Assets/LeanTween/Examples/Models/LeanTween-Icon.fbx
+  uploadId: 469983

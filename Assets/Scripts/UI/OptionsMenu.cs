@@ -312,7 +312,7 @@ public class OptionsMenu : MonoBehaviour
         UpdateControllerVibrationImage();
         UpdateSlideWithDownJumpImages(PlayerPrefs.GetInt(SettingsKeys.SlideWithDownJumpKey, 1) == 1);
 
-        foreach (MenuOptionSelector selector in FindObjectsOfType<MenuOptionSelector>())
+        foreach (MenuOptionSelector selector in FindObjectsByType<MenuOptionSelector>(FindObjectsSortMode.None))
         {
             switch (selector.settingKey)
             {
@@ -407,7 +407,7 @@ public class OptionsMenu : MonoBehaviour
     
     private void NotifyMenuOptionSelector(SettingType setting, int index)
     {
-        foreach (MenuOptionSelector selector in FindObjectsOfType<MenuOptionSelector>())
+        foreach (MenuOptionSelector selector in FindObjectsByType<MenuOptionSelector>(FindObjectsSortMode.None))
         {
             if (selector.settingKey == setting)
             {

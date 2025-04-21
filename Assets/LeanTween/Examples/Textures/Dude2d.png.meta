@@ -89,3 +89,10 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3595
+  packageName: LeanTween
+  packageVersion: 2.51
+  assetPath: Assets/LeanTween/Examples/Textures/Dude2d.png
+  uploadId: 469983

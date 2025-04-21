@@ -5,3 +5,10 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3595
+  packageName: LeanTween
+  packageVersion: 2.51
+  assetPath: Assets/LeanTween/Examples/Models/LeanTween-Icon.blend.zip
+  uploadId: 469983

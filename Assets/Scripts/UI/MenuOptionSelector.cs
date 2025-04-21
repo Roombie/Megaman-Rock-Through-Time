@@ -24,8 +24,8 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
     void Awake()
     {
         inputActions = new PlayerInputActions();
-        optionsMenu = FindObjectOfType<OptionsMenu>();
-        arrowSelector = FindObjectOfType<ArrowSelector>();
+        optionsMenu = FindFirstObjectByType<OptionsMenu>();
+        arrowSelector = FindFirstObjectByType<ArrowSelector>();
     }
 
     void OnEnable()

@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<AudioManager>();
+                _instance = FindFirstObjectByType<AudioManager>();
             }
             return _instance;
         }

@@ -62,8 +62,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<Megaman>();
-        var weaponsMenus = Object.FindObjectsOfType<WeaponsMenu>(true);
+        player = FindFirstObjectByType<Megaman>();
+        var weaponsMenus = Object.FindObjectsByType<WeaponsMenu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         if (weaponsMenus.Length > 0)
         {
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
     public void ShowWeaponsMenu()
     {
         // Find all WeaponsMenu instances, including inactive ones
-        var weaponsMenus = Object.FindObjectsOfType<WeaponsMenu>(true);
+        var weaponsMenus = Object.FindObjectsByType<WeaponsMenu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         if (weaponsMenus.Length > 0)
         {

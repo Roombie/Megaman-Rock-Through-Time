@@ -53,3 +53,10 @@ ModelImporter:
       data:
         first: 111
         second: 605fa900
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3595
+  packageName: LeanTween
+  packageVersion: 2.51
+  assetPath: Assets/LeanTween/Examples/Models/CurvePathsText.fbx
+  uploadId: 469983

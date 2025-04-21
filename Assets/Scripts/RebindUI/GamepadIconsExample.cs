@@ -1,26 +1,34 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-
-////TODO: have updateBindingUIEvent receive a control path string, too (in addition to the device layout name)
+using UnityEngine.InputSystem;
+using TMPro;
 
 namespace UnityEngine.InputSystem.Samples.RebindUI
 {
-    /// <summary>
-    /// This is an example for how to override the default display behavior of bindings. The component
-    /// hooks into <see cref="RebindActionUI.updateBindingUIEvent"/> which is triggered when UI display
-    /// of a binding should be refreshed. It then checks whether we have an icon for the current binding
-    /// and if so, replaces the default text display with an icon.
+    // <summary>
+    /// This is an example for how to override the default display behavior of bindings. The component
+    /// hooks into <see cref="RebindActionUI.updateBindingUIEvent"/> which is triggered when UI display
+    /// of a binding should be refreshed. It then checks whether we have an icon for the current binding
+    /// and if so, replaces the default text display with an icon.
+    /// </summary>
+    /// /// /// <summary>
+    /// Updated to support both gamepad and keyboard icons, falling back to text.
     /// </summary>
+
     public class GamepadIconsExample : MonoBehaviour
     {
         public GamepadIcons xbox;
         public GamepadIcons ps4;
+        public KeyboardIcons keyboard;
 
         protected void OnEnable()
         {
-            // Hook into all updateBindingUIEvents on all RebindActionUI components in our hierarchy.
-            var rebindUIComponents = transform.GetComponentsInChildren<RebindActionUI>();
+            // Initialize keyboard icon mapping
+            keyboard?.Initialize();
+
+            var rebindUIComponents = transform.GetComponentsInChildren<RebindActionUI>(true);
             foreach (var component in rebindUIComponents)
             {
                 component.updateBindingUIEvent.AddListener(OnUpdateBindingDisplay);
@@ -28,37 +36,46 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             }
         }
 
+        public void RefreshAllIcons()
+        {
+            var rebindUIComponents = GetComponentsInChildren<RebindActionUI>(true);
+            foreach (var component in rebindUIComponents)
+            {
+                component.UpdateBindingDisplay();
+            }
+        }
+
         protected void OnUpdateBindingDisplay(RebindActionUI component, string bindingDisplayString, string deviceLayoutName, string controlPath)
         {
-            if (component == null)
-            {
-                Debug.LogWarning("GamepadIconsExample: component is null in OnUpdateBindingDisplay.");
+            if (component == null || string.IsNullOrEmpty(controlPath))
                 return;
-            }
-
-            if (string.IsNullOrEmpty(bindingDisplayString))
-            {
-                Debug.LogWarning("GamepadIconsExample: bindingDisplayString is null or empty.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(deviceLayoutName) || string.IsNullOrEmpty(controlPath))
-            {
-                Debug.LogWarning("GamepadIconsExample: deviceLayoutName or controlPath is null. Skipping icon update.");
-                return;
-            }
 
             var icon = default(Sprite);
-            if (InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "DualShockGamepad"))
+            var isKeyboard = InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "Keyboard");
+            var isDualShock = InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "DualShockGamepad");
+            var isGamepad = InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "Gamepad");
+
+            if (isDualShock)
                 icon = ps4.GetSprite(controlPath);
-            else if (InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "Gamepad"))
+            else if (isGamepad)
                 icon = xbox.GetSprite(controlPath);
+            else if (isKeyboard)
+                icon = keyboard.GetSprite(controlPath);
 
             var textComponent = component.bindingText;
+            if (textComponent == null || textComponent.transform == null)
+                return;
 
-            // Grab Image component.
             var imageGO = textComponent.transform.parent.Find("ActionBindingIcon");
+            if (imageGO == null)
+            {
+                Debug.LogWarning("GamepadIconsExample: 'ActionBindingIcon' GameObject not found under bindingText's parent.");
+                return;
+            }
+
             var imageComponent = imageGO.GetComponent<Image>();
+            if (imageComponent == null)
+                return;
 
             if (icon != null)
             {
@@ -68,13 +85,16 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             }
             else
             {
+                // Fallback to displaying the control name as text
+                string controlName = controlPath.Replace("<Keyboard>/", "").ToUpperInvariant();
+                textComponent.text = controlName;
                 textComponent.gameObject.SetActive(true);
                 imageComponent.gameObject.SetActive(false);
             }
         }
 
         [Serializable]
-        public struct GamepadIcons
+        public class GamepadIcons
         {
             public Sprite buttonSouth;
             public Sprite buttonNorth;
@@ -98,8 +118,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             public Sprite GetSprite(string controlPath)
             {
-                // From the input system, we get the path of the control on device. So we can just
-                // map from that to the sprites we have for gamepads.
                 switch (controlPath)
                 {
                     case "buttonSouth": return buttonSouth;
@@ -123,6 +141,44 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                     case "rightStickPress": return rightStickPress;
                 }
                 return null;
+            }
+        }
+
+        [Serializable]
+        public class KeyboardIcons
+        {
+            public List<KeyIcon> icons = new();
+
+            private Dictionary<string, Sprite> _iconMap;
+
+            public void Initialize()
+            {
+                _iconMap = new Dictionary<string, Sprite>();
+                foreach (var icon in icons)
+                {
+                    if (!string.IsNullOrEmpty(icon.key) && icon.icon != null)
+                        _iconMap[icon.key.ToLower()] = icon.icon;
+                }
+            }
+
+            public Sprite GetSprite(string controlPath)
+            {
+                if (string.IsNullOrEmpty(controlPath)) return null;
+
+                if (controlPath.StartsWith("<Keyboard>/"))
+                    controlPath = controlPath.Replace("<Keyboard>/", "");
+
+                if (_iconMap == null)
+                    Initialize();
+
+                return _iconMap.TryGetValue(controlPath.ToLower(), out var sprite) ? sprite : null;
+            }
+
+            [Serializable]
+            public struct KeyIcon
+            {
+                public string key;
+                public Sprite icon;
             }
         }
     }

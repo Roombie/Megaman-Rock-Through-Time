@@ -372,7 +372,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
                         UpdateBindingDisplay();
                         // Save the new bindings
-                        FindObjectOfType<RebindSaveLoad>().SaveBindings(); 
+                        FindFirstObjectByType<RebindSaveLoad>()?.SaveBindings();
                         CleanUp();
 
                         // If there's more composite parts we should bind, initiate a rebind

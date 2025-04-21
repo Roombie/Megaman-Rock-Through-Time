@@ -6,3 +6,10 @@ MonoImporter:
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 3595
+  packageName: LeanTween
+  packageVersion: 2.51
+  assetPath: Assets/LeanTween/Examples/Scripts/GeneralUISpace.cs
+  uploadId: 469983

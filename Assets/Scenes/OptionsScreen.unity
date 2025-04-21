@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -38,13 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -228,10 +224,10 @@ MonoBehaviour:
           value: 134.26242
         - localeIdentifier:
             m_Code: es
-          value: 126.4
+          value: 148.39998
         - localeIdentifier:
             m_Code: fr
-          value: 109.6
+          value: 115.419365
 --- !u!114 &3736115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,15 +291,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -488,15 +486,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -603,15 +603,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1037,15 +1039,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1172,15 +1176,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1549,15 +1555,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -1641,10 +1649,10 @@ MonoBehaviour:
           value: 146.6
         - localeIdentifier:
             m_Code: es
-          value: 123.39996
+          value: 146.39996
         - localeIdentifier:
             m_Code: fr
-          value: 125.64998
+          value: 131.46935
     - rid: 2775745137490788541
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -1858,7 +1866,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113936517
 MonoBehaviour:
@@ -1882,7 +1890,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2203,15 +2211,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2508,15 +2518,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2642,15 +2654,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2776,15 +2790,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2822,7 +2838,7 @@ GameObject:
   - component: {fileID: 200103706}
   - component: {fileID: 200103705}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2845,7 +2861,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &200103705
 MonoBehaviour:
@@ -2869,7 +2885,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2988,15 +3004,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -3094,10 +3112,10 @@ MonoBehaviour:
           value: 146.6
         - localeIdentifier:
             m_Code: es
-          value: 123.39996
+          value: 146.39996
         - localeIdentifier:
             m_Code: fr
-          value: 125.64998
+          value: 131.46935
     - rid: 7239525469290496087
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -3186,6 +3204,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!114 &208835312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3251,7 +3270,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &211515926
 MonoBehaviour:
@@ -3275,7 +3294,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3853,15 +3872,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -3990,10 +4011,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 133
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 123.999985
 --- !u!114 &270395172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4121,6 +4142,7 @@ GameObject:
   - component: {fileID: 272004581}
   - component: {fileID: 272004582}
   - component: {fileID: 272004583}
+  - component: {fileID: 272004584}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -4185,6 +4207,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &272004584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272004580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913796
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913796
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 272004581}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913797
+    - rid: 4521263756551913797
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &287269042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4377,7 +4434,7 @@ MonoBehaviour:
   - button: {fileID: 91299419}
     arrowOffset: {x: -50, y: 0}
   - button: {fileID: 387382990}
-    arrowOffset: {x: -100, y: 0}
+    arrowOffset: {x: -120, y: 0}
   - button: {fileID: 1121248965}
     arrowOffset: {x: -50, y: 0}
   - button: {fileID: 491039493}
@@ -4409,7 +4466,7 @@ MonoBehaviour:
   - button: {fileID: 1495251585}
     arrowOffset: {x: -50, y: 0}
   - button: {fileID: 1563980948}
-    arrowOffset: {x: -100, y: 0}
+    arrowOffset: {x: -120, y: 0}
   arrowIndicator: {fileID: 1649556901}
   isSelectingOption: 0
   lastSelected: -1
@@ -4467,7 +4524,51 @@ MonoBehaviour:
   - {fileID: 615801503}
   - {fileID: 1433321757}
   - {fileID: 1119232653}
-  pageEvents: []
+  pageEvents:
+  - onPageExit:
+      m_PersistentCalls:
+        m_Calls: []
+    onNewPageEnter:
+      m_PersistentCalls:
+        m_Calls: []
+  - onPageExit:
+      m_PersistentCalls:
+        m_Calls: []
+    onNewPageEnter:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 287269053}
+          m_TargetAssemblyTypeName: UnityEngine.InputSystem.Samples.RebindUI.GamepadIconsExample,
+            Assembly-CSharp
+          m_MethodName: RefreshAllIcons
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - onPageExit:
+      m_PersistentCalls:
+        m_Calls: []
+    onNewPageEnter:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 287269053}
+          m_TargetAssemblyTypeName: UnityEngine.InputSystem.Samples.RebindUI.GamepadIconsExample,
+            Assembly-CSharp
+          m_MethodName: RefreshAllIcons
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   fadeDuration: 0.25
   delayBeforeNextPage: 0.25
   transitionButtonList:
@@ -4535,6 +4636,178 @@ MonoBehaviour:
     rightStick: {fileID: -1656168237, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
     leftStickPress: {fileID: 150704362, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
     rightStickPress: {fileID: -1703984180, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+  keyboard:
+    icons:
+    - key: esc
+      icon: {fileID: -1425722634, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f1
+      icon: {fileID: 2103351215, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f2
+      icon: {fileID: 682313399, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f3
+      icon: {fileID: -1741393011, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f4
+      icon: {fileID: 307289291, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f5
+      icon: {fileID: -1281562303, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f6
+      icon: {fileID: 1284231599, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f7
+      icon: {fileID: 2013936264, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f8
+      icon: {fileID: -206141561, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f9
+      icon: {fileID: 772559641, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f10
+      icon: {fileID: 1604707611, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f11
+      icon: {fileID: -1275789709, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f12
+      icon: {fileID: -69954050, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: insert
+      icon: {fileID: -1409949153, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: delete
+      icon: {fileID: 1445898644, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: backspace
+      icon: {fileID: 399627186, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: tab
+      icon: {fileID: 1902882984, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: q
+      icon: {fileID: 776565519, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: w
+      icon: {fileID: -216099528, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: e
+      icon: {fileID: 2108560087, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: r
+      icon: {fileID: -102262410, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: t
+      icon: {fileID: -619949445, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: y
+      icon: {fileID: -428211507, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: u
+      icon: {fileID: -798299639, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: i
+      icon: {fileID: -1351563182, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: o
+      icon: {fileID: 1773966317, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: p
+      icon: {fileID: 1647482780, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: leftBracket
+      icon: {fileID: 95164207, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: rightBracket
+      icon: {fileID: 1272123853, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: backspace
+      icon: {fileID: 399627186, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: capsLock
+      icon: {fileID: 209010034, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: a
+      icon: {fileID: 683841888, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: s
+      icon: {fileID: 1563652629, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: d
+      icon: {fileID: -868575834, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: f
+      icon: {fileID: -441034888, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: g
+      icon: {fileID: 282042355, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: h
+      icon: {fileID: 1046327027, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: j
+      icon: {fileID: -1957956747, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: k
+      icon: {fileID: 857034832, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: l
+      icon: {fileID: -1332958065, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: colon
+      icon: {fileID: 1899455063, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: semicolon
+      icon: {fileID: 785992007, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: enter
+      icon: {fileID: 844848750, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: leftShift
+      icon: {fileID: 43296792, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: z
+      icon: {fileID: 196174266, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: x
+      icon: {fileID: 1576336359, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: c
+      icon: {fileID: 727392753, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: v
+      icon: {fileID: -690384102, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: b
+      icon: {fileID: 213733288, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: n
+      icon: {fileID: -100405414, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: m
+      icon: {fileID: -1176824266, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: comma
+      icon: {fileID: -1368611184, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: period
+      icon: {fileID: -1182205343, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: slash
+      icon: {fileID: 714169539, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: shift
+      icon: {fileID: 43296792, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: space
+      icon: {fileID: -1747099125, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: upArrow
+      icon: {fileID: -1435855325, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: leftArrow
+      icon: {fileID: 1634920515, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: downArrow
+      icon: {fileID: 200860790, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: rightArrow
+      icon: {fileID: -1581295439, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numLock
+      icon: {fileID: 782800645, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpadDivide
+      icon: {fileID: 714169539, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpadMultiply
+      icon: {fileID: 442212357, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpadMinus
+      icon: {fileID: -625564456, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpadPlus
+      icon: {fileID: 1385727463, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpadEnter
+      icon: {fileID: 844848750, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpadPeriod
+      icon: {fileID: -1182205343, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad0
+      icon: {fileID: 1505673148, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad1
+      icon: {fileID: 344519693, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad2
+      icon: {fileID: 1671751931, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad3
+      icon: {fileID: 1209982849, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad4
+      icon: {fileID: 967662780, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad5
+      icon: {fileID: -1823789509, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad6
+      icon: {fileID: -723162418, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad7
+      icon: {fileID: -144416511, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad8
+      icon: {fileID: -1167687437, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: numpad9
+      icon: {fileID: -1053906175, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: minus
+      icon: {fileID: -625564456, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: quote
+      icon: {fileID: 642283212, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: backquote
+      icon: {fileID: -1470610082, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: ctrl
+      icon: {fileID: -1941104230, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: leftCtrl
+      icon: {fileID: -1941104230, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: alt
+      icon: {fileID: -628912216, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: leftAlt
+      icon: {fileID: -628912216, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+    - key: leftMeta
+      icon: {fileID: 645854435, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
 --- !u!114 &287269055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4689,15 +4962,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -4735,7 +5010,7 @@ GameObject:
   - component: {fileID: 322131331}
   - component: {fileID: 322131330}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4758,7 +5033,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322131330
 MonoBehaviour:
@@ -4782,7 +5057,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -5015,10 +5290,10 @@ MonoBehaviour:
           value: -301.05005
         - localeIdentifier:
             m_Code: es
-          value: -335.9
+          value: -345.50003
         - localeIdentifier:
             m_Code: fr
-          value: -308.45004
+          value: -336.55008
 --- !u!114 &338383816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5082,15 +5357,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -5239,15 +5516,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -5392,15 +5671,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -5483,7 +5764,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -397.4}
-  m_SizeDelta: {x: 56.6281, y: 30}
+  m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &352400620
 MonoBehaviour:
@@ -5779,10 +6060,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 109.80001
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 123.999985
 --- !u!114 &356800589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5893,15 +6174,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -6255,10 +6538,10 @@ MonoBehaviour:
           value: 134.26242
         - localeIdentifier:
             m_Code: es
-          value: 126.400055
+          value: 148.40004
         - localeIdentifier:
             m_Code: fr
-          value: 109.60002
+          value: 115.41939
 --- !u!114 &384504908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6322,15 +6605,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -6414,7 +6699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -389.60587}
+  m_AnchoredPosition: {x: 8.9, y: -389.60587}
   m_SizeDelta: {x: 56.6281, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387382991
@@ -6710,7 +6995,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: C
+  m_text: Numero 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
   m_sharedMaterial: {fileID: 473530870180049437, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
@@ -6753,15 +7038,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -6868,15 +7155,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -7113,10 +7402,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 133.00002
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 123.999985
 --- !u!222 &459130822
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7443,6 +7732,7 @@ GameObject:
   - component: {fileID: 488645951}
   - component: {fileID: 488645953}
   - component: {fileID: 488645952}
+  - component: {fileID: 488645954}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -7507,6 +7797,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488645950}
   m_CullTransparentMesh: 1
+--- !u!114 &488645954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488645950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913790
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913790
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 488645951}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913791
+    - rid: 4521263756551913791
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &491039488
 GameObject:
   m_ObjectHideFlags: 0
@@ -7612,10 +7937,10 @@ MonoBehaviour:
           value: -301.05005
         - localeIdentifier:
             m_Code: es
-          value: -335.9
+          value: -345.50003
         - localeIdentifier:
             m_Code: fr
-          value: -308.45004
+          value: -336.55008
 --- !u!114 &491039491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7679,15 +8004,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -7768,7 +8095,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &501245196
 MonoBehaviour:
@@ -7792,7 +8119,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -7895,7 +8222,7 @@ GameObject:
   - component: {fileID: 508050192}
   - component: {fileID: 508050191}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7918,7 +8245,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &508050191
 MonoBehaviour:
@@ -7942,7 +8269,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -8061,15 +8388,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -8132,10 +8461,10 @@ MonoBehaviour:
           value: 361.8
         - localeIdentifier:
             m_Code: es
-          value: 353.99997
+          value: 376.99997
         - localeIdentifier:
             m_Code: fr
-          value: 338
+          value: 343.81937
     - rid: 2775745137490788585
       type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
       data:
@@ -8350,15 +8679,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -8484,15 +8815,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -8619,15 +8952,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -8703,7 +9038,7 @@ GameObject:
   - component: {fileID: 549104603}
   - component: {fileID: 549104602}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8726,7 +9061,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &549104602
 MonoBehaviour:
@@ -8750,7 +9085,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -8866,15 +9201,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9130,15 +9467,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9307,10 +9646,10 @@ MonoBehaviour:
           value: 134.26242
         - localeIdentifier:
             m_Code: es
-          value: 126.400055
+          value: 148.40004
         - localeIdentifier:
             m_Code: fr
-          value: 109.60002
+          value: 115.41939
 --- !u!114 &566306320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9374,15 +9713,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9533,10 +9874,10 @@ MonoBehaviour:
           value: -80.6
         - localeIdentifier:
             m_Code: fr
-          value: -102.6
+          value: -96.78064
         - localeIdentifier:
             m_Code: es
-          value: -105.5
+          value: -83.500015
 --- !u!114 &596463284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9600,15 +9941,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -9903,6 +10246,7 @@ GameObject:
   - component: {fileID: 602842734}
   - component: {fileID: 602842736}
   - component: {fileID: 602842735}
+  - component: {fileID: 602842737}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -9967,6 +10311,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602842733}
   m_CullTransparentMesh: 1
+--- !u!114 &602842737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602842733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913798
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913798
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 602842734}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913799
+    - rid: 4521263756551913799
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &615801501
 GameObject:
   m_ObjectHideFlags: 0
@@ -10076,6 +10455,7 @@ GameObject:
   - component: {fileID: 641016876}
   - component: {fileID: 641016878}
   - component: {fileID: 641016877}
+  - component: {fileID: 641016879}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -10140,6 +10520,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641016875}
   m_CullTransparentMesh: 1
+--- !u!114 &641016879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641016875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913804
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913804
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 641016876}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913805
+    - rid: 4521263756551913805
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &650432808
 GameObject:
   m_ObjectHideFlags: 0
@@ -10445,15 +10860,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -10709,10 +11126,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 133.00002
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 123.999985
 --- !u!222 &656584526
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10892,10 +11309,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 109.80001
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 123.999985
 --- !u!114 &664131916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11037,7 +11454,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687105882
 MonoBehaviour:
@@ -11061,7 +11478,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -11180,15 +11597,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -12061,15 +12480,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -12707,12 +13128,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &875118533
 GameObject:
   m_ObjectHideFlags: 0
@@ -12905,10 +13326,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 133.00002
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 123.999985
 --- !u!222 &875118539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13056,15 +13477,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -13193,15 +13616,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -13284,10 +13709,10 @@ MonoBehaviour:
           value: 147.584
         - localeIdentifier:
             m_Code: es
-          value: 123.39996
+          value: 146.39996
         - localeIdentifier:
             m_Code: fr
-          value: 125.64998
+          value: 131.46935
     - rid: 2775745137490788562
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -13367,7 +13792,7 @@ GameObject:
   - component: {fileID: 884747953}
   - component: {fileID: 884747952}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13390,7 +13815,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &884747952
 MonoBehaviour:
@@ -13414,7 +13839,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -13511,15 +13936,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -13739,15 +14166,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -14012,7 +14441,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &949309102
 MonoBehaviour:
@@ -14036,7 +14465,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -14358,10 +14787,10 @@ MonoBehaviour:
           value: -80.600006
         - localeIdentifier:
             m_Code: fr
-          value: -102.59999
+          value: -96.780624
         - localeIdentifier:
             m_Code: es
-          value: -105.5
+          value: -83.500015
 --- !u!114 &1010121514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14425,15 +14854,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -14491,7 +14922,7 @@ GameObject:
   - component: {fileID: 1026221025}
   - component: {fileID: 1026221024}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14514,7 +14945,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026221024
 MonoBehaviour:
@@ -14538,7 +14969,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -14692,15 +15123,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -14826,15 +15259,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -15171,15 +15606,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -15446,15 +15883,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -15534,10 +15973,10 @@ MonoBehaviour:
           value: -79.71442
         - localeIdentifier:
             m_Code: fr
-          value: -101.7144
+          value: -95.895035
         - localeIdentifier:
             m_Code: es
-          value: -104.61441
+          value: -82.614426
 --- !u!1 &1119232651
 GameObject:
   m_ObjectHideFlags: 0
@@ -15708,10 +16147,10 @@ MonoBehaviour:
           value: -301.5
         - localeIdentifier:
             m_Code: es
-          value: -335.9
+          value: -345.5
         - localeIdentifier:
             m_Code: fr
-          value: -308.9
+          value: -337
 --- !u!114 &1121248963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15775,15 +16214,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -15931,15 +16372,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -16065,15 +16508,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -16134,7 +16579,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203047540
 MonoBehaviour:
@@ -16158,7 +16603,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -16356,15 +16801,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -16622,15 +17069,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -16714,10 +17163,10 @@ MonoBehaviour:
           value: 146.6
         - localeIdentifier:
             m_Code: es
-          value: 123.39996
+          value: 146.39996
         - localeIdentifier:
             m_Code: fr
-          value: 125.64899
+          value: 131.46835
     - rid: 2775745137490788548
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -16807,7 +17256,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1249699706
 MonoBehaviour:
@@ -16831,7 +17280,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -16859,7 +17308,7 @@ GameObject:
   - component: {fileID: 1256494412}
   - component: {fileID: 1256494411}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16882,7 +17331,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1256494411
 MonoBehaviour:
@@ -16906,7 +17355,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -16979,7 +17428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Barra Espaciadora
+  m_text: Numero 8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
   m_sharedMaterial: {fileID: 473530870180049437, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
@@ -17022,15 +17471,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -17067,6 +17518,7 @@ GameObject:
   - component: {fileID: 1324312928}
   - component: {fileID: 1324312930}
   - component: {fileID: 1324312929}
+  - component: {fileID: 1324312931}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -17131,6 +17583,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324312927}
   m_CullTransparentMesh: 1
+--- !u!114 &1324312931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324312927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913792
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913792
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1324312928}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913793
+    - rid: 4521263756551913793
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &1326147502
 GameObject:
   m_ObjectHideFlags: 0
@@ -17202,7 +17689,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1329357568
 MonoBehaviour:
@@ -17226,7 +17713,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -17636,15 +18123,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -17775,10 +18264,10 @@ MonoBehaviour:
           value: -80.600006
         - localeIdentifier:
             m_Code: fr
-          value: -102.59999
+          value: -96.780624
         - localeIdentifier:
             m_Code: es
-          value: -105.5
+          value: -83.500015
 --- !u!114 &1351292181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17842,15 +18331,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -18075,15 +18566,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -18167,10 +18660,10 @@ MonoBehaviour:
           value: -74
         - localeIdentifier:
             m_Code: es
-          value: -109.5
+          value: -117
         - localeIdentifier:
             m_Code: fr
-          value: -82.19998
+          value: -110.29999
     - rid: 2775745137490788504
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -18323,15 +18816,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -18495,15 +18990,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -18904,10 +19401,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 109.80001
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 123.999985
 --- !u!114 &1381713764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19188,15 +19685,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -19363,15 +19862,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -19455,10 +19956,10 @@ MonoBehaviour:
           value: -73.5
         - localeIdentifier:
             m_Code: es
-          value: -109.5
+          value: -117
         - localeIdentifier:
             m_Code: fr
-          value: -81.69998
+          value: -109.80002
     - rid: 2775745137490788528
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -20218,7 +20719,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1477320887
 MonoBehaviour:
@@ -20242,7 +20743,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -20633,10 +21134,10 @@ MonoBehaviour:
           value: 75
         - localeIdentifier:
             m_Code: es
-          value: 118.2
+          value: 109.80001
         - localeIdentifier:
             m_Code: fr
-          value: 100
+          value: 124
 --- !u!114 &1486958504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20766,15 +21267,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -21088,6 +21591,7 @@ GameObject:
   - component: {fileID: 1546242776}
   - component: {fileID: 1546242778}
   - component: {fileID: 1546242777}
+  - component: {fileID: 1546242779}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -21152,6 +21656,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546242775}
   m_CullTransparentMesh: 1
+--- !u!114 &1546242779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546242775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913800
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913800
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1546242776}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913801
+    - rid: 4521263756551913801
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &1553875637
 GameObject:
   m_ObjectHideFlags: 0
@@ -21164,7 +21703,7 @@ GameObject:
   - component: {fileID: 1553875640}
   - component: {fileID: 1553875639}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21187,7 +21726,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1553875639
 MonoBehaviour:
@@ -21211,7 +21750,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -21329,15 +21868,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -21482,15 +22023,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -21573,7 +22116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -277.97}
+  m_AnchoredPosition: {x: 8.9, y: -277.97}
   m_SizeDelta: {x: 56.6281, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1563980949
@@ -21840,15 +22383,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -22150,15 +22695,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -22322,15 +22869,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -22685,15 +23234,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -22777,10 +23328,10 @@ MonoBehaviour:
           value: -73.5
         - localeIdentifier:
             m_Code: es
-          value: -109.5
+          value: -117
         - localeIdentifier:
             m_Code: fr
-          value: -81.69998
+          value: -109.80002
     - rid: 2775745137490788519
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -22995,7 +23546,7 @@ GameObject:
   - component: {fileID: 1682040993}
   - component: {fileID: 1682040992}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23018,7 +23569,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682040992
 MonoBehaviour:
@@ -23042,7 +23593,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -23161,15 +23712,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -23253,10 +23806,10 @@ MonoBehaviour:
           value: -73.5
         - localeIdentifier:
             m_Code: es
-          value: -109.5
+          value: -117
         - localeIdentifier:
             m_Code: fr
-          value: -81.69998
+          value: -109.80002
     - rid: 2775745137490788509
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -23365,7 +23918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Flecha Izquierda
+  m_text: Barra Espaciadora
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
   m_sharedMaterial: {fileID: 473530870180049437, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
@@ -23408,15 +23961,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -23523,15 +24078,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -23657,15 +24214,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -23810,15 +24369,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -23944,15 +24505,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -24095,15 +24658,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -24248,15 +24813,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -24317,7 +24884,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784635752
 MonoBehaviour:
@@ -24341,7 +24908,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -24460,15 +25027,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -24531,10 +25100,10 @@ MonoBehaviour:
           value: 361.80002
         - localeIdentifier:
             m_Code: es
-          value: 354
+          value: 377
         - localeIdentifier:
             m_Code: fr
-          value: 338
+          value: 343.81937
     - rid: 2775745137490788579
       type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
       data:
@@ -24716,15 +25285,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -24787,10 +25358,10 @@ MonoBehaviour:
           value: 361.80002
         - localeIdentifier:
             m_Code: es
-          value: 354
+          value: 377
         - localeIdentifier:
             m_Code: fr
-          value: 338
+          value: 343.81937
     - rid: 2775745137490788581
       type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
       data:
@@ -24878,7 +25449,7 @@ GameObject:
   - component: {fileID: 1841806669}
   - component: {fileID: 1841806668}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24901,7 +25472,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1841806668
 MonoBehaviour:
@@ -24925,7 +25496,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -25162,15 +25733,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -25231,7 +25804,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847039931
 MonoBehaviour:
@@ -25255,7 +25828,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -25372,15 +25945,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -25455,6 +26030,7 @@ GameObject:
   - component: {fileID: 1864477558}
   - component: {fileID: 1864477560}
   - component: {fileID: 1864477559}
+  - component: {fileID: 1864477561}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -25519,6 +26095,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864477557}
   m_CullTransparentMesh: 1
+--- !u!114 &1864477561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864477557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913794
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913794
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1864477558}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913795
+    - rid: 4521263756551913795
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &1888098100
 GameObject:
   m_ObjectHideFlags: 0
@@ -25530,6 +26141,7 @@ GameObject:
   - component: {fileID: 1888098101}
   - component: {fileID: 1888098103}
   - component: {fileID: 1888098102}
+  - component: {fileID: 1888098104}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -25594,6 +26206,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888098100}
   m_CullTransparentMesh: 1
+--- !u!114 &1888098104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888098100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 4521263756551913802
+  references:
+    version: 2
+    RefIds:
+    - rid: 4521263756551913802
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1888098101}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263756551913803
+    - rid: 4521263756551913803
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMax.y
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 1
+        - localeIdentifier:
+            m_Code: es
+          value: 0
 --- !u!1 &1894300496
 GameObject:
   m_ObjectHideFlags: 0
@@ -25606,7 +26253,7 @@ GameObject:
   - component: {fileID: 1894300499}
   - component: {fileID: 1894300498}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25629,7 +26276,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1894300498
 MonoBehaviour:
@@ -25653,7 +26300,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -25774,10 +26421,10 @@ MonoBehaviour:
           value: -301.5
         - localeIdentifier:
             m_Code: es
-          value: -335.9
+          value: -345.50003
         - localeIdentifier:
             m_Code: fr
-          value: -308.45004
+          value: -336.55008
 --- !u!114 &1903798102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25841,15 +26488,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -25996,15 +26645,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -26149,15 +26800,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -26283,15 +26936,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -26575,7 +27230,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1946780378
 MonoBehaviour:
@@ -26599,7 +27254,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -26627,7 +27282,7 @@ GameObject:
   - component: {fileID: 1973823554}
   - component: {fileID: 1973823553}
   m_Layer: 5
-  m_Name: ActionBindingIcon2
+  m_Name: ActionBindingIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26650,7 +27305,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36, y: 36}
+  m_SizeDelta: {x: 72, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1973823553
 MonoBehaviour:
@@ -26674,7 +27329,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -26793,15 +27448,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -26864,10 +27521,10 @@ MonoBehaviour:
           value: 361.80002
         - localeIdentifier:
             m_Code: es
-          value: 354
+          value: 377
         - localeIdentifier:
             m_Code: fr
-          value: 338
+          value: 343.81937
     - rid: 2775745137490788583
       type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
       data:
@@ -27046,15 +27703,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -27477,15 +28136,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -27750,15 +28411,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -28013,15 +28676,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -28274,15 +28939,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 00000000
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -28413,10 +29080,10 @@ MonoBehaviour:
           value: 134.26242
         - localeIdentifier:
             m_Code: es
-          value: 126.400055
+          value: 148.40004
         - localeIdentifier:
             m_Code: fr
-          value: 109.60002
+          value: 115.41939
 --- !u!114 &2095052710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28480,15 +29147,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -28709,15 +29378,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
