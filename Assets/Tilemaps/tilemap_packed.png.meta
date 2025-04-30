@@ -15017,7 +15017,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tilemap_packed_719
+      name: startButton_Wii
       rect:
         serializedVersion: 2
         x: 80
@@ -15215,7 +15215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tilemap_packed_728
+      name: startButton_NintendoSwitch
       rect:
         serializedVersion: 2
         x: 224
@@ -17268,6 +17268,8 @@ TextureImporter:
       semicolon: 785992007
       slash: 714169539
       space: -1747099125
+      startButton_NintendoSwitch: 1716964107
+      startButton_Wii: 2118216172
       t: -619949445
       tab: 1902882984
       tilemap_packed_: -333227012
@@ -17868,7 +17870,6 @@ TextureImporter:
       tilemap_packed_716: 1066425049
       tilemap_packed_717: 1970572849
       tilemap_packed_718: -474977810
-      tilemap_packed_719: 2118216172
       tilemap_packed_72: 540108271
       tilemap_packed_720: -1285385220
       tilemap_packed_721: -862451677
@@ -17878,7 +17879,6 @@ TextureImporter:
       tilemap_packed_725: -695716523
       tilemap_packed_726: 1133917687
       tilemap_packed_727: 772393244
-      tilemap_packed_728: 1716964107
       tilemap_packed_729: -226195668
       tilemap_packed_73: 416481630
       tilemap_packed_730: -134818323

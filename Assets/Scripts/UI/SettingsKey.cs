@@ -2,6 +2,7 @@ public enum SettingType
 {
     GraphicsQuality,
     Resolution,
+    DisplayMode,
     Language
 }
 
@@ -15,6 +16,7 @@ class SettingsKeys
     public const string ResolutionKey = "Resolution";
     public const string VSyncKey = "VSync";
     public const string GraphicsQualityKey = "GraphicsQuality";
+    public const string DisplayModeKey = "DisplayMode";
     public const string LanguageKey = "Language";
     public const string SlideWithDownJumpKey = "SlideWithDown";
     public const string ControllerVibrationKey = "ControllerVibration";

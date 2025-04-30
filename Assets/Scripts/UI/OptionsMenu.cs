@@ -9,7 +9,8 @@ using System.Collections;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
-
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Samples.RebindUI;
 public class OptionsMenu : MonoBehaviour
 {
     [Header("UI Elements")]
@@ -50,8 +51,39 @@ public class OptionsMenu : MonoBehaviour
     private int currentGraphicsIndex;
     private int currentResolutionIndex;
     private int currentLanguageIndex;
+    private int currentDisplayModeIndex;
     
     private AsyncOperationHandle<string> graphicsTextHandle;
+    private PlayerInputActions inputActions;
+    private float lastMoveTime;
+    private float moveCooldown = 0.15f; // Tiempo entre movimientos rápidos
+    private float holdStartTime;
+    private bool isHolding;
+    private bool isNavigating;
+    private float holdThreshold = 0.5f; // Tiempo para considerar que es un hold
+    private float initialIncrement = 0.01f; // Primeros movimientos
+    private float holdIncrement = 0.02f;     // Incremento cuando mantiene presionado
+
+    void Awake()
+    {
+        inputActions = new PlayerInputActions();  // Initialize input actions
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+        inputActions.UI.Navigate.started += OnNavigateStarted;
+        inputActions.UI.Navigate.performed += OnNavigatePerformed;
+        inputActions.UI.Navigate.canceled += OnNavigateCanceled;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.UI.Navigate.started -= OnNavigateStarted;
+        inputActions.UI.Navigate.performed -= OnNavigatePerformed;
+        inputActions.UI.Navigate.canceled -= OnNavigateCanceled;
+        inputActions.Disable();
+    }
 
     void Start()
     {
@@ -63,6 +95,8 @@ public class OptionsMenu : MonoBehaviour
     {
         LoadSettings();
         SetVolumes();
+
+        ApplyDisplayMode(currentDisplayModeIndex);
 
         fullscreenToggle.isOn = PlayerPrefs.GetInt(SettingsKeys.FullscreenKey, Screen.fullScreen ? 1 : 0) == 1;
         vSyncToggle.isOn = PlayerPrefs.GetInt(SettingsKeys.VSyncKey, QualitySettings.vSyncCount > 0 ? 1 : 0) == 1;
@@ -83,6 +117,26 @@ public class OptionsMenu : MonoBehaviour
         UpdateVSyncImage();
         UpdateControllerVibrationImage();
         UpdateLanguageText();
+    }
+
+    private void Update()
+    {
+        if (isNavigating)
+        {
+            holdStartTime += Time.unscaledDeltaTime;
+
+            if (holdStartTime >= holdThreshold && !isHolding)
+            {
+                isHolding = true;
+                lastMoveTime = 0f; // Permite mover inmediatamente después de activar el hold
+            }
+
+            if (isHolding && Time.unscaledTime - lastMoveTime > moveCooldown)
+            {
+                MoveSlider(holdIncrement); // Movimiento acelerado
+                lastMoveTime = Time.unscaledTime;
+            }
+        }
     }
 
     public void ResetToDefault()
@@ -186,7 +240,10 @@ public class OptionsMenu : MonoBehaviour
     {
         float volume = slider.value;
         audioMixer.SetFloat(key, Mathf.Log10(volume) * 20);
-        text.text = (volume * 100).ToString("00");
+        if (text != null)
+            text.text = (volume * 100).ToString("00");
+        else
+            Debug.LogWarning($"{slider} is missing");
         UpdateTextColor(text, volume);
         PlayerPrefs.SetFloat(key, volume);
         PlayerPrefs.Save();
@@ -280,6 +337,21 @@ public class OptionsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
     }
 
+    private void ApplyDisplayMode(int index)
+    {
+        var iconsExample = FindFirstObjectByType<GamepadIconsExample>();
+        if (iconsExample == null) return;
+
+        switch (index)
+        {
+            case 0: iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.Xbox); break;
+            case 1: iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.PlayStation); break;
+            case 2: iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.Nintendo); break;
+        }
+
+        iconsExample.RefreshAllIcons();
+    }
+
     public void SetLanguage(int index)
     {
         if (index < 0 || index >= LocalizationSettings.AvailableLocales.Locales.Count)
@@ -336,6 +408,7 @@ public class OptionsMenu : MonoBehaviour
         currentGraphicsIndex = GetGraphicsQuality();
         currentResolutionIndex = GetResolutionIndex();
         currentLanguageIndex = GetLanguageIndex();
+        currentDisplayModeIndex = GetDisplayMode();
 
         QualitySettings.SetQualityLevel(currentGraphicsIndex);
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
@@ -382,6 +455,7 @@ public class OptionsMenu : MonoBehaviour
     public int GetGraphicsQuality() => PlayerPrefs.GetInt(SettingsKeys.GraphicsQualityKey, 2);
     public int GetResolutionIndex() => PlayerPrefs.GetInt(SettingsKeys.ResolutionKey, GetCurrentResolutionIndex());
     public int GetLanguageIndex() => PlayerPrefs.GetInt(SettingsKeys.LanguageKey, 0);
+    public int GetDisplayMode() => PlayerPrefs.GetInt(SettingsKeys.DisplayModeKey, 0);
 
     private int GetCurrentResolutionIndex()
     {
@@ -420,6 +494,69 @@ public class OptionsMenu : MonoBehaviour
 
                 selector.UpdateOptionText();
             }
+        }
+    }
+
+     private void OnNavigateStarted(InputAction.CallbackContext context)
+    {
+        isNavigating = true;
+        holdStartTime = 0f;
+        isHolding = false;
+    }
+
+    private void OnNavigateCanceled(InputAction.CallbackContext context)
+    {
+        isNavigating = false;
+        isHolding = false;
+        holdStartTime = 0f;
+    }
+
+    private void OnNavigatePerformed(InputAction.CallbackContext context)
+    {
+        if (!isHolding)
+        {
+            MoveSlider(initialIncrement); // Movimiento normal
+            lastMoveTime = Time.unscaledTime;
+        }
+    }
+
+    private void MoveSlider(float incrementAmount)
+    {
+        var selectedSlider = GetCurrentlySelectedSlider();
+        if (selectedSlider == null)
+            return;
+
+        Vector2 navigation = inputActions.UI.Navigate.ReadValue<Vector2>();
+
+        if (navigation.x > 0.5f)
+        {
+            selectedSlider.value = Mathf.Clamp(selectedSlider.value + incrementAmount, selectedSlider.minValue, selectedSlider.maxValue);
+        }
+        else if (navigation.x < -0.5f)
+        {
+            selectedSlider.value = Mathf.Clamp(selectedSlider.value - incrementAmount, selectedSlider.minValue, selectedSlider.maxValue);
+        }
+
+        UpdateSliderText(selectedSlider);
+    }
+
+    private Slider GetCurrentlySelectedSlider()
+    {
+        GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+        if (selectedObject != null && selectedObject.GetComponent<Slider>())
+        {
+            return selectedObject.GetComponent<Slider>();
+        }
+        return null;
+    }
+
+    private void UpdateSliderText(Slider slider)
+    {
+        // Dynamically update the associated text for the slider value
+        TextMeshProUGUI sliderText = slider.GetComponentInChildren<TextMeshProUGUI>();
+        if (sliderText != null)
+        {
+            sliderText.text = slider.value.ToString("F2"); // Display with two decimal places
         }
     }
 }

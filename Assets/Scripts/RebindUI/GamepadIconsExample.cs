@@ -7,25 +7,27 @@ using TMPro;
 
 namespace UnityEngine.InputSystem.Samples.RebindUI
 {
-    // <summary>
-    /// This is an example for how to override the default display behavior of bindings. The component
-    /// hooks into <see cref="RebindActionUI.updateBindingUIEvent"/> which is triggered when UI display
-    /// of a binding should be refreshed. It then checks whether we have an icon for the current binding
-    /// and if so, replaces the default text display with an icon.
-    /// </summary>
-    /// /// /// <summary>
-    /// Updated to support both gamepad and keyboard icons, falling back to text.
-    /// </summary>
-
     public class GamepadIconsExample : MonoBehaviour
     {
+        public bool allowKeyboardBindings = true;
+        public bool allowGamepadBindings = true;
+
         public GamepadIcons xbox;
         public GamepadIcons ps4;
+        public GamepadIcons nintendo;
         public KeyboardIcons keyboard;
+
+        public enum ControlScheme
+        {
+            Xbox,
+            PlayStation,
+            Nintendo
+        }
+
+        public ControlScheme currentScheme = ControlScheme.Xbox;
 
         protected void OnEnable()
         {
-            // Initialize keyboard icon mapping
             keyboard?.Initialize();
 
             var rebindUIComponents = transform.GetComponentsInChildren<RebindActionUI>(true);
@@ -34,6 +36,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 component.updateBindingUIEvent.AddListener(OnUpdateBindingDisplay);
                 component.UpdateBindingDisplay();
             }
+        }
+
+        public void SetControlScheme(ControlScheme scheme)
+        {
+            currentScheme = scheme;
         }
 
         public void RefreshAllIcons()
@@ -47,20 +54,39 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         protected void OnUpdateBindingDisplay(RebindActionUI component, string bindingDisplayString, string deviceLayoutName, string controlPath)
         {
+            
             if (component == null || string.IsNullOrEmpty(controlPath))
                 return;
 
             var icon = default(Sprite);
             var isKeyboard = InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "Keyboard");
-            var isDualShock = InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "DualShockGamepad");
             var isGamepad = InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "Gamepad");
 
-            if (isDualShock)
-                icon = ps4.GetSprite(controlPath);
-            else if (isGamepad)
-                icon = xbox.GetSprite(controlPath);
-            else if (isKeyboard)
+            if (isKeyboard && !allowKeyboardBindings)
+            return;
+
+            if (isGamepad && !allowGamepadBindings)
+                return;
+
+            if (isKeyboard)
+            {
                 icon = keyboard.GetSprite(controlPath);
+            }
+            else if (isGamepad)
+            {
+                switch (currentScheme)
+                {
+                    case ControlScheme.Xbox:
+                        icon = xbox.GetSprite(controlPath);
+                        break;
+                    case ControlScheme.PlayStation:
+                        icon = ps4.GetSprite(controlPath);
+                        break;
+                    case ControlScheme.Nintendo:
+                        icon = nintendo.GetSprite(controlPath);
+                        break;
+                }
+            }
 
             var textComponent = component.bindingText;
             if (textComponent == null || textComponent.transform == null)
@@ -85,7 +111,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             }
             else
             {
-                // Fallback to displaying the control name as text
                 string controlName = controlPath.Replace("<Keyboard>/", "").ToUpperInvariant();
                 textComponent.text = controlName;
                 textComponent.gameObject.SetActive(true);

@@ -6,13 +6,14 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.InputSystem.Samples.RebindUI;
 
 public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public TextMeshProUGUI optionText;
     public GameObject leftArrow, rightArrow;
     public SettingType settingKey;
-    
+
     public string[] optionKeys;
     public int currentIndex;
     private bool isSelecting = false;
@@ -74,6 +75,9 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
             case SettingType.Language:
                 optionKeys = optionsMenu.GetLanguageOptions();
                 break;
+            case SettingType.DisplayMode:
+                optionKeys = new string[] { "<color=#58D854>Xbox</color>", "<color=#0088D8>PlayStation</color>", "<color=#E43B44>Nintendo</color>" };
+                break;
             default:
                 Debug.LogError($"Unknown settingKey: {settingKey} for {optionText.text}");
                 return;
@@ -88,7 +92,7 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
 
     private void OnNavigate(InputAction.CallbackContext context)
     {
-        if (currentlySelecting != this) return;
+        if (!isSelecting) return;
 
         Vector2 input = context.ReadValue<Vector2>();
         if (input.x < 0) ChangeOption(-1);
@@ -101,36 +105,34 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
 
         if (!isSelecting)
         {
-            if (currentlySelecting != null) return;
+            if (currentlySelecting != null && currentlySelecting != this) return;
 
             isSelecting = true;
             currentlySelecting = this;
             EventSystem.current.SetSelectedGameObject(gameObject);
-
             EventSystem.current.sendNavigationEvents = false;
+
             leftArrow.SetActive(true);
             rightArrow.SetActive(true);
 
             if (arrowSelector != null)
-            {
-                arrowSelector.isSelectingOption = true; // Deactivate arrow indicator
-            }
+                arrowSelector.isSelectingOption = true;
         }
         else
         {
             isSelecting = false;
             currentlySelecting = null;
+            EventSystem.current.sendNavigationEvents = true;
+
             leftArrow.SetActive(false);
             rightArrow.SetActive(false);
 
             SaveToOptionsMenu();
             UpdateOptionText();
 
-            EventSystem.current.sendNavigationEvents = true;
-
             if (arrowSelector != null)
             {
-                arrowSelector.isSelectingOption = false; // Reactivate arrow indicator
+                arrowSelector.isSelectingOption = false;
                 arrowSelector.MoveIndicator(arrowSelector.lastSelected);
             }
         }
@@ -163,6 +165,31 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
         Canvas.ForceUpdateCanvases();
     }
 
+    private void UpdateGamepadIcons()
+    {
+        GamepadIconsExample iconsExample = FindFirstObjectByType<GamepadIconsExample>();
+        if (iconsExample == null)
+        {
+            Debug.LogError("GamepadIconsExample not found!");
+            return;
+        }
+
+        switch (currentIndex)
+        {
+            case 0:
+                iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.Xbox);
+                break;
+            case 1:
+                iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.PlayStation);
+                break;
+            case 2:
+                iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.Nintendo);
+                break;
+        }
+
+        iconsExample.RefreshAllIcons();
+    }
+
     private void LoadFromOptionsMenu()
     {
         if (optionsMenu == null) return;
@@ -177,6 +204,9 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
                 break;
             case SettingType.Language:
                 currentIndex = optionsMenu.GetLanguageIndex();
+                break;
+            case SettingType.DisplayMode:
+                currentIndex = PlayerPrefs.GetInt(SettingsKeys.DisplayModeKey, 0);
                 break;
         }
 
@@ -201,8 +231,13 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
             case SettingType.Language:
                 optionsMenu.SetLanguage(currentIndex);
                 break;
+            case SettingType.DisplayMode:
+                UpdateGamepadIcons();
+                PlayerPrefs.SetInt(SettingsKeys.DisplayModeKey, currentIndex);
+                PlayerPrefs.Save();
+                break;
         }
-        
+
         UpdateOptionText();
     }
 

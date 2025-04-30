@@ -13,6 +13,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     [CustomEditor(typeof(RebindActionUI))]
     public class RebindActionUIEditor : UnityEditor.Editor
     {
+
         protected void OnEnable()
         {
             m_ActionProperty = serializedObject.FindProperty("m_Action");
@@ -22,14 +23,17 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             m_RebindOverlayProperty = serializedObject.FindProperty("m_RebindOverlay");
             m_RebindTextProperty = serializedObject.FindProperty("m_RebindText");
             m_BindingIconProperty = serializedObject.FindProperty("m_BindingIcon");
-            m_UpdateBindingUIEventProperty = serializedObject.FindProperty("m_UpdateBindingUIEvent");
             m_RebindStartEventProperty = serializedObject.FindProperty("m_RebindStartEvent");
             m_RebindStopEventProperty = serializedObject.FindProperty("m_RebindStopEvent");
+            m_UpdateBindingUIEventProperty = serializedObject.FindProperty("m_UpdateBindingUIEvent");
             m_DisplayStringOptionsProperty = serializedObject.FindProperty("m_DisplayStringOptions");
+            m_AllowKeyboardBindingsProperty = serializedObject.FindProperty("allowKeyboardBindings");
+            m_AllowGamepadBindingsProperty = serializedObject.FindProperty("allowGamepadBindings");
+            m_ErrorTextProperty = serializedObject.FindProperty("m_ErrorText");
+            
 
             RefreshBindingOptions();
         }
-
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
@@ -64,6 +68,18 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 EditorGUILayout.PropertyField(m_RebindOverlayProperty);
                 EditorGUILayout.PropertyField(m_RebindTextProperty);
                 EditorGUILayout.PropertyField(m_BindingIconProperty);
+                EditorGUILayout.PropertyField(m_ErrorTextProperty);
+            }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Allowed Devices", Styles.boldLabel);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                var allowKeyboard = serializedObject.FindProperty("allowKeyboardBindings");
+                var allowGamepad = serializedObject.FindProperty("allowGamepadBindings");
+
+                EditorGUILayout.PropertyField(allowKeyboard, new GUIContent("Allow Keyboard Bindings"));
+                EditorGUILayout.PropertyField(allowGamepad, new GUIContent("Allow Gamepad Bindings"));
             }
 
             // Events section.
@@ -162,6 +178,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private SerializedProperty m_RebindStopEventProperty;
         private SerializedProperty m_UpdateBindingUIEventProperty;
         private SerializedProperty m_DisplayStringOptionsProperty;
+        private SerializedProperty m_AllowKeyboardBindingsProperty;
+        private SerializedProperty m_AllowGamepadBindingsProperty;
+        private SerializedProperty m_ErrorTextProperty;       
 
         private GUIContent m_BindingLabel = new GUIContent("Binding");
         private GUIContent m_DisplayOptionsLabel = new GUIContent("Display Options");

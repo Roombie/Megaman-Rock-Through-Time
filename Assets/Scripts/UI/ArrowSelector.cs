@@ -10,6 +10,7 @@ public class ArrowSelector : MonoBehaviour
         public Vector2 arrowOffset;
     }
 
+    public bool showDebugLinesOnlyOnActiveObjects = true;
     [SerializeField] ButtonData[] buttons;
     [SerializeField] RectTransform arrowIndicator;
     [HideInInspector] public bool isSelectingOption = false;
@@ -81,6 +82,9 @@ public class ArrowSelector : MonoBehaviour
         {
             if (buttons[i].button != null)
             {
+                if (showDebugLinesOnlyOnActiveObjects && !buttons[i].button.gameObject.activeInHierarchy)
+                    continue; // Skip button if inactive
+
                 Vector3 buttonPos = buttons[i].button.position;
                 Vector3 offsetPos = buttonPos + ((Vector3)buttons[i].arrowOffset * (Screen.height / 1080f));
 
@@ -94,6 +98,9 @@ public class ArrowSelector : MonoBehaviour
 
         if (lastSelected >= 0 && lastSelected < buttons.Length && buttons[lastSelected].button != null)
         {
+            if (showDebugLinesOnlyOnActiveObjects && !buttons[lastSelected].button.gameObject.activeInHierarchy)
+                return; // Don't draw selection if the object is inactive
+
             Gizmos.color = Color.red;
             Vector3 selectedPos = buttons[lastSelected].button.position + ((Vector3)buttons[lastSelected].arrowOffset * (Screen.height / 1080f));
             Gizmos.DrawSphere(selectedPos, 10f);

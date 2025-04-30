@@ -135,6 +135,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -178,6 +181,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427787303008531883}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -201,7 +205,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0.0021297336, y: 0.5901595}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,12 +217,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 0.87718785, y: 1.1817728}
   m_EdgeRadius: 0
 --- !u!50 &6110860310967769817
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -228,8 +232,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 10ad3075dd95e684e9942e172224d6db, type: 2}
   m_IncludeLayers:
@@ -244,7 +248,7 @@ Rigidbody2D:
   m_Constraints: 4
 --- !u!95 &3372955503883790708
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -258,6 +262,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -303,7 +308,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 1ed4f8d7-eb28-4569-9482-2302df4483ea
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5663759666540440996}
@@ -319,7 +324,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 469c4088-2997-4536-b8dc-bcad822a9b4e
-    m_ActionName: Player/Shoot[/Mouse/leftButton]
+    m_ActionName: 'Player/Shoot[/Mouse/leftButton]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5663759666540440996}
@@ -335,39 +340,39 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: dcf1ec0b-145a-4acb-bfc3-fcb5faeb5711
-    m_ActionName: Player/Jump[/Keyboard/space,/Keyboard/k]
+    m_ActionName: 'Player/Jump[/Keyboard/space,/Keyboard/k]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 67afec2b-1526-4ebc-bef8-6c631f3ce361
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: a8c7b6e7-f5ac-4a0b-af11-b809a5392806
-    m_ActionName: UI/Submit[/Keyboard/enter]
+    m_ActionName: 'UI/Submit[/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 282378b2-ada6-4944-80f4-7f7120f3bd82
-    m_ActionName: UI/Cancel[/Keyboard/escape]
+    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 0aa0f36d-42b1-4753-987e-81df4ea97911
-    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+    m_ActionName: 'UI/Point[/Mouse/position,/Pen/position]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 84c50e6c-5fd9-4b60-8069-83a1ea72368b
-    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+    m_ActionName: 'UI/Click[/Mouse/leftButton,/Pen/tip]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 00fd91e5-5867-4d6f-9639-04603a0c784d
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e6126232-1d35-409e-8e76-b5671acb713f
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 65a83218-bdcb-4981-a666-081f86be0a17
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
+    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 61bc23d1-a0c2-4cd0-8c0b-f84efb1c85bf
@@ -391,7 +396,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 5990b3f8-22ae-4946-be86-e2eb91241279
-    m_ActionName: Player/Slide[/Keyboard/c]
+    m_ActionName: 'Player/Slide[/Keyboard/c]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5663759666540440996}
@@ -407,7 +412,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: ee25fec1-1a82-416e-9557-4e0be70a0134
-    m_ActionName: Player/Pause[/Keyboard/escape,/Keyboard/p]
+    m_ActionName: 'Player/Pause[/Keyboard/escape,/Keyboard/p]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5663759666540440996}
@@ -423,7 +428,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 55f09632-8f4d-44ce-8ccd-46fe6718ab8d
-    m_ActionName: Player/NextWeapon[/Keyboard/e]
+    m_ActionName: 'Player/NextWeapon[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5663759666540440996}
@@ -439,7 +444,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 11f585f4-a8a4-4f08-ba2a-27605ec3d099
-    m_ActionName: Player/PreviousWeapon[/Keyboard/q]
+    m_ActionName: 'Player/PreviousWeapon[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -457,7 +462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f981578aca0d2f449ae1e36c30c338d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSpriteColors: []
 --- !u!1 &3137224801792183357
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +542,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5378,6 +5385,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

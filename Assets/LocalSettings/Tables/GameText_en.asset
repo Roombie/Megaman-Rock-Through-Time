@@ -199,11 +199,17 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 69872712586092544
-    m_Localized: Waiting for input...
+    m_Localized: 'Waiting for input...
+
+      Press Esc to assign nothing.'
     m_Metadata:
       m_Items: []
   - m_Id: 69872837744123904
-    m_Localized: Duplicate binding detected!
+    m_Localized: <color=red>Button already assigned.</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89897066891890688
+    m_Localized: <color=red>Button not allowed in this scheme.</color>
     m_Metadata:
       m_Items: []
   references:

@@ -4,6 +4,8 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
 
 ////TODO: localization support
 
@@ -322,19 +324,14 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         private void PerformInteractiveRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)
         {
-            if (action == null)
+            if (action == null || bindingIndex < 0 || bindingIndex >= action.bindings.Count)
             {
-                Debug.LogError("PerformInteractiveRebind called with null action!");
+                Debug.LogError("Invalid PerformInteractiveRebind parameters");
                 return;
             }
 
-            if (bindingIndex < 0 || bindingIndex >= action.bindings.Count)
-            {
-                Debug.LogError("Invalid binding index in PerformInteractiveRebind.");
-                return;
-            }
-
-            m_RebindOperation?.Cancel(); // Will null out m_RebindOperation.
+            m_RebindOperation?.Cancel();
+            action.Disable();
 
             void CleanUp()
             {
@@ -343,70 +340,70 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 m_Action.action.Enable();
             }
 
-            // Configure the rebind.
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
                 .WithControlsExcluding("<Mouse>")
-                .WithControlsExcluding("<Mouse>/leftbutton")
+                .WithControlsExcluding("<Mouse>/leftButton")
+                .WithControlsExcluding("<Mouse>/rightButton")
                 .WithCancelingThrough("<Keyboard>/escape")
-                .OnCancel(
-                    operation =>
+                .OnCancel(operation =>
+                {
+                    m_RebindStopEvent?.Invoke(this, operation);
+                    m_RebindOverlay?.SetActive(false);
+                    UpdateBindingDisplay();
+                    CleanUp();
+                })
+                .OnPotentialMatch(operation =>
+                {
+                    var control = operation.selectedControl;
+                    var layout = control?.device?.layout;
+
+                    bool isKeyboard = layout == "Keyboard" || layout == "Mouse";
+                    bool isGamepad = layout == "Gamepad" || layout == "DualShockGamepad" || layout == "XInputController" || layout == "SwitchProControllerHID";
+
+                    if ((isKeyboard && !allowKeyboardBindings) || (isGamepad && !allowGamepadBindings))
                     {
-                        m_RebindStopEvent?.Invoke(this, operation);
-                        m_RebindOverlay?.SetActive(false);
-                        UpdateBindingDisplay();
-                        CleanUp();
-                    })
-                .OnComplete(
-                    operation =>
+                        Debug.LogWarning("Forbidden device detected during rebind.");
+                        ShowError("ButtonNotAllowedInScheme");
+
+                        action.Disable(); // 🧠 volver a bloquear por seguridad
+
+                        PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
+                        return;
+                    }
+                })
+                .OnComplete(operation =>
+                {
+                    if (CheckDuplicatesBinding(action, bindingIndex, allCompositeParts))
                     {
-                        m_RebindOverlay?.SetActive(false);
-                        m_RebindStopEvent?.Invoke(this, operation);
+                        action.RemoveBindingOverride(bindingIndex);
+                        ShowError("ButtonAlreadyAssigned");
 
-                        if (CheckDuplicatesBinding(action, bindingIndex, allCompositeParts)) 
-                        {
-                            action.RemoveBindingOverride(bindingIndex);
-                            CleanUp();
-                            PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
-                            return;
-                        }
+                        action.Disable(); // 🧠 volver a bloquear por seguridad
 
-                        UpdateBindingDisplay();
-                        // Save the new bindings
-                        FindFirstObjectByType<RebindSaveLoad>()?.SaveBindings();
-                        CleanUp();
+                        PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
+                        return;
+                    }
 
-                        // If there's more composite parts we should bind, initiate a rebind
-                        // for the next part.
-                        if (allCompositeParts)
-                        {
-                            var nextBindingIndex = bindingIndex + 1;
-                            if (nextBindingIndex < action.bindings.Count && action.bindings[nextBindingIndex].isPartOfComposite)
-                                PerformInteractiveRebind(action, nextBindingIndex, true);
-                        }
-                    });
+                    UpdateBindingDisplay();
+                    FindFirstObjectByType<RebindSaveLoad>()?.SaveBindings();
+                    m_RebindOverlay?.SetActive(false);
+                    m_RebindStopEvent?.Invoke(this, operation);
+                    CleanUp();
 
-            // If it's a part binding, show the name of the part in the UI.
-            var partName = default(string);
-            if (action.bindings[bindingIndex].isPartOfComposite)
-                partName = $"Binding '{action.bindings[bindingIndex].name}'. ";
+                    if (allCompositeParts)
+                    {
+                        var nextBindingIndex = bindingIndex + 1;
+                        if (nextBindingIndex < action.bindings.Count && action.bindings[nextBindingIndex].isPartOfComposite)
+                            PerformInteractiveRebind(action, nextBindingIndex, true);
+                    }
+                });
 
-            // Bring up rebind overlay, if we have one.
             m_RebindOverlay?.SetActive(true);
+            m_ErrorText.gameObject.SetActive(false);
             if (m_RebindText != null)
             {
-                var text = !string.IsNullOrEmpty(m_RebindOperation.expectedControlType)
-                    ? $"{partName}Waiting for {m_RebindOperation.expectedControlType} input..."
-                    : $"{partName}Waiting for input...";
-                m_RebindText.text = text;
+                m_RebindText.text = "Waiting for input...";
             }
-
-            // If we have no rebind overlay and no callback but we have a binding text label,
-            // temporarily set the binding text label to "<Waiting>".
-            if (m_RebindOverlay == null && m_RebindText == null && m_RebindStartEvent == null && m_BindingText != null)
-                m_BindingText.text = "<Waiting...>";
-
-            // Give listeners a chance to act on the rebind starting.
-            m_RebindStartEvent?.Invoke(this, m_RebindOperation);
 
             m_RebindOperation.Start();
         }
@@ -415,17 +412,23 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         {
             InputBinding newBinding = action.bindings[bindingIndex];
 
-            foreach (InputBinding binding in action.actionMap.bindings)
-            {
-                if (binding.action == newBinding.action)
-                {
-                    continue;
-                }
+            var actionMap = action.actionMap;
+            if (actionMap == null)
+                return false;
 
-                if (binding.effectivePath == newBinding.effectivePath) 
+            foreach (var otherAction in actionMap.actions)
+            {
+                foreach (var binding in otherAction.bindings)
                 {
-                    Debug.Log("Duplicate binding found: " + newBinding.effectivePath);
-                    return true;
+                    // Skip the binding that we are currently changing
+                    if (binding.id == newBinding.id)
+                        continue;
+
+                    if (binding.effectivePath == newBinding.overridePath || binding.effectivePath == newBinding.path)
+                    {
+                        Debug.Log("Duplicate binding detected with action: " + otherAction.name + " at path: " + binding.effectivePath);
+                        return true;
+                    }
                 }
             }
 
@@ -435,13 +438,75 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 {
                     if (action.bindings[i].effectivePath == newBinding.overridePath)
                     {
-                        Debug.Log("Duplicate binding found: " + newBinding.effectivePath);
+                        Debug.Log("Duplicate composite binding found: " + newBinding.effectivePath);
                         return true;
                     }
                 }
             }
 
             return false;
+        }
+
+        public void ShowError(string entryId)
+        {
+            if (m_ErrorText == null)
+                return;
+
+            _localizedErrorString.TableEntryReference = entryId;
+
+        #if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                var tableOperation = LocalizationSettings.StringDatabase.GetTableAsync("GameText");
+                tableOperation.Completed += (handle) =>
+                {
+                    var table = handle.Result;
+                    if (table != null)
+                    {
+                        var entry = table.GetEntry(entryId);
+                        if (entry != null)
+                        {
+                            m_ErrorText.text = entry.GetLocalizedString();
+                        }
+                        else
+                        {
+                            m_ErrorText.text = $"[No entry: {entryId}]";
+                            Debug.LogWarning($"Entry ID '{entryId}' not found in GameText table.");
+                        }
+                        m_ErrorText.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Failed to load GameText table in Editor.");
+                    }
+                };
+            }
+            else
+        #endif
+            {
+                var localizedStringOperation = _localizedErrorString.GetLocalizedStringAsync();
+                localizedStringOperation.Completed += (handle) =>
+                {
+                    if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                    {
+                        m_ErrorText.text = handle.Result;
+                    }
+                    else
+                    {
+                        m_ErrorText.text = $"[No localized string: {entryId}]";
+                    }
+                    m_ErrorText.gameObject.SetActive(true);
+                };
+            }
+        }
+
+        private void UpdateErrorText(string localizedText)
+        {
+            if (m_ErrorText == null)
+                return;
+
+            m_ErrorText.text = localizedText;
+            m_ErrorText.gameObject.SetActive(true);
         }
 
         protected void OnEnable()
@@ -525,6 +590,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [SerializeField]
         private GameObject m_RebindOverlay;
 
+        [Tooltip("Text label that will show current error when performing the rebind")]
+        [SerializeField]
+        private TMP_Text m_ErrorText;
+        [SerializeField]
+        private LocalizedString _localizedErrorString;
+
         [Tooltip("Optional text label that will be updated with prompt for user input.")]
         [SerializeField]
         private TMP_Text m_RebindText;
@@ -532,6 +603,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [Tooltip("Image component that will show the binding icon.")]
         [SerializeField] private Image m_BindingIcon;
         public Image BindingIcon => m_BindingIcon;
+
+        public bool allowKeyboardBindings = true;
+        public bool allowGamepadBindings = true;
 
         [Tooltip("Event that is triggered when the way the binding is display should be updated. This allows displaying "
             + "bindings in custom ways, e.g. using images instead of text.")]
@@ -557,11 +631,37 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         #if UNITY_EDITOR
         protected void OnValidate()
         {
+            if (_localizedErrorString == null)
+            {
+                _localizedErrorString = new LocalizedString
+                {
+                    TableReference = "GameText"
+                };
+            }
+
             UpdateActionLabel();
             UpdateBindingDisplay();
         }
 
         #endif
+
+        private void Awake()
+        {
+            if (m_ErrorText == null)
+            Debug.LogWarning("ErrorText is not assigned in RebindActionUI.");
+
+            _localizedErrorString = new LocalizedString
+            {
+                TableReference = "GameText"
+            };
+
+            _localizedErrorString.StringChanged += UpdateErrorText;
+        }
+
+        private void OnDestroy()
+        {
+            _localizedErrorString.StringChanged -= UpdateErrorText;
+        }
 
         private void Start() {
             UpdateActionLabel();

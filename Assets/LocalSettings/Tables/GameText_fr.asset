@@ -201,11 +201,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 69872712586092544
-    m_Localized: "En attente d'une entr\xE9e..."
+    m_Localized: "En attente d'une entr\xE9e...\nAppuyez sur \xC9chap pour ne rien
+      attribuer.nada"
     m_Metadata:
       m_Items: []
   - m_Id: 69872837744123904
-    m_Localized: "Affectation en double d\xE9tect\xE9e!"
+    m_Localized: "<color=red>Bouton d\xE9j\xE0 attribu\xE9.</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 89897066891890688
+    m_Localized: "<color=red>Bouton non autoris\xE9 dans ce sch\xE9ma.</color>"
     m_Metadata:
       m_Items: []
   references:
