@@ -49,6 +49,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         protected void OnDisable()
         {
             InputSystem.onEvent -= OnInputEvent;
+
+            var input = GetComponent<PlayerInput>();
+            if (input != null && input.actions != null)
+            {
+                input.actions.Disable();
+            }
         }
 
         private void OnInputEvent(InputEventPtr eventPtr, InputDevice device)

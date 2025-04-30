@@ -528,6 +528,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             m_RebindOperation?.Dispose();
             m_RebindOperation = null;
 
+            if (m_Action != null && m_Action.action != null)
+                m_Action.action.Disable();
+
             if (s_RebindActionUIs != null && s_RebindActionUIs.Contains(this))
                 s_RebindActionUIs.Remove(this);
 
@@ -538,6 +541,28 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             }
 
             RebindSaveLoad.OnBindingsReset -= UpdateBindingDisplay;
+        }
+
+        
+        private void Awake()
+        {
+            if (m_ErrorText == null)
+            Debug.LogWarning("ErrorText is not assigned in RebindActionUI.");
+
+            _localizedErrorString = new LocalizedString
+            {
+                TableReference = "GameText"
+            };
+
+            _localizedErrorString.StringChanged += UpdateErrorText;
+        }
+
+        private void OnDestroy()
+        {
+            _localizedErrorString.StringChanged -= UpdateErrorText;
+
+            if (m_Action != null && m_Action.action != null)
+                m_Action.action.Disable();
         }
 
         // When the action system re-resolves bindings, we want to update our UI in response. While this will
@@ -644,24 +669,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         }
 
         #endif
-
-        private void Awake()
-        {
-            if (m_ErrorText == null)
-            Debug.LogWarning("ErrorText is not assigned in RebindActionUI.");
-
-            _localizedErrorString = new LocalizedString
-            {
-                TableReference = "GameText"
-            };
-
-            _localizedErrorString.StringChanged += UpdateErrorText;
-        }
-
-        private void OnDestroy()
-        {
-            _localizedErrorString.StringChanged -= UpdateErrorText;
-        }
 
         private void Start() {
             UpdateActionLabel();

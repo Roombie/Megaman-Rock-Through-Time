@@ -212,6 +212,10 @@ MonoBehaviour:
     m_Localized: <color=red>Button not allowed in this scheme.</color>
     m_Metadata:
       m_Items: []
+  - m_Id: 90552109613764608
+    m_Localized: DISPLAY MODE
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

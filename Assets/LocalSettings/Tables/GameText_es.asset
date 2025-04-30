@@ -212,6 +212,10 @@ MonoBehaviour:
     m_Localized: "<color=red>Bot\xF3n no permitido en este esquema.</color>"
     m_Metadata:
       m_Items: []
+  - m_Id: 90552109613764608
+    m_Localized: "MODO DE VISUALIZACI\xD3N"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

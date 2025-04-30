@@ -4745,6 +4745,27 @@ MonoBehaviour:
       icon: {fileID: -628912216, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
     - key: leftMeta
       icon: {fileID: 645854435, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
+  custom:
+    buttonSouth: {fileID: 0}
+    buttonNorth: {fileID: 0}
+    buttonEast: {fileID: 0}
+    buttonWest: {fileID: 0}
+    startButton: {fileID: 0}
+    selectButton: {fileID: 0}
+    leftTrigger: {fileID: 0}
+    rightTrigger: {fileID: 0}
+    leftShoulder: {fileID: 0}
+    rightShoulder: {fileID: 0}
+    dpad: {fileID: 0}
+    dpadUp: {fileID: 0}
+    dpadDown: {fileID: 0}
+    dpadLeft: {fileID: 0}
+    dpadRight: {fileID: 0}
+    leftStick: {fileID: 0}
+    rightStick: {fileID: 0}
+    leftStickPress: {fileID: 0}
+    rightStickPress: {fileID: 0}
+  userScheme: 0
 --- !u!114 &287269055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26264,6 +26285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjects:
   - rid: 2775745195426447374
+  - rid: 4521263975336247376
   references:
     version: 2
     RefIds:
@@ -26284,10 +26306,31 @@ MonoBehaviour:
           value: 268.507
         - localeIdentifier:
             m_Code: es
-          value: 408.1593
+          value: 268.0726
         - localeIdentifier:
             m_Code: fr
-          value: 442.7774
+          value: 268.5591
+    - rid: 4521263975336247376
+      type: {class: TrackedUGuiGraphic, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1887048725}
+        m_TrackedProperties:
+          items:
+          - rid: 4521263975336247377
+        m_UpdateType: 0
+    - rid: 4521263975336247377
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:b381e59cbd3f94e42956a656c5e2d826
+          m_TableEntryReference:
+            m_KeyId: 90552109613764608
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: m_text
 --- !u!114 &1887048724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26352,7 +26395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DISPLAY MODE
+  m_text: "MODO DE VISUALIZACI\xD3N"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14677ccebe145b642bfff52d03242e29, type: 2}
   m_sharedMaterial: {fileID: 9096413665312488464, guid: 14677ccebe145b642bfff52d03242e29, type: 2}

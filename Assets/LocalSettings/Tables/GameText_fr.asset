@@ -213,6 +213,10 @@ MonoBehaviour:
     m_Localized: "<color=red>Bouton non autoris\xE9 dans ce sch\xE9ma.</color>"
     m_Metadata:
       m_Items: []
+  - m_Id: 90552109613764608
+    m_Localized: "MODE D\u2019AFFICHAGE"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

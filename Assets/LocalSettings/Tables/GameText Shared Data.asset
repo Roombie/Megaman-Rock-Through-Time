@@ -208,6 +208,10 @@ MonoBehaviour:
     m_Key: ButtonNotAllowedInScheme
     m_Metadata:
       m_Items: []
+  - m_Id: 90552109613764608
+    m_Key: OptionsMenu_DisplayMode
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
