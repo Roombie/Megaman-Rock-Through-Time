@@ -169,8 +169,39 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             }
             else
             {
-                string controlName = controlPath.Replace("<Keyboard>/", "").ToUpperInvariant();
+                /*string controlName = controlPath.Replace("<Keyboard>/", "").ToUpperInvariant();
                 textComponent.text = controlName;
+                textComponent.gameObject.SetActive(true);
+                imageComponent.gameObject.SetActive(false);*/
+                string controlName = controlPath.Replace("<Keyboard>/", "").Replace("<Gamepad>/", "");
+
+                string fallbackText = isGamepad
+                    ? controlName switch
+                    {
+                        "buttonSouth" => "A",
+                        "buttonNorth" => "Y",
+                        "buttonEast" => "B",
+                        "buttonWest" => "X",
+                        "start" => "START",
+                        "select" => "SELECT",
+                        "leftTrigger" => "LT",
+                        "rightTrigger" => "RT",
+                        "leftShoulder" => "LB",
+                        "rightShoulder" => "RB",
+                        "dpad" => "DPAD",
+                        "dpad/up" => "↑",
+                        "dpad/down" => "↓",
+                        "dpad/left" => "←",
+                        "dpad/right" => "→",
+                        "leftStick" => "L-STICK",
+                        "rightStick" => "R-STICK",
+                        "leftStickPress" => "L-CLICK",
+                        "rightStickPress" => "R-CLICK",
+                        _ => controlName.ToUpperInvariant()
+                    }
+                    : controlName.ToUpperInvariant();
+
+                textComponent.text = fallbackText;
                 textComponent.gameObject.SetActive(true);
                 imageComponent.gameObject.SetActive(false);
             }
