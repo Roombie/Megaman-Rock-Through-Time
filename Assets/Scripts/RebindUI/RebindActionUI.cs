@@ -365,7 +365,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         Debug.LogWarning("Forbidden device detected during rebind.");
                         ShowError("ButtonNotAllowedInScheme");
 
-                        action.Disable(); // 🧠 volver a bloquear por seguridad
+                        action.Disable();
 
                         PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
                         return;
@@ -378,7 +378,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         action.RemoveBindingOverride(bindingIndex);
                         ShowError("ButtonAlreadyAssigned");
 
-                        action.Disable(); // 🧠 volver a bloquear por seguridad
+                        action.Disable();
 
                         PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
                         return;
@@ -400,10 +400,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             m_RebindOverlay?.SetActive(true);
             m_ErrorText.gameObject.SetActive(false);
-            if (m_RebindText != null)
+            /*if (m_RebindText != null)
             {
                 m_RebindText.text = "Waiting for input...";
-            }
+            }*/
 
             m_RebindOperation.Start();
         }

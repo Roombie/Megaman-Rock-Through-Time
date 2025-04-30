@@ -4745,7 +4745,6 @@ MonoBehaviour:
       icon: {fileID: -628912216, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
     - key: leftMeta
       icon: {fileID: 645854435, guid: 13fa24b1eb1bf4e4b8ecbdeb20d38e45, type: 3}
-  currentScheme: 0
 --- !u!114 &287269055
 MonoBehaviour:
   m_ObjectHideFlags: 0

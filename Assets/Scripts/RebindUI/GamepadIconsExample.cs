@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.InputSystem.LowLevel;
+using System.IO;
 
 namespace UnityEngine.InputSystem.Samples.RebindUI
 {
@@ -16,15 +18,19 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         public GamepadIcons ps4;
         public GamepadIcons nintendo;
         public KeyboardIcons keyboard;
+        public GamepadIcons custom;
 
         public enum ControlScheme
         {
+            Auto,
             Xbox,
             PlayStation,
-            Nintendo
+            Nintendo,
+            Custom
         }
 
-        public ControlScheme currentScheme = ControlScheme.Xbox;
+        public ControlScheme userScheme = ControlScheme.Auto; // set via menu
+        private ControlScheme currentScheme = ControlScheme.Xbox; // updated based on input
 
         protected void OnEnable()
         {
@@ -36,11 +42,63 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 component.updateBindingUIEvent.AddListener(OnUpdateBindingDisplay);
                 component.UpdateBindingDisplay();
             }
+
+            InputSystem.onEvent += OnInputEvent;
+        }
+
+        protected void OnDisable()
+        {
+            InputSystem.onEvent -= OnInputEvent;
+        }
+
+        private void OnInputEvent(InputEventPtr eventPtr, InputDevice device)
+        {
+            if (userScheme != ControlScheme.Auto)
+                return;
+
+            if (device is not Gamepad gamepad)
+                return;
+
+            // Detectar el tipo de control
+            var layout = device.layout;
+
+            if (layout.Contains("Xbox") || layout.Contains("XInput"))
+                currentScheme = ControlScheme.Xbox;
+            else if (layout.Contains("DualShock") || layout.Contains("PlayStation"))
+                currentScheme = ControlScheme.PlayStation;
+            else if (layout.Contains("Switch") || layout.Contains("Nintendo"))
+                currentScheme = ControlScheme.Nintendo;
+
+            RefreshAllIcons();
+        }
+
+
+        public ControlScheme GetCurrentScheme()
+        {
+            return userScheme == ControlScheme.Auto ? currentScheme : userScheme;
         }
 
         public void SetControlScheme(ControlScheme scheme)
         {
-            currentScheme = scheme;
+            userScheme = scheme;
+            if (scheme != ControlScheme.Auto)
+            {
+                currentScheme = scheme;
+            }
+
+            RefreshAllIcons();
+        }
+
+        public void SetAutoScheme()
+        {
+            userScheme = ControlScheme.Auto;
+            RefreshAllIcons();
+        }
+
+        public void SetCustomSprites()
+        {
+            userScheme = ControlScheme.Custom;
+            RefreshAllIcons();
         }
 
         public void RefreshAllIcons()
@@ -204,6 +262,80 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 public string key;
                 public Sprite icon;
+            }
+        }
+
+        private void LoadCustomSprites()
+        {
+            string path = Path.Combine(Application.streamingAssetsPath, "CustomIcons");
+
+            if (!Directory.Exists(path))
+            {
+                Debug.LogWarning("CustomIcons folder not found.");
+                return;
+            }
+
+            Dictionary<string, string> iconFileMap = new()
+            {
+                { "buttonSouth", "buttonSouth.png" },
+                { "buttonNorth", "buttonNorth.png" },
+                { "buttonEast", "buttonEast.png" },
+                { "buttonWest", "buttonWest.png" },
+                { "start", "startButton.png" },
+                { "select", "selectButton.png" },
+                { "leftTrigger", "leftTrigger.png" },
+                { "rightTrigger", "rightTrigger.png" },
+                { "leftShoulder", "leftShoulder.png" },
+                { "rightShoulder", "rightShoulder.png" },
+                { "dpad", "dpad.png" },
+                { "dpad/up", "dpadUp.png" },
+                { "dpad/down", "dpadDown.png" },
+                { "dpad/left", "dpadLeft.png" },
+                { "dpad/right", "dpadRight.png" },
+                { "leftStick", "leftStick.png" },
+                { "rightStick", "rightStick.png" },
+                { "leftStickPress", "leftStickPress.png" },
+                { "rightStickPress", "rightStickPress.png" }
+            };
+
+            foreach (var pair in iconFileMap)
+            {
+                string filePath = Path.Combine(path, pair.Value);
+                if (!File.Exists(filePath)) continue;
+
+                byte[] data = File.ReadAllBytes(filePath);
+                Texture2D tex = new Texture2D(2, 2);
+                if (tex.LoadImage(data))
+                {
+                    Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+                    AssignSpriteToCustom(pair.Key, sprite);
+                }
+            }
+        }
+
+        private void AssignSpriteToCustom(string controlPath, Sprite sprite)
+        {
+            switch (controlPath)
+            {
+                case "buttonSouth": custom.buttonSouth = sprite; break;
+                case "buttonNorth": custom.buttonNorth = sprite; break;
+                case "buttonEast": custom.buttonEast = sprite; break;
+                case "buttonWest": custom.buttonWest = sprite; break;
+                case "start": custom.startButton = sprite; break;
+                case "select": custom.selectButton = sprite; break;
+                case "leftTrigger": custom.leftTrigger = sprite; break;
+                case "rightTrigger": custom.rightTrigger = sprite; break;
+                case "leftShoulder": custom.leftShoulder = sprite; break;
+                case "rightShoulder": custom.rightShoulder = sprite; break;
+                case "dpad": custom.dpad = sprite; break;
+                case "dpad/up": custom.dpadUp = sprite; break;
+                case "dpad/down": custom.dpadDown = sprite; break;
+                case "dpad/left": custom.dpadLeft = sprite; break;
+                case "dpad/right": custom.dpadRight = sprite; break;
+                case "leftStick": custom.leftStick = sprite; break;
+                case "rightStick": custom.rightStick = sprite; break;
+                case "leftStickPress": custom.leftStickPress = sprite; break;
+                case "rightStickPress": custom.rightStickPress = sprite; break;
             }
         }
     }

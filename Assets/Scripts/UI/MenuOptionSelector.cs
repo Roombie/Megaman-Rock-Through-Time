@@ -7,6 +7,16 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.EventSystems;
 using System.Collections;
 using UnityEngine.InputSystem.Samples.RebindUI;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class DisplayModeOption
+{
+    public string Key;
+    public string DisplayName;
+    public string ColorHex;
+    public GamepadIconsExample.ControlScheme Scheme;
+}
 
 public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
@@ -21,6 +31,7 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
     private OptionsMenu optionsMenu;
     private static MenuOptionSelector currentlySelecting = null;
     private ArrowSelector arrowSelector;
+    private List<DisplayModeOption> displayOptions;
 
     void Awake()
     {
@@ -41,6 +52,15 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
         inputActions.UI.Navigate.performed -= OnNavigate;
         inputActions.UI.Submit.performed -= OnSubmit;
         inputActions.Disable();
+    }
+
+    void OnDestroy()
+    {
+        if (inputActions != null)
+        {
+            inputActions.Disable();
+            // inputActions.Dispose(); // Uncomment if it's necessary
+        }
     }
 
     void Start()
@@ -76,14 +96,21 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
                 optionKeys = optionsMenu.GetLanguageOptions();
                 break;
             case SettingType.DisplayMode:
-                optionKeys = new string[] { "<color=#58D854>Xbox</color>", "<color=#0088D8>PlayStation</color>", "<color=#E43B44>Nintendo</color>" };
+                displayOptions = new List<DisplayModeOption>
+                {
+                    new() { Key = "Auto", DisplayName = "Auto", ColorHex = "#AAAAAA", Scheme = GamepadIconsExample.ControlScheme.Auto },
+                    new() { Key = "Xbox", DisplayName = "Xbox", ColorHex = "#58D854", Scheme = GamepadIconsExample.ControlScheme.Xbox },
+                    new() { Key = "PlayStation", DisplayName = "PlayStation", ColorHex = "#0088D8", Scheme = GamepadIconsExample.ControlScheme.PlayStation },
+                    new() { Key = "Nintendo", DisplayName = "Nintendo", ColorHex = "#E43B44", Scheme = GamepadIconsExample.ControlScheme.Nintendo },
+                    new() { Key = "Custom", DisplayName = "Custom", ColorHex = "#FFD700", Scheme = GamepadIconsExample.ControlScheme.Custom },
+                };
                 break;
             default:
                 Debug.LogError($"Unknown settingKey: {settingKey} for {optionText.text}");
                 return;
         }
 
-        if (optionKeys == null || optionKeys.Length == 0)
+        if (settingKey != SettingType.DisplayMode && (optionKeys == null || optionKeys.Length == 0))
         {
             Debug.LogError($"optionKeys is empty for {settingKey} in {optionText.text}");
             return;
@@ -140,50 +167,90 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
 
     private void ChangeOption(int change)
     {
-        if (optionKeys == null || optionKeys.Length == 0) return;
+        if (settingKey == SettingType.DisplayMode)
+        {
+            if (displayOptions == null || displayOptions.Count == 0) return;
+            currentIndex = Mathf.Clamp(currentIndex + change, 0, displayOptions.Count - 1);
+            UpdateOptionText();
+        }
+        else
+        {
+            if (optionKeys == null || optionKeys.Length == 0) return;
+            currentIndex = Mathf.Clamp(currentIndex + change, 0, optionKeys.Length - 1);
+            optionText.text = optionKeys[currentIndex];
+        }
+    }
 
-        currentIndex = Mathf.Clamp(currentIndex + change, 0, optionKeys.Length - 1);
-        optionText.text = optionKeys[currentIndex];
+    private DisplayModeOption GetCurrentDisplayModeOption()
+    {
+        if (displayOptions == null || currentIndex < 0 || currentIndex >= displayOptions.Count)
+            return null;
+        return displayOptions[currentIndex];
     }
 
     public void UpdateOptionText()
     {
-        if (optionKeys == null || optionKeys.Length == 0)
+        if (settingKey != SettingType.DisplayMode && (optionKeys == null || optionKeys.Length == 0))
         {
             Debug.LogError($"[UpdateOptionText] optionKeys is empty for {settingKey}");
             return;
         }
 
-        if (currentIndex < 0 || currentIndex >= optionKeys.Length)
+        if (settingKey == SettingType.DisplayMode)
         {
-            Debug.LogWarning($"[UpdateOptionText] Index {currentIndex} out of bounds for {settingKey}, resetting to 0.");
-            currentIndex = 0;
+            if (currentIndex < 0 || currentIndex >= displayOptions.Count)
+                currentIndex = 0;
+        }
+        else
+        {
+            if (currentIndex < 0 || currentIndex >= optionKeys.Length)
+                currentIndex = 0;
         }
 
-        optionText.text = optionKeys[currentIndex];
+        if (settingKey == SettingType.DisplayMode)
+        {
+            var current = GetCurrentDisplayModeOption();
+            if (current == null) return;
+
+            var iconsExample = FindFirstObjectByType<GamepadIconsExample>();
+
+            if (iconsExample != null && iconsExample.GetCurrentScheme() != iconsExample.userScheme && !isSelecting)
+            {
+                var auto = displayOptions.Find(x => x.Scheme == GamepadIconsExample.ControlScheme.Auto);
+                optionText.text = $"<color={auto.ColorHex}>{auto.DisplayName}</color>";
+            }
+            else
+            {
+                optionText.text = $"<color={current.ColorHex}>{current.DisplayName}</color>";
+            }
+        }
+        else
+        {
+            optionText.text = optionKeys[currentIndex];
+        }
+
         optionText.ForceMeshUpdate();
         Canvas.ForceUpdateCanvases();
     }
 
     private void UpdateGamepadIcons()
     {
-        GamepadIconsExample iconsExample = FindFirstObjectByType<GamepadIconsExample>();
-        if (iconsExample == null)
-        {
-            Debug.LogError("GamepadIconsExample not found!");
-            return;
-        }
+        if (settingKey != SettingType.DisplayMode) return;
 
-        switch (currentIndex)
+        var iconsExample = FindFirstObjectByType<GamepadIconsExample>();
+        var selected = GetCurrentDisplayModeOption();
+        if (iconsExample == null || selected == null) return;
+
+        switch (selected.Scheme)
         {
-            case 0:
-                iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.Xbox);
+            case GamepadIconsExample.ControlScheme.Auto:
+                iconsExample.SetAutoScheme();
                 break;
-            case 1:
-                iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.PlayStation);
+            case GamepadIconsExample.ControlScheme.Custom:
+                iconsExample.SetCustomSprites();
                 break;
-            case 2:
-                iconsExample.SetControlScheme(GamepadIconsExample.ControlScheme.Nintendo);
+            default:
+                iconsExample.SetControlScheme(selected.Scheme);
                 break;
         }
 
@@ -232,9 +299,9 @@ public class MenuOptionSelector : MonoBehaviour, ISelectHandler, IDeselectHandle
                 optionsMenu.SetLanguage(currentIndex);
                 break;
             case SettingType.DisplayMode:
-                UpdateGamepadIcons();
                 PlayerPrefs.SetInt(SettingsKeys.DisplayModeKey, currentIndex);
                 PlayerPrefs.Save();
+                UpdateGamepadIcons();
                 break;
         }
 
