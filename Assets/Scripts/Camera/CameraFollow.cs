@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D; // Para PixelPerfectCamera
 
 public class CameraFollow : MonoBehaviour
 {
-     [Tooltip("The transform of the player character that the camera will follow.")]
+    [Tooltip("The transform of the player character that the camera will follow.")]
     public Transform player;
 
     [Tooltip("The time it takes for the camera to smoothly follow the player.")]
-    public float smoothDampTime;
+    public float smoothDampTime = 0.1f;
 
     [Tooltip("The offset from the player's position to the camera's position.")]
     public Vector3 lookAhead;

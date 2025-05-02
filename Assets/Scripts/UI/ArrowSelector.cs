@@ -62,8 +62,8 @@ public class ArrowSelector : MonoBehaviour
         }
 
         arrowIndicator.gameObject.SetActive(true);
-        Vector3 calculatedPosition = buttons[b].button.position + ((Vector3)buttons[b].arrowOffset * (Screen.height / 1080f));
-        arrowIndicator.position = calculatedPosition;
+        Vector3 worldPos = buttons[b].button.TransformPoint((Vector3)buttons[b].arrowOffset); // keep this in mind for other projects
+        arrowIndicator.position = worldPos;
     }
 
     IEnumerator MoveIndicatorLaterCoroutine(int b)
@@ -76,34 +76,35 @@ public class ArrowSelector : MonoBehaviour
     {
         if (buttons == null || buttons.Length == 0) return;
 
-        Gizmos.color = Color.blue;
-
         for (int i = 0; i < buttons.Length; i++)
         {
-            if (buttons[i].button != null)
-            {
-                if (showDebugLinesOnlyOnActiveObjects && !buttons[i].button.gameObject.activeInHierarchy)
-                    continue; // Skip button if inactive
+            RectTransform rect = buttons[i].button;
+            if (rect == null) continue;
+            if (showDebugLinesOnlyOnActiveObjects && !rect.gameObject.activeInHierarchy) continue;
 
-                Vector3 buttonPos = buttons[i].button.position;
-                Vector3 offsetPos = buttonPos + ((Vector3)buttons[i].arrowOffset * (Screen.height / 1080f));
+            // posición base del botón (centro local convertido a mundo)
+            Vector3 buttonWorldPos = rect.TransformPoint(Vector3.zero);
 
-                Gizmos.DrawSphere(buttonPos, 5f);
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawSphere(offsetPos, 7f);
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(buttonPos, offsetPos);
-            }
+            // posición con offset en el espacio local convertido a mundo
+            Vector3 offsetWorldPos = rect.TransformPoint(buttons[i].arrowOffset);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(buttonWorldPos, 5f);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(offsetWorldPos, 7f);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(buttonWorldPos, offsetWorldPos);
         }
 
         if (lastSelected >= 0 && lastSelected < buttons.Length && buttons[lastSelected].button != null)
         {
-            if (showDebugLinesOnlyOnActiveObjects && !buttons[lastSelected].button.gameObject.activeInHierarchy)
-                return; // Don't draw selection if the object is inactive
+            RectTransform selectedRect = buttons[lastSelected].button;
+            Vector3 selectedWorldPos = selectedRect.TransformPoint(buttons[lastSelected].arrowOffset);
 
             Gizmos.color = Color.red;
-            Vector3 selectedPos = buttons[lastSelected].button.position + ((Vector3)buttons[lastSelected].arrowOffset * (Screen.height / 1080f));
-            Gizmos.DrawSphere(selectedPos, 10f);
+            Gizmos.DrawSphere(selectedWorldPos, 10f);
         }
     }
 }

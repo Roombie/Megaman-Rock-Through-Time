@@ -18,6 +18,7 @@ class SettingsKeys
     public const string GraphicsQualityKey = "GraphicsQuality";
     public const string DisplayModeKey = "DisplayMode";
     public const string LanguageKey = "Language";
+    public const string enablePillarboxKey = "enablePillarbox";
     public const string SlideWithDownJumpKey = "SlideWithDown";
     public const string ControllerVibrationKey = "ControllerVibration";
 }

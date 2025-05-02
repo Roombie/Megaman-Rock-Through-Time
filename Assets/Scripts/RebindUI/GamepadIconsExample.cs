@@ -53,7 +53,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             var input = GetComponent<PlayerInput>();
             if (input != null && input.actions != null)
             {
-                input.actions.Disable();
+                input.actions.Disable(); // Helps to avoid leaks or performance issues on scene exit
             }
         }
 

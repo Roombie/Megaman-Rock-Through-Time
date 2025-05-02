@@ -192,8 +192,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 69380258082418688
-    m_Key: OptionsScreen/OptionsMenu/Page 2 - Keyboard Controls/Rush&Beat Keyboard
-      Title
+    m_Key: OptionsMenu_RushAndBeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 90552109613764608
+    m_Key: OptionsMenu_DisplayMode
     m_Metadata:
       m_Items: []
   - m_Id: 69872712586092544
@@ -206,10 +209,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 89897066891890688
     m_Key: ButtonNotAllowedInScheme
-    m_Metadata:
-      m_Items: []
-  - m_Id: 90552109613764608
-    m_Key: OptionsMenu_DisplayMode
     m_Metadata:
       m_Items: []
   m_Metadata:
