@@ -217,6 +217,62 @@ MonoBehaviour:
     m_Localized: "MODE D\u2019AFFICHAGE"
     m_Metadata:
       m_Items: []
+  - m_Id: 91761176948559872
+    m_Localized: "Plein \xC9cran"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91761180035567616
+    m_Localized: "Fen\xEAtr\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762214577426432
+    m_Localized: Aucun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762380189519872
+    m_Localized: Aucun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762384564178944
+    m_Localized: Piliers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762387529551872
+    m_Localized: "En bo\xEEte"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762263399124992
+    m_Localized: TV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762265789878272
+    m_Localized: Monitor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91761167473627136
+    m_Localized: Original
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803125264994304
+    m_Localized: <color=#AAAAAA>Auto</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803128523968512
+    m_Localized: <color=#58D854>Xbox</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803131086688256
+    m_Localized: <color=#0088D8>PlayStation</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803133569716224
+    m_Localized: <color=#E43B44>Nintendo</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803195838353408
+    m_Localized: <color=#FFD700>Custom</color>
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

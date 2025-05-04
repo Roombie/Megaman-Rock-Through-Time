@@ -33,7 +33,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Assign these in the Unity Inspector
+    [HideInInspector]
+    public AudioMixer mixer;
+    
     public AudioMixerGroup sfxMixerGroup;
     public AudioMixerGroup musicMixerGroup;
     public AudioMixerGroup voiceMixerGroup;
@@ -52,6 +54,42 @@ public class AudioManager : MonoBehaviour
             source.playOnAwake = false; // Avoid playing on awake
             sfxPool.Enqueue(source);
         }
+    }
+
+    /// <summary>
+    /// Aplica un volumen normalizado a un parámetro del mixer, y lo guarda.
+    /// </summary>
+    public void SetVolume(SettingType type, float normalizedVolume)
+    {
+        string mixerParam = type switch
+        {
+            SettingType.MasterVolumeKey => "MasterVolume",
+            SettingType.MusicVolumeKey => "MusicVolume",
+            SettingType.SFXVolumeKey => "SFXVolume",
+            SettingType.VoiceVolumeKey => "VoiceVolume",
+            _ => null
+        };
+
+        if (string.IsNullOrEmpty(mixerParam))
+        {
+            Debug.LogWarning($"[AudioManager] SettingType {type} no tiene mixer param asociado.");
+            return;
+        }
+
+        float dB = Mathf.Log10(Mathf.Clamp(normalizedVolume, 0.0001f, 1f)) * 20f;
+        mixer.SetFloat(mixerParam, dB);
+
+        string key = SettingsKeys.Get(type);
+        PlayerPrefs.SetFloat(key, normalizedVolume);
+        PlayerPrefs.Save();
+    }
+
+    /// <summary>
+    /// Obtiene el volumen guardado para ese tipo de volumen.
+    /// </summary>
+    public float GetVolume(SettingType type, float fallback = 1f)
+    {
+        return PlayerPrefs.GetFloat(SettingsKeys.Get(type), fallback);
     }
 
     public void Play(AudioClip clip, SoundCategory category = SoundCategory.SFX, float volume = 1f, float pitch = 1f, bool loop = false)

@@ -211,6 +211,62 @@ MonoBehaviour:
     m_Key: ButtonNotAllowedInScheme
     m_Metadata:
       m_Items: []
+  - m_Id: 91761167473627136
+    m_Key: Screen_Original
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91761176948559872
+    m_Key: Screen_Full
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91761180035567616
+    m_Key: Screen_Windowed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762214577426432
+    m_Key: Filter_None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762263399124992
+    m_Key: Filter_TV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762265789878272
+    m_Key: Filter_Monitor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762380189519872
+    m_Key: Border_None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762384564178944
+    m_Key: Border_Pillar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91762387529551872
+    m_Key: Border_Windowbox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803125264994304
+    m_Key: DisplayMode_Auto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803128523968512
+    m_Key: DisplayMode_Xbox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803131086688256
+    m_Key: DisplayMode_PlayStation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803133569716224
+    m_Key: DisplayMode_Nintendo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91803195838353408
+    m_Key: DisplayMode_Custom
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

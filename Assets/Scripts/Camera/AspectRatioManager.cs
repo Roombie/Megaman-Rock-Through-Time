@@ -14,7 +14,7 @@ public class AspectRatioManager : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         pixelPerfect = GetComponent<PixelPerfectCamera>();
-        enablePillarbox = PlayerPrefs.GetInt(SettingsKeys.enablePillarboxKey, 1) == 1;
+        enablePillarbox = PlayerPrefs.GetInt(SettingsKeys.BorderKey, 1) == 1;
         ApplyAspect();
     }
 

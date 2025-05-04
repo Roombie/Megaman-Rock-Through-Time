@@ -72,6 +72,11 @@ public class ArrowSelector : MonoBehaviour
         MoveIndicator(b);
     }
 
+    public void SetSelecting(bool value)
+    {
+        isSelectingOption = value;
+    }
+
     void OnDrawGizmos()
     {
         if (buttons == null || buttons.Length == 0) return;
@@ -82,10 +87,10 @@ public class ArrowSelector : MonoBehaviour
             if (rect == null) continue;
             if (showDebugLinesOnlyOnActiveObjects && !rect.gameObject.activeInHierarchy) continue;
 
-            // posición base del botón (centro local convertido a mundo)
+            // button base position (local space converted to world)
             Vector3 buttonWorldPos = rect.TransformPoint(Vector3.zero);
 
-            // posición con offset en el espacio local convertido a mundo
+            // local space offset position converted to world
             Vector3 offsetWorldPos = rect.TransformPoint(buttons[i].arrowOffset);
 
             Gizmos.color = Color.blue;
