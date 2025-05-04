@@ -7,16 +7,13 @@ public static class SettingsApplier
         switch (type)
         {
             case SettingType.Screen:
-                //ScreenDisplayManager.Instance?.Apply((ScreenDisplayMode)index);
+                ScreenDisplayManager.Instance?.Apply((ScreenDisplayMode)index);
                 break;
             case SettingType.DisplayMode:
-                //GamepadIconManager.Instance?.SetControlScheme(index);
+                GamepadIconManager.Instance?.SetControlScheme(index);
                 break;
             case SettingType.Filter:
-                //CRTFilterManager.Instance?.SetFilter((FilterMode)index);
-                break;
-            case SettingType.Language:
-                //LocalizationManager.Instance?.SetLanguage(index);
+                FilterManager.Instance?.SetFilter((FilterMode)index);
                 break;
         }
     }
@@ -26,7 +23,7 @@ public static class SettingsApplier
         switch (type)
         {
             case SettingType.Border:
-                //BorderManager.Instance?.SetEnabled(value);
+                BorderManager.Instance?.SetEnabled(value);
                 break;
             case SettingType.VSync:
                 QualitySettings.vSyncCount = value ? 1 : 0;

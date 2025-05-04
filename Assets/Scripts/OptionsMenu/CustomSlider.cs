@@ -23,6 +23,20 @@ public class CustomSlider : Slider
         inputActions.Enable();
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (inputActions != null)
+            inputActions.Disable();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (inputActions != null)
+            inputActions.Dispose();
+    }
+
     public override void OnMove(AxisEventData eventData)
     {
         if (!IsActive() || !IsInteractable())
@@ -35,7 +49,7 @@ public class CustomSlider : Slider
         {
             isHolding = true;
             holdDirection = -1;
-            moveOncePending = true; // <- marcar que debe mover una vez pequeño
+            moveOncePending = true;
             holdTimer = 0f;
             repeatTimer = 0f;
         }

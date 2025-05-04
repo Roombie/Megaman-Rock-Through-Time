@@ -73,7 +73,10 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
     void OnDestroy()
     {
         if (inputActions != null)
+        {
             inputActions.Disable();
+            inputActions.Dispose();
+        }    
     }
 
     private void Start()

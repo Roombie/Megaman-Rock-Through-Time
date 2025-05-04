@@ -87,7 +87,10 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     void OnDestroy()
     {
         if (inputActions != null)
+        {
             inputActions.Disable();
+            inputActions.Dispose();
+        }
 
         LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
     }
@@ -156,7 +159,17 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     private void ChangeOption(int delta)
     {
         if (options == null || options.Length == 0) return;
-        currentIndex = (currentIndex + delta + options.Length) % options.Length;
+
+        // If you prefer a cicular navigation, uncomment this
+        // currentIndex = (currentIndex + delta + options.Length) % options.Length; 
+
+        int newIndex = currentIndex + delta;
+
+        // Prevent going past the first or last index
+        if (newIndex < 0 || newIndex >= options.Length)
+            return;
+
+        currentIndex = newIndex;
         Apply(currentIndex);
     }
 
