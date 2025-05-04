@@ -5,6 +5,7 @@ using UnityEngine.Localization.Settings;
 public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
 {
     [Header("Setting Config")]
+    [SettingTypeFilter(SettingType.VSync, SettingType.SlideWithDownJumpKey, SettingType.ControllerVibrationKey)]
     public SettingType settingType;
 
     [Header("UI")]
@@ -16,6 +17,24 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
 
     private bool currentValue;
     public SettingType SettingType => settingType;
+
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        var allowed = new SettingType[]
+        {
+            SettingType.VSync,
+            SettingType.SlideWithDownJumpKey,
+            SettingType.ControllerVibrationKey
+        };
+
+        if (!System.Array.Exists(allowed, t => t == settingType))
+        {
+            Debug.LogWarning($"{nameof(ToggleSettingHandler)}: Invalid SettingType '{settingType}' assigned. Resetting to default.");
+            settingType = allowed[0];
+        }
+    }
+    #endif
 
     void Start()
     {

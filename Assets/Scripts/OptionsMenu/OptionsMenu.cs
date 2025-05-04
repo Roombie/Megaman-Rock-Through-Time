@@ -42,6 +42,7 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
         }
     }
 
+    // Getters
     public string[] GetOptions(SettingType type)
     {
         switch (type)
@@ -89,6 +90,56 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
         };
     }
 
+    public string[] GetGraphicsQualityOptions()
+    {
+        string[] qualityNames = QualitySettings.names;
+        string[] localizedNames = new string[qualityNames.Length];
+        for (int i = 0; i < qualityNames.Length; i++)
+            localizedNames[i] = LocalizationSettings.StringDatabase.GetLocalizedString("GameText", qualityNames[i]);
+        return localizedNames;
+    }
+
+    public string[] GetResolutionOptions()
+    {
+        return resolutions.Select(r => $"{r.width}x{r.height}").ToArray();
+    }
+
+    private string[] GetLocalizedDisplayModeOptions()
+    {
+        // Asume que tienes 5 modos: Auto, Xbox, PlayStation, Nintendo, Custom
+        string[] keys = { "Auto", "Xbox", "PlayStation", "Nintendo", "Custom" };
+        return keys.Select(key => LocalizationSettings.StringDatabase.GetLocalizedString("GameText", DisplayModeKeyPrefix + key)).ToArray();
+    }
+
+    public string[] GetLanguageOptions()
+    {
+        return LocalizationSettings.AvailableLocales.Locales
+            .Select(locale => locale.Identifier.CultureInfo?.NativeName.Split('(')[0].Trim()).ToArray();
+    }
+
+    // Setters
+    private IEnumerator SetLanguageAsync(int index)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+    }
+
+    private void ApplyDisplayMode(int index)
+    {
+        var icons = FindFirstObjectByType<GamepadIconsExample>();
+        if (icons == null) return;
+
+        var mode = (GamepadIconsExample.ControlScheme)index;
+        if (mode == GamepadIconsExample.ControlScheme.Auto)
+            icons.SetAutoScheme();
+        else if (mode == GamepadIconsExample.ControlScheme.Custom)
+            icons.SetCustomSprites();
+        else
+            icons.SetControlScheme(mode);
+
+        icons.RefreshAllIcons();
+    }
+
     public void ApplySetting(SettingType type, int index)
     {
         switch (type)
@@ -131,55 +182,6 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
                 break;
         }
         PlayerPrefs.Save();
-    }
-
-    public string[] GetGraphicsQualityOptions()
-    {
-        string[] qualityNames = QualitySettings.names;
-        string[] localizedNames = new string[qualityNames.Length];
-        for (int i = 0; i < qualityNames.Length; i++)
-            localizedNames[i] = LocalizationSettings.StringDatabase.GetLocalizedString("GameText", qualityNames[i]);
-        return localizedNames;
-    }
-
-    public string[] GetResolutionOptions()
-    {
-        return resolutions.Select(r => $"{r.width}x{r.height}").ToArray();
-    }
-
-    private string[] GetLocalizedDisplayModeOptions()
-    {
-        // Asume que tienes 5 modos: Auto, Xbox, PlayStation, Nintendo, Custom
-        string[] keys = { "Auto", "Xbox", "PlayStation", "Nintendo", "Custom" };
-        return keys.Select(key => LocalizationSettings.StringDatabase.GetLocalizedString("GameText", DisplayModeKeyPrefix + key)).ToArray();
-    }
-
-    public string[] GetLanguageOptions()
-    {
-        return LocalizationSettings.AvailableLocales.Locales
-            .Select(locale => locale.Identifier.CultureInfo?.NativeName.Split('(')[0].Trim()).ToArray();
-    }
-
-    private IEnumerator SetLanguageAsync(int index)
-    {
-        yield return LocalizationSettings.InitializationOperation;
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
-    }
-
-    private void ApplyDisplayMode(int index)
-    {
-        var icons = FindFirstObjectByType<GamepadIconsExample>();
-        if (icons == null) return;
-
-        var mode = (GamepadIconsExample.ControlScheme)index;
-        if (mode == GamepadIconsExample.ControlScheme.Auto)
-            icons.SetAutoScheme();
-        else if (mode == GamepadIconsExample.ControlScheme.Custom)
-            icons.SetCustomSprites();
-        else
-            icons.SetControlScheme(mode);
-
-        icons.RefreshAllIcons();
     }
 
     private void OnDestroy()

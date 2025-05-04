@@ -6,6 +6,7 @@ using UnityEngine.Localization.Settings;
 
 public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISelectHandler, IDeselectHandler
 {
+    [SettingTypeFilter(SettingType.Screen, SettingType.Border, SettingType.Filter, SettingType.Language, SettingType.DisplayMode)]
     public SettingType settingType;
     public TextMeshProUGUI label;
     [SerializeField] private GameObject leftArrow;
@@ -25,6 +26,26 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     {
         arrowSelector = FindFirstObjectByType<ArrowSelector>();
     }
+
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        var allowed = new SettingType[]
+        {
+            SettingType.Screen,
+            SettingType.Border,
+            SettingType.Filter,
+            SettingType.Language,
+            SettingType.DisplayMode
+        };
+
+        if (!System.Array.Exists(allowed, t => t == settingType))
+        {
+            Debug.LogWarning($"{nameof(OptionSelectorSettingHandler)}: Invalid SettingType '{settingType}' assigned. Resetting to default.");
+            settingType = allowed[0];
+        }
+    }
+    #endif
 
     void Start()
     {
@@ -76,9 +97,10 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         LoadLocalizedOptions();
         RefreshUI();
 
-        foreach (var toggle in FindObjectsByType<ToggleSettingHandler>(FindObjectsSortMode.None))
+        foreach (var toggle in Resources.FindObjectsOfTypeAll<ToggleSettingHandler>())
         {
-            toggle.RefreshUI();
+            if (toggle.gameObject.scene.IsValid()) // avoid off-stage assets
+                toggle.RefreshUI();
         }
     }
 

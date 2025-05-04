@@ -272,6 +272,18 @@ MonoBehaviour:
     m_Localized: <color=#FFD700>Personal</color>
     m_Metadata:
       m_Items: []
+  - m_Id: 91879418346131456
+    m_Localized: PANTALLA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91879688421560320
+    m_Localized: BORDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91880047403651072
+    m_Localized: FILTRO
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

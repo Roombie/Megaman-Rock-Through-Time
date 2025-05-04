@@ -3,9 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
 {
+    [SettingTypeFilter(SettingType.MasterVolumeKey, SettingType.MusicVolumeKey, SettingType.SFXVolumeKey, SettingType.VoiceVolumeKey)]
     public SettingType settingType;
     public Slider slider;
     public TextMeshProUGUI valueText;
@@ -26,6 +28,25 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
     private PlayerInputActions inputActions;
 
     public SettingType SettingType => settingType;
+
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        var allowed = new SettingType[]
+        {
+            SettingType.MasterVolumeKey,
+            SettingType.MusicVolumeKey,
+            SettingType.SFXVolumeKey,
+            SettingType.VoiceVolumeKey
+        };
+
+        if (!System.Array.Exists(allowed, t => t == settingType))
+        {
+            Debug.LogWarning($"{nameof(VolumeSettingHandler)}: Invalid SettingType '{settingType}' assigned. Resetting to default.");
+            settingType = allowed[0];
+        }
+    }
+    #endif
 
     private void Awake()
     {
