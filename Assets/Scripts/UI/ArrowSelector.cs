@@ -94,10 +94,10 @@ public class ArrowSelector : MonoBehaviour
             Vector3 offsetWorldPos = rect.TransformPoint(buttons[i].arrowOffset);
 
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(buttonWorldPos, 5f);
+            Gizmos.DrawSphere(buttonWorldPos, 1f);
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(offsetWorldPos, 7f);
+            Gizmos.DrawSphere(offsetWorldPos, 1.25f);
 
             Gizmos.color = Color.green;
             Gizmos.DrawLine(buttonWorldPos, offsetWorldPos);
@@ -109,7 +109,7 @@ public class ArrowSelector : MonoBehaviour
             Vector3 selectedWorldPos = selectedRect.TransformPoint(buttons[lastSelected].arrowOffset);
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(selectedWorldPos, 10f);
+            Gizmos.DrawSphere(selectedWorldPos, 1.5f);
         }
     }
 }

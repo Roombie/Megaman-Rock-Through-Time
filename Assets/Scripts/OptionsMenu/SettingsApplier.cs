@@ -15,6 +15,9 @@ public static class SettingsApplier
             case SettingType.Filter:
                 FilterManager.Instance?.SetFilter((FilterMode)index);
                 break;
+            case SettingType.Border:
+                BorderManager.Instance?.SetCropMode((CropFrameMode)index);
+                break;
         }
     }
 
@@ -22,9 +25,6 @@ public static class SettingsApplier
     {
         switch (type)
         {
-            case SettingType.Border:
-                BorderManager.Instance?.SetEnabled(value);
-                break;
             case SettingType.VSync:
                 QualitySettings.vSyncCount = value ? 1 : 0;
                 break;
