@@ -35,7 +35,7 @@ public class SettingsManager : MonoBehaviour
 
             int savedIndex = PlayerPrefs.GetInt(SettingsKeys.Get(type), 0);
 
-            if (type == SettingType.VSync || type == SettingType.Border ||
+            if (type == SettingType.VSync ||
                 type == SettingType.SlideWithDownJumpKey || type == SettingType.ControllerVibrationKey)
             {
                 SettingsApplier.ApplyBoolSetting(type, savedIndex == 1);
