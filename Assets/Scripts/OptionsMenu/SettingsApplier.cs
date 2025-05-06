@@ -16,7 +16,7 @@ public static class SettingsApplier
                 FilterManager.Instance?.SetFilter((FilterMode)index);
                 break;
             case SettingType.Border:
-                BorderManager.Instance?.SetCropMode((CropFrameMode)index);
+                BorderManager.Instance?.SetBorderMode((BorderMode)index);
                 break;
         }
     }

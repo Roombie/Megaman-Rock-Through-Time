@@ -1,18 +1,11 @@
 using UnityEngine;
-using UnityEngine.U2D;
-
-public enum CropFrameMode
-{
-    None,       // No borders
-    PillarBox,  // Vertical bars
-    WindowBox   // Vertical + Horizontal bars
-}
+using UnityEngine.Rendering.Universal;
 
 public class BorderManager : MonoBehaviour
 {
     public static BorderManager Instance { get; private set; }
 
-    private PixelPerfectCamera pixelPerfectCamera;
+    [SerializeField] private PixelPerfectCamera pixelPerfectCamera;
 
     private void Awake()
     {
@@ -20,39 +13,44 @@ public class BorderManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        pixelPerfectCamera = FindFirstObjectByType<PixelPerfectCamera>();
-        int savedValue = PlayerPrefs.GetInt(SettingsKeys.BorderKey, 0);
-        SetCropMode((CropFrameMode)savedValue);
+        if (pixelPerfectCamera == null)
+            pixelPerfectCamera = FindFirstObjectByType<PixelPerfectCamera>();
+
+        var mode = (BorderMode)PlayerPrefs.GetInt(SettingsKeys.BorderKey, 0);
+        SetBorderMode(mode);
     }
 
-    public void SetCropMode(CropFrameMode mode)
+    public void SetBorderMode(BorderMode mode)
     {
         if (pixelPerfectCamera == null)
             pixelPerfectCamera = FindFirstObjectByType<PixelPerfectCamera>();
 
-        switch (mode)
+        if (pixelPerfectCamera == null)
         {
-            case CropFrameMode.None:
-                pixelPerfectCamera.cropFrameX = false;
-                pixelPerfectCamera.cropFrameY = false;
-                break;
-
-            case CropFrameMode.PillarBox:
-                pixelPerfectCamera.cropFrameX = true;
-                pixelPerfectCamera.cropFrameY = false;
-                break;
-
-            case CropFrameMode.WindowBox:
-                pixelPerfectCamera.cropFrameX = true;
-                pixelPerfectCamera.cropFrameY = true;
-                break;
+            Debug.LogWarning("PixelPerfectCamera not found in BorderManager.");
+            return;
         }
 
-        pixelPerfectCamera.stretchFill = false;
+        switch (mode)
+        {
+            case BorderMode.None:
+                pixelPerfectCamera.cropFrame = PixelPerfectCamera.CropFrame.None;
+                break;
+
+            case BorderMode.Pillarbox:
+                pixelPerfectCamera.cropFrame = PixelPerfectCamera.CropFrame.Pillarbox;
+                break;
+
+            case BorderMode.Windowbox:
+                pixelPerfectCamera.cropFrame = PixelPerfectCamera.CropFrame.Windowbox;
+                break;
+        }
 
         PlayerPrefs.SetInt(SettingsKeys.BorderKey, (int)mode);
         PlayerPrefs.Save();
 
-        Debug.Log($"Border mode set to {mode}");
+        Debug.Log($"Border set to: {mode}");
     }
 }
+
+public enum BorderMode { None, Pillarbox, Windowbox }

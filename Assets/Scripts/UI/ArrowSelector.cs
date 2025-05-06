@@ -61,9 +61,16 @@ public class ArrowSelector : MonoBehaviour
             return;
         }
 
-        arrowIndicator.gameObject.SetActive(true);
-        Vector3 worldPos = buttons[b].button.TransformPoint((Vector3)buttons[b].arrowOffset); // keep this in mind for other projects
+        // Delay arrow update by one frame to ensure layout is correct
+        StartCoroutine(DelayedUpdatePosition(b));
+    }
+
+    IEnumerator DelayedUpdatePosition(int b)
+    {
+        yield return null;
+        Vector3 worldPos = buttons[b].button.TransformPoint((Vector3)buttons[b].arrowOffset);
         arrowIndicator.position = worldPos;
+        arrowIndicator.gameObject.SetActive(true);
     }
 
     IEnumerator MoveIndicatorLaterCoroutine(int b)

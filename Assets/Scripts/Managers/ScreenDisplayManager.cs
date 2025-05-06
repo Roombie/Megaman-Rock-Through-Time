@@ -10,7 +10,6 @@ public class ScreenDisplayManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Aplicar configuración guardada
         var saved = PlayerPrefs.GetInt(SettingsKeys.ScreenKey, 0);
         Apply((ScreenDisplayMode)saved, save: false);
     }

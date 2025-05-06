@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -145,9 +146,15 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
             if (arrowSelector != null)
             {
                 arrowSelector.SetSelecting(false);
-                arrowSelector.MoveIndicator(arrowSelector.lastSelected);
+                StartCoroutine(DelayedMoveArrow());
             }
         }
+    }
+
+    private IEnumerator DelayedMoveArrow()
+    {
+        yield return null;
+        arrowSelector.MoveIndicator(arrowSelector.lastSelected);
     }
 
     private void SetArrowVisibility(bool visible)

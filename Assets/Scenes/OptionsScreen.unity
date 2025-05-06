@@ -1620,7 +1620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &103261427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1628,7 +1628,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103261426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1698,10 +1698,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: bruh
+  m_text: <color=red>bruh</color>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
-  m_sharedMaterial: {fileID: 473530870180049437, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 14677ccebe145b642bfff52d03242e29, type: 2}
+  m_sharedMaterial: {fileID: 9096413665312488464, guid: 14677ccebe145b642bfff52d03242e29, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1731,9 +1731,9 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 24
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4788,7 +4788,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: -50
+          value: -25
         - localeIdentifier:
             m_Code: es
           value: -21
@@ -4799,7 +4799,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: -21
+          value: -25
         - localeIdentifier:
             m_Code: es
           value: -21
@@ -10645,7 +10645,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 287269049}
         m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
-        m_MethodName: ResetToDefault
+        m_MethodName: ResetSettingsToDefault
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13716,7 +13716,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 93.697655, y: 1.3296105}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855300520
 MonoBehaviour:
@@ -13774,7 +13774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc31776ca0562445b1d250137a97914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enablePillarbox: 1
   targetAspectRatio: 1.3333334
 --- !u!114 &855300522
 MonoBehaviour:
@@ -23171,7 +23170,7 @@ RectTransform:
   m_GameObject: {fileID: 1649556900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.19999996, y: 0.19999996, z: 0.19999996}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 287269043}
@@ -23520,8 +23519,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 32.753906}
-  m_SizeDelta: {x: -300, y: -311.803}
+  m_AnchoredPosition: {x: -5, y: 35}
+  m_SizeDelta: {x: -89.999954, y: -430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1680577275
 MonoBehaviour:
@@ -29256,7 +29255,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 46.319923}
-  m_SizeDelta: {x: 444.8214, y: 70.5042}
+  m_SizeDelta: {x: 682.1, y: 70.5042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077512313
 MonoBehaviour:
@@ -29282,8 +29281,8 @@ MonoBehaviour:
 
     Press Esc to assign nothing.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
-  m_sharedMaterial: {fileID: 473530870180049437, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 14677ccebe145b642bfff52d03242e29, type: 2}
+  m_sharedMaterial: {fileID: 9096413665312488464, guid: 14677ccebe145b642bfff52d03242e29, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -29313,7 +29312,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 24
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -30094,6 +30093,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2662731416658686041, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
+      propertyPath: pixelPerfectCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3483401374458082774, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
       propertyPath: m_Name
       value: SettingsManager
@@ -30106,6 +30109,10 @@ PrefabInstance:
       propertyPath: crtMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 4b9414aca67ee2a4aa4d373322d4c2cb, type: 2}
+    - target: {fileID: 5394796292264484717, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
+      propertyPath: crtRendererFeature
+      value: 
+      objectReference: {fileID: 1596283076268608705, guid: 3fa100d336659f54c8d87b208e604047, type: 2}
     - target: {fileID: 7694855711163640035, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

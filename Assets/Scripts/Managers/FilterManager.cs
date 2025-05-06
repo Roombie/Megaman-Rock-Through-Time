@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class FilterManager : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class FilterManager : MonoBehaviour
 
     [Header("Post-Processing Volume")]
     public Volume crtVolume;
-    public Material crtMaterial;
+    [SerializeField] private ScriptableRendererFeature crtRendererFeature;
+    [SerializeField] private ScriptableRendererFeature monitorFeature;
 
     private void Awake()
     {
@@ -18,25 +20,62 @@ public class FilterManager : MonoBehaviour
         SetFilter((FilterMode)PlayerPrefs.GetInt(SettingsKeys.FilterKey, 0));
     }
 
+    private void OnEnable()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.playModeStateChanged += HandlePlayModeChange;
+#endif
+        ApplySavedFilter();
+    }
+
+    private void OnDisable()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.playModeStateChanged -= HandlePlayModeChange;
+#endif
+    }
+
+    private void HandlePlayModeChange(UnityEditor.PlayModeStateChange state)
+    {
+        if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+        {
+            crtRendererFeature?.SetActive(false);
+            monitorFeature?.SetActive(false);
+        }
+    }
+
+    private void ApplySavedFilter()
+    {
+        var savedMode = (FilterMode)PlayerPrefs.GetInt(SettingsKeys.FilterKey, 0);
+        SetFilter(savedMode);
+    }
+
     public void SetFilter(FilterMode mode)
     {
         Debug.Log($"Filter set to: {mode}");
 
+        if (crtVolume != null) crtVolume.gameObject.SetActive(false);
+        if (crtRendererFeature != null) crtRendererFeature.SetActive(false);
+        if (monitorFeature != null) monitorFeature.SetActive(false);
+
         switch (mode)
         {
-            case FilterMode.None:
-                if (crtVolume != null) crtVolume.gameObject.SetActive(false);
-                break;
-
             case FilterMode.TV:
-                if (crtVolume != null) crtVolume.gameObject.SetActive(true);
+                crtVolume?.gameObject.SetActive(true);
+                crtRendererFeature?.SetActive(true);
                 break;
 
             case FilterMode.Monitor:
-                // Si tienes un segundo filtro estilo "monitor", podrías activarlo aquí
-                if (crtVolume != null) crtVolume.gameObject.SetActive(false);
+                monitorFeature?.SetActive(true);
+                break;
+
+            case FilterMode.None:
+            default:
                 break;
         }
+
+        PlayerPrefs.SetInt(SettingsKeys.FilterKey, (int)mode);
+        PlayerPrefs.Save();
     }
 }
 
