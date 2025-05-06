@@ -93,6 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af05273c057b11e4cb37ce16244dd6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crtVolume: {fileID: 8155964469061258265}
+  crtRendererFeature: {fileID: 1596283076268608705, guid: 3fa100d336659f54c8d87b208e604047, type: 2}
+  monitorFeature: {fileID: 0}
 --- !u!114 &2662731416658686041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f2a0055f987b143a7d2289ad042057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pixelPerfectCamera: {fileID: 0}
 --- !u!1 &7871178886454580015
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &956620058640338293
 Transform:
   m_ObjectHideFlags: 0

@@ -33,6 +33,10 @@ public class CustomSlider : Slider
     protected override void OnDestroy()
     {
         base.OnDestroy();
+    #if UNITY_EDITOR
+        if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
+            return;
+    #endif
         if (inputActions != null)
             inputActions.Dispose();
     }
