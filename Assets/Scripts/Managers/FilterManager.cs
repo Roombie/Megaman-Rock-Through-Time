@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class FilterManager : MonoBehaviour
 {
     public static FilterManager Instance { get; private set; }
@@ -23,7 +27,7 @@ public class FilterManager : MonoBehaviour
     private void OnEnable()
     {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.playModeStateChanged += HandlePlayModeChange;
+        EditorApplication.playModeStateChanged += HandlePlayModeChange;
 #endif
         ApplySavedFilter();
     }
@@ -31,19 +35,20 @@ public class FilterManager : MonoBehaviour
     private void OnDisable()
     {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.playModeStateChanged -= HandlePlayModeChange;
+        EditorApplication.playModeStateChanged -= HandlePlayModeChange;
 #endif
     }
 
-    private void HandlePlayModeChange(UnityEditor.PlayModeStateChange state)
+#if UNITY_EDITOR
+    private void HandlePlayModeChange(PlayModeStateChange state)
     {
-        if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode)
+        if (state == PlayModeStateChange.ExitingPlayMode)
         {
             crtRendererFeature?.SetActive(false);
             monitorFeature?.SetActive(false);
         }
     }
-
+#endif
     private void ApplySavedFilter()
     {
         var savedMode = (FilterMode)PlayerPrefs.GetInt(SettingsKeys.FilterKey, 0);

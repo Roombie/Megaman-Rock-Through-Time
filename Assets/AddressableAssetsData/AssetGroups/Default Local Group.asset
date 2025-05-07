@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
   m_GUID: 88cf932baa3cee0479629aef1f13520d
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: b381e59cbd3f94e42956a656c5e2d826
+    m_Address: Assets/LocalSettings/Tables/GameText Shared Data.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8a5fb01e5938b944b875f45de110535e, type: 2}
   m_SchemaSet:
