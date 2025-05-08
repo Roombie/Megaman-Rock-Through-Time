@@ -15,10 +15,26 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 88cf932baa3cee0479629aef1f13520d
   m_SerializeEntries:
-  - m_GUID: b381e59cbd3f94e42956a656c5e2d826
-    m_Address: Assets/LocalSettings/Tables/GameText Shared Data.asset
+  - m_GUID: 226306fed7d78434b8384f6e5dd405e7
+    m_Address: Assets/Sprites/UI/ui_OnOffToggle_en.png
     m_ReadOnly: 0
     m_SerializedLabels:
+    - Locale-en
+    - Preload
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7019571f280967643a84d1ea7758b096
+    m_Address: Assets/Sprites/UI/ui_OnOffToggle_es.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea842a15988060445b8fc94a3f1ae178
+    m_Address: Assets/Sprites/UI/ui_OnOffToggle_fr.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Locale-fr
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0

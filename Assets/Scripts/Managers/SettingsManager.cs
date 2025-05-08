@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SettingsManager : MonoBehaviour
     public FilterManager filterManager;
     public ScreenDisplayManager screenDisplayManager;
     public BorderManager borderManager;
+    public LocalizationManager localizationManager;
 
     void Awake()
     {
@@ -21,6 +23,21 @@ public class SettingsManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        ApplySavedSettings();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         ApplySavedSettings();
     }
 

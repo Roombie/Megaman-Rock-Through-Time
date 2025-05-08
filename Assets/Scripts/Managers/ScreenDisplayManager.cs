@@ -9,9 +9,6 @@ public class ScreenDisplayManager : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        var saved = PlayerPrefs.GetInt(SettingsKeys.ScreenKey, 0);
-        Apply((ScreenDisplayMode)saved, save: false);
     }
 
     public void Apply(ScreenDisplayMode mode, bool save = true)

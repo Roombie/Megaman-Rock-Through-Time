@@ -18,6 +18,9 @@ public static class SettingsApplier
             case SettingType.Border:
                 BorderManager.Instance?.SetBorderMode((BorderMode)index);
                 break;
+            case SettingType.Language:
+                LocalizationManager.Instance?.ApplyLanguage(index);
+                break;
         }
     }
 

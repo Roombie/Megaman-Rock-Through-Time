@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-English (en)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-English (en)
-  m_GUID: 8954ac628bd696b44b4d60a078bbb428
+  m_GUID: 05fa8b779b520594487b3c68300dfb78
   m_SerializeEntries:
   - m_GUID: 2da2b56143684b84fafd182954b80134
     m_Address: GameText_en
     m_ReadOnly: 1
     m_SerializedLabels:
+    - Locale
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0

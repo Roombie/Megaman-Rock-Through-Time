@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
@@ -16,25 +17,8 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
     public LanguageSprites languageSprites;
 
     private bool currentValue;
+
     public SettingType SettingType => settingType;
-
-    #if UNITY_EDITOR
-    private void OnValidate()
-    {
-        var allowed = new SettingType[]
-        {
-            SettingType.VSync,
-            SettingType.SlideWithDownJumpKey,
-            SettingType.ControllerVibrationKey
-        };
-
-        if (!System.Array.Exists(allowed, t => t == settingType))
-        {
-            Debug.LogWarning($"{nameof(ToggleSettingHandler)}: Invalid SettingType '{settingType}' assigned. Resetting to default.");
-            settingType = allowed[0];
-        }
-    }
-    #endif
 
     void Start()
     {
@@ -77,11 +61,23 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
         if (toggle != null)
             toggle.isOn = currentValue;
 
+        if (LocalizationSettings.SelectedLocale == null)
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+        }
+
         if (targetImage != null && languageSprites != null && LocalizationSettings.SelectedLocale != null)
         {
             var sprite = languageSprites.GetSprite(LocalizationSettings.SelectedLocale, currentValue);
             if (sprite != null)
+            {
                 targetImage.sprite = sprite;
+            }
+
+            if (sprite == null)
+            {
+                Debug.LogWarning("Sprite not found for the selected language!");
+            }
         }
 
         SettingsApplier.ApplyBoolSetting(settingType, currentValue);

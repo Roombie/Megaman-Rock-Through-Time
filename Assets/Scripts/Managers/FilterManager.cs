@@ -20,8 +20,6 @@ public class FilterManager : MonoBehaviour
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        SetFilter((FilterMode)PlayerPrefs.GetInt(SettingsKeys.FilterKey, 0));
     }
 
     private void OnEnable()
@@ -29,7 +27,6 @@ public class FilterManager : MonoBehaviour
 #if UNITY_EDITOR
         EditorApplication.playModeStateChanged += HandlePlayModeChange;
 #endif
-        ApplySavedFilter();
     }
 
     private void OnDisable()
@@ -49,11 +46,6 @@ public class FilterManager : MonoBehaviour
         }
     }
 #endif
-    private void ApplySavedFilter()
-    {
-        var savedMode = (FilterMode)PlayerPrefs.GetInt(SettingsKeys.FilterKey, 0);
-        SetFilter(savedMode);
-    }
 
     public void SetFilter(FilterMode mode)
     {

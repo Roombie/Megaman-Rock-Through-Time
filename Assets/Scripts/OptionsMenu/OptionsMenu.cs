@@ -166,7 +166,7 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
 
     private string[] GetLocalizedDisplayModeOptions()
     {
-        // Asume que tienes 5 modos: Auto, Xbox, PlayStation, Nintendo, Custom
+        // It assumes 5 modes: Auto, Xbox, PlayStation, Nintendo, Custom
         string[] keys = { "Auto", "Xbox", "PlayStation", "Nintendo", "Custom" };
         return keys.Select(key => LocalizationSettings.StringDatabase.GetLocalizedString("GameText", DisplayModeKeyPrefix + key)).ToArray();
     }

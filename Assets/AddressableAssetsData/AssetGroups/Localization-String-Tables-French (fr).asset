@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-French (fr)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-French (fr)
-  m_Data:
-    m_SerializedData: []
-  m_GUID: d050636c44d607143abed3443c554e7d
-  m_SerializeEntries: []
+  m_GUID: b54120bab17d9b048b5a077f6427425a
+  m_SerializeEntries:
+  - m_GUID: be0b9718a842f70418a43af0bc6ee825
+    m_Address: GameText_fr
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    - Locale-fr
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 8a5fb01e5938b944b875f45de110535e, type: 2}
   m_SchemaSet:

@@ -15,32 +15,38 @@ public class LanguageSprites : ScriptableObject
 
     public LanguageSpriteSet[] languageSpriteSets;
 
-    private Dictionary<Locale, LanguageSpriteSet> spriteSetDict;
+    private Dictionary<string, LanguageSpriteSet> spriteSetDict;
 
     private void OnEnable()
     {
         InitializeDictionary();
     }
 
-    private void InitializeDictionary()
+   private void InitializeDictionary()
     {
-        spriteSetDict = new Dictionary<Locale, LanguageSpriteSet>();
+        spriteSetDict = new Dictionary<string, LanguageSpriteSet>();
         foreach (var set in languageSpriteSets)
         {
-            if (!spriteSetDict.ContainsKey(set.locale))
+            string key = set.locale.Identifier.Code; // Ex: "en", "es"
+            if (!spriteSetDict.ContainsKey(key))
             {
-                spriteSetDict.Add(set.locale, set);
+                spriteSetDict.Add(key, set);
             }
         }
     }
 
     public Sprite GetSprite(Locale locale, bool isOn)
     {
-        if (spriteSetDict.TryGetValue(locale, out var spriteSet))
+        if (locale == null) return null;
+
+        string key = locale.Identifier.Code;
+
+        if (spriteSetDict.TryGetValue(key, out var spriteSet))
         {
             return isOn ? spriteSet.onSprite : spriteSet.offSprite;
         }
-        Debug.LogWarning($"Sprite for locale {locale} not found.");
+
+        Debug.LogWarning($"Sprite for locale '{key}' not found.");
         return null;
     }
 }
