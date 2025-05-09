@@ -67,7 +67,9 @@ public class ArrowSelector : MonoBehaviour
 
     IEnumerator DelayedUpdatePosition(int b)
     {
+        // Wait two frames to ensure resolution and layout are fully updated after screen/border changes
         yield return null;
+        yield return null; // a little robust but whatever it works
         Vector3 worldPos = buttons[b].button.TransformPoint((Vector3)buttons[b].arrowOffset);
         arrowIndicator.position = worldPos;
         arrowIndicator.gameObject.SetActive(true);

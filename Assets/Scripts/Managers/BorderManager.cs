@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -33,14 +34,12 @@ public class BorderManager : MonoBehaviour
 
     public void SetBorderMode(BorderMode mode)
     {
-        SearchForCamera();  // Asegúrate de que la cámara esté asignada
+        SearchForCamera();
 
-        // Reiniciar la cámara y el borde antes de aplicar el nuevo
         if (pixelPerfectCamera != null)
         {
-            pixelPerfectCamera.cropFrame = PixelPerfectCamera.CropFrame.None;  // Reiniciar el borde
+            pixelPerfectCamera.cropFrame = PixelPerfectCamera.CropFrame.None;
 
-            // Aplicar el borde seleccionado
             switch (mode)
             {
                 case BorderMode.None:
@@ -53,10 +52,18 @@ public class BorderManager : MonoBehaviour
 
                 case BorderMode.Windowbox:
                     pixelPerfectCamera.cropFrame = PixelPerfectCamera.CropFrame.Windowbox;
+
+                    int minWidth = pixelPerfectCamera.refResolutionX * 2;
+                    int minHeight = pixelPerfectCamera.refResolutionY * 2;
+
+                    if (Screen.width < minWidth || Screen.height < minHeight)
+                    {
+                        Debug.Log($"[BorderManager] Aumentando resolución para soportar Windowbox.");
+                        Screen.SetResolution(minWidth, minHeight, Screen.fullScreenMode);
+                    }
                     break;
             }
 
-            // Aplicar los cambios y guardarlos
             PlayerPrefs.SetInt(SettingsKeys.BorderKey, (int)mode);
             PlayerPrefs.Save();
 
@@ -67,6 +74,25 @@ public class BorderManager : MonoBehaviour
             Debug.LogWarning("PixelPerfectCamera not found in BorderManager.");
         }
     }
+
+    public void ApplyBorderClean(BorderMode mode)
+    {
+        StartCoroutine(DelayedBorderApplyWithUIRefresh(mode));
+    }
+
+    private IEnumerator DelayedBorderApplyWithUIRefresh(BorderMode mode)
+    {
+        // Espera a que el cambio de pantalla se aplique
+        yield return new WaitForEndOfFrame(); // resolución
+        yield return null;                    // layouts y UI scaler
+
+        // Aplica el cropFrame limpio
+        SetBorderMode(mode);
+
+        // Opcional: limpia UI, refresca layout, mueve flechas, etc.
+        yield return UIUtils.DelayedRefreshUI();
+    }
 }
 
 public enum BorderMode { None, Pillarbox, Windowbox }
+

@@ -30,6 +30,12 @@ public class ScreenDisplayManager : MonoBehaviour
 
         if (save)
             PlayerPrefs.SetInt(SettingsKeys.ScreenKey, (int)mode);
+
+        if (BorderManager.Instance != null)
+        {
+            int borderIndex = PlayerPrefs.GetInt(SettingsKeys.BorderKey, 0);
+            BorderManager.Instance.ApplyBorderClean((BorderMode)borderIndex);
+        }
     }
 }
 

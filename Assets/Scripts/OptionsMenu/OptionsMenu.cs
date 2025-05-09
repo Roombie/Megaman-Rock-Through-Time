@@ -232,7 +232,7 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
 
             case SettingType.Border:
                 PlayerPrefs.SetInt(SettingsKeys.BorderKey, index);
-                BorderManager.Instance?.SetBorderMode((BorderMode)index);
+                BorderManager.Instance?.ApplyBorderClean((BorderMode)index);
                 break;
 
             case SettingType.Filter:

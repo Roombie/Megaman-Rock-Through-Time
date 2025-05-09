@@ -16,7 +16,7 @@ public static class SettingsApplier
                 FilterManager.Instance?.SetFilter((FilterMode)index);
                 break;
             case SettingType.Border:
-                BorderManager.Instance?.SetBorderMode((BorderMode)index);
+                BorderManager.Instance?.ApplyBorderClean((BorderMode)index);
                 break;
             case SettingType.Language:
                 LocalizationManager.Instance?.ApplyLanguage(index);
