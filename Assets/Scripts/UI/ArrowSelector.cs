@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArrowSelector : MonoBehaviour
 {
@@ -70,6 +71,14 @@ public class ArrowSelector : MonoBehaviour
         // Wait two frames to ensure resolution and layout are fully updated after screen/border changes
         yield return null;
         yield return null; // a little robust but whatever it works
+
+        // Forzamos reconstrucción de layout
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(buttons[b].button);
+
+        // Doble verificación
+        yield return null;
+
         Vector3 worldPos = buttons[b].button.TransformPoint((Vector3)buttons[b].arrowOffset);
         arrowIndicator.position = worldPos;
         arrowIndicator.gameObject.SetActive(true);

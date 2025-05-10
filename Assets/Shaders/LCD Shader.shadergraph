@@ -616,7 +616,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"2303eaa7e34348c4fad6b821c24c4ad6\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"a929ae05b3951a3468813962a7580613\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,

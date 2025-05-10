@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _LCDTexture:
-        m_Texture: {fileID: 2800000, guid: 2303eaa7e34348c4fad6b821c24c4ad6, type: 3}
+        m_Texture: {fileID: 2800000, guid: a929ae05b3951a3468813962a7580613, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -45,7 +45,7 @@ Material:
     - _ChromaticAberration: 0.005
     - _Fullscreen_DepthWrite: 1
     - _Scale: 720
-    - _Strength: 0.28
+    - _Strength: 0.55
     m_Colors:
     - _Tiling: {r: 30, g: 16.875, b: 0, a: 0}
   m_BuildTextureStacks: []

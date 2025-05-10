@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2303eaa7e34348c4fad6b821c24c4ad6
+guid: a929ae05b3951a3468813962a7580613
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1184847903368567927
-    second: LCD_Pixel_64_0
+      213: -384172875455122405
+    second: static1.squarespace_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -109,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LCD_Pixel_64_0
+      name: static1.squarespace_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 486
+        height: 299
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77c5629f3ec617010800000000000000
-      internalID: 1184847903368567927
+      spriteID: b1438222ec42baaf0800000000000000
+      internalID: -384172875455122405
       vertices: []
       indices: 
       edges: []
@@ -161,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LCD_Pixel_64_0: 1184847903368567927
+      static1.squarespace_0: -384172875455122405
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
