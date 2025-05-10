@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crtVolume: {fileID: 8155964469061258265}
   crtRendererFeature: {fileID: 1596283076268608705, guid: 3fa100d336659f54c8d87b208e604047, type: 2}
-  monitorFeature: {fileID: -1000319446231999822, guid: 3fa100d336659f54c8d87b208e604047, type: 2}
+  monitorFeature: {fileID: 7173738406193780555, guid: 3fa100d336659f54c8d87b208e604047, type: 2}
 --- !u!114 &2662731416658686041
 MonoBehaviour:
   m_ObjectHideFlags: 0

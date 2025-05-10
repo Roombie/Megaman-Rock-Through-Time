@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 88cf932baa3cee0479629aef1f13520d
   m_SerializeEntries:
+  - m_GUID: 060759c11c98b5146bdc6f4eadab76d6
+    m_Address: Assets/Shaders/CRT Shader.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 226306fed7d78434b8384f6e5dd405e7
     m_Address: Assets/Sprites/UI/ui_OnOffToggle_en.png
     m_ReadOnly: 0

@@ -3962,6 +3962,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1795669808386009774, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132.09998
+      objectReference: {fileID: 0}
     - target: {fileID: 2366335404104408402, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
       propertyPath: m_MatchWidthOrHeight
       value: 0
@@ -3969,6 +3973,14 @@ PrefabInstance:
     - target: {fileID: 4397215123691571717, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
       propertyPath: m_Name
       value: HUDCanva
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356441858188145463, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132.09998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685530217093107557, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132.09998
       objectReference: {fileID: 0}
     - target: {fileID: 7869719135105644834, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
       propertyPath: m_Pivot.x
