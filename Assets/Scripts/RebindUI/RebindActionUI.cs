@@ -505,6 +505,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             if (m_ErrorText == null)
                 return;
 
+            m_ErrorText.text = "";
             m_ErrorText.text = localizedText;
             m_ErrorText.gameObject.SetActive(true);
         }
