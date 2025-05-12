@@ -58,7 +58,6 @@ public class BorderManager : MonoBehaviour
 
                     if (Screen.width < minWidth || Screen.height < minHeight)
                     {
-                        Debug.Log($"[BorderManager] Aumentando resolución para soportar Windowbox.");
                         Screen.SetResolution(minWidth, minHeight, Screen.fullScreenMode);
                     }
                     break;
