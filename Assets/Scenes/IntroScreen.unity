@@ -487,7 +487,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1916594939}
   - component: {fileID: 1916594940}
-  - component: {fileID: 1916594942}
   - component: {fileID: 1916594941}
   m_Layer: 0
   m_Name: Background Camera
@@ -611,14 +610,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1916594942
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916594938}
-  m_Enabled: 1
 --- !u!1 &2094669529
 GameObject:
   m_ObjectHideFlags: 0

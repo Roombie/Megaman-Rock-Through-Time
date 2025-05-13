@@ -120,6 +120,7 @@ public class AudioManager : MonoBehaviour
             source = gameObject.AddComponent<AudioSource>();
         }
 
+        // Set the clip, volume, pitch, and loop settings for the AudioSource
         source.clip = clip;
         source.volume = volume;
         source.pitch = pitch;

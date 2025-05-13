@@ -12,6 +12,7 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     public TextMeshProUGUI label;
     [SerializeField] private GameObject leftArrow;
     [SerializeField] private GameObject rightArrow;
+    [SerializeField] private AudioClip confirmSound;
     public string[] options;
     public int currentIndex;
 
@@ -125,6 +126,15 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         {
             if (currentlySelecting != null && currentlySelecting != this) return;
 
+            if (confirmSound != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.Play(confirmSound, SoundCategory.SFX);
+            }
+            else
+            {
+                Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't on the scene");
+            }
+
             isSelected = true;
             currentlySelecting = this;
             EventSystem.current.SetSelectedGameObject(gameObject);
@@ -135,6 +145,15 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         }
         else
         {
+            if (confirmSound != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.Play(confirmSound, SoundCategory.SFX);
+            }
+            else
+            {
+                Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't on the scene");
+            }
+
             isSelected = false;
             currentlySelecting = null;
             EventSystem.current.sendNavigationEvents = true;

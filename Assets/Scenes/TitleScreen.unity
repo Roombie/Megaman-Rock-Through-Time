@@ -1929,7 +1929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7694855711163640035, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7694855711163640035, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2274,6 +2274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDebugLinesOnlyOnActiveObjects: 1
+  navigateSound: {fileID: 0}
   buttons:
   - button: {fileID: 68152180}
     arrowOffset: {x: -100, y: 0}
@@ -2308,7 +2309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1875866014}
   - component: {fileID: 1875866015}
-  - component: {fileID: 1875866017}
   - component: {fileID: 1875866016}
   m_Layer: 0
   m_Name: Background Camera
@@ -2432,14 +2432,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1875866017
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875866013}
-  m_Enabled: 1
 --- !u!1 &1891611823
 GameObject:
   m_ObjectHideFlags: 0

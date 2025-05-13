@@ -12,6 +12,7 @@ public class ArrowSelector : MonoBehaviour
     }
 
     public bool showDebugLinesOnlyOnActiveObjects = true;
+    [SerializeField] private AudioClip navigateSound;
     [SerializeField] ButtonData[] buttons;
     [SerializeField] RectTransform arrowIndicator;
     [HideInInspector] public bool isSelectingOption = false;
@@ -46,6 +47,14 @@ public class ArrowSelector : MonoBehaviour
     {
         lastSelected = b;
         MoveIndicator(b);
+        if (navigateSound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
+        }
+        else
+        {
+            Debug.LogWarning("Either a navigateSound wasn't referenced or the AudioManager isn't on the scene");
+        }
     }
 
     public void MoveIndicator(int b)

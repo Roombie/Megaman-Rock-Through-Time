@@ -1,51 +1,93 @@
 using UnityEngine;
-using UnityEngine.U2D; // Para PixelPerfectCamera
+using UnityEngine.U2D;
 
+[RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour
 {
-    [Tooltip("The transform of the player character that the camera will follow.")]
     public Transform player;
-
-    [Tooltip("The time it takes for the camera to smoothly follow the player.")]
     public float smoothDampTime = 0.1f;
-
-    [Tooltip("The offset from the player's position to the camera's position.")]
     public Vector3 lookAhead;
 
-    [Tooltip("The minimum boundary for the camera's position.")]
-    public Vector3 boundsMin;
+    public Vector2 levelBoundsMin;
+    public Vector2 levelBoundsMax;
+    
+    public bool lockHorizontal = false;
+    public bool lockVertical = false;
 
-    [Tooltip("The maximum boundary for the camera's position.")]
-    public Vector3 boundsMax;
+    private float camHalfWidth;
+    private float camHalfHeight;
 
-    private void LateUpdate()
+    private Camera cam;
+    private PixelPerfectCamera pixelPerfect;
+
+    void Awake()
     {
-        if (player != null)
-        {
-            Vector3 startPos = transform.position;
-            Vector3 targetPos = player.position;
-
-            targetPos.x += lookAhead.x;
-            targetPos.y += lookAhead.y;
-            targetPos.z = transform.position.z; // Keep the camera's Z position
-
-            // Clamp the target position to stay within bounds
-            targetPos.x = Mathf.Clamp(targetPos.x, boundsMin.x, boundsMax.x);
-            targetPos.y = Mathf.Clamp(targetPos.y, boundsMin.y, boundsMax.y);
-
-            // Smoothly interpolate between the current position and the target position
-            float t = 1f - Mathf.Pow(1f - smoothDampTime, Time.deltaTime * 30);
-            transform.position = Vector3.Lerp(startPos, targetPos, t);
-        }
+        cam = GetComponent<Camera>();
+        pixelPerfect = GetComponent<PixelPerfectCamera>();
     }
 
-    private void OnDrawGizmos()
+    void LateUpdate()
     {
-        // Draw a rectangle representing the bounds
+        if (player == null) return;
+
+        // Asegurarse de que el PixelPerfectCamera ha ajustado el pixel ratio
+        float orthoSize = cam.orthographicSize;
+        float aspect = cam.aspect;
+
+        camHalfHeight = orthoSize;
+        camHalfWidth = orthoSize * aspect;
+
+        Vector3 targetPos = player.position + lookAhead;
+        targetPos.z = transform.position.z;
+
+        float minX = levelBoundsMin.x + camHalfWidth;
+        float maxX = levelBoundsMax.x - camHalfWidth;
+        float minY = levelBoundsMin.y + camHalfHeight;
+        float maxY = levelBoundsMax.y - camHalfHeight;
+
+        // Bloquear el movimiento horizontal si es necesario
+        if (!lockHorizontal)
+        {
+            if (levelBoundsMax.x - levelBoundsMin.x < camHalfWidth * 2)
+                targetPos.x = (levelBoundsMin.x + levelBoundsMax.x) / 2f;
+            else
+                targetPos.x = Mathf.Clamp(targetPos.x, minX, maxX);
+        }
+        else
+        {
+            // Si está bloqueado, mantiene la posición X original
+            targetPos.x = transform.position.x;
+        }
+
+        // Bloquear el movimiento vertical si es necesario
+        if (!lockVertical)
+        {
+            if (levelBoundsMax.y - levelBoundsMin.y < camHalfHeight * 2)
+                targetPos.y = (levelBoundsMin.y + levelBoundsMax.y) / 2f;
+            else
+                targetPos.y = Mathf.Clamp(targetPos.y, minY, maxY);
+        }
+        else
+        {
+            // Si está bloqueado, mantiene la posición Y original
+            targetPos.y = transform.position.y;
+        }
+
+        float t = 1f - Mathf.Pow(1f - smoothDampTime, Time.deltaTime * 30);
+        transform.position = Vector3.Lerp(transform.position, targetPos, t);
+    }
+
+    void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(new Vector3(boundsMin.x, boundsMin.y, transform.position.z), new Vector3(boundsMax.x, boundsMin.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(boundsMax.x, boundsMin.y, transform.position.z), new Vector3(boundsMax.x, boundsMax.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(boundsMax.x, boundsMax.y, transform.position.z), new Vector3(boundsMin.x, boundsMax.y, transform.position.z));
-        Gizmos.DrawLine(new Vector3(boundsMin.x, boundsMax.y, transform.position.z), new Vector3(boundsMin.x, boundsMin.y, transform.position.z));
+        Vector3 bottomLeft = new Vector3(levelBoundsMin.x, levelBoundsMin.y, transform.position.z);
+        Vector3 bottomRight = new Vector3(levelBoundsMax.x, levelBoundsMin.y, transform.position.z);
+        Vector3 topRight = new Vector3(levelBoundsMax.x, levelBoundsMax.y, transform.position.z);
+        Vector3 topLeft = new Vector3(levelBoundsMin.x, levelBoundsMax.y, transform.position.z);
+
+        Gizmos.DrawLine(bottomLeft, bottomRight);
+        Gizmos.DrawLine(bottomRight, topRight);
+        Gizmos.DrawLine(topRight, topLeft);
+        Gizmos.DrawLine(topLeft, bottomLeft);
     }
 }
