@@ -330,6 +330,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 return;
             }
 
+            // Guardamos el valor original del binding antes de empezar el rebind
+            string originalBindingPath = action.bindings[bindingIndex].path;
+            string originalOverridePath = action.bindings[bindingIndex].overridePath;
+
             m_RebindOperation?.Cancel();
             action.Disable();
 
@@ -347,6 +351,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .WithCancelingThrough("<Keyboard>/escape")
                 .OnCancel(operation =>
                 {
+                    // Al cancelar, restauramos el binding original
+                    action.ApplyBindingOverride(bindingIndex, originalOverridePath);
                     m_RebindStopEvent?.Invoke(this, operation);
                     m_RebindOverlay?.SetActive(false);
                     UpdateBindingDisplay();
@@ -355,24 +361,39 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .OnPotentialMatch(operation =>
                 {
                     var control = operation.selectedControl;
+                    if (control == null)
+                    {
+                        Debug.LogWarning("No control detected during rebind.");
+                        return; // O manejar como sea necesario
+                    }
+
                     var layout = control?.device?.layout;
 
-                    bool isKeyboard = layout == "Keyboard" || layout == "Mouse";
-                    bool isGamepad = layout == "Gamepad" || layout == "DualShockGamepad" || layout == "XInputController" || layout == "SwitchProControllerHID";
+                    bool isKeyboard = layout?.Contains("Keyboard") ?? false;
+                    bool isGamepad = layout?.Contains("Gamepad") ?? false;
 
-                    if ((isKeyboard && !allowKeyboardBindings) || (isGamepad && !allowGamepadBindings))
+                    // Verificamos si el dispositivo es permitido
+                    if (isKeyboard && !allowKeyboardBindings)
                     {
                         Debug.LogWarning("Forbidden device detected during rebind.");
                         ShowError("ButtonNotAllowedInScheme");
+                        // Si es un error, no actualizamos el binding
+                        action.ApplyBindingOverride(bindingIndex, originalOverridePath);
+                        return;
+                    }
 
-                        action.Disable();
-
-                        PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
+                    if (isGamepad && !allowGamepadBindings)
+                    {
+                        Debug.LogWarning("Forbidden device detected during rebind.");
+                        ShowError("ButtonNotAllowedInScheme");
+                        // Si es un error, no actualizamos el binding
+                        action.ApplyBindingOverride(bindingIndex, originalOverridePath);
                         return;
                     }
                 })
                 .OnComplete(operation =>
                 {
+                    // Aquí verificamos si el binding ya está asignado
                     if (CheckDuplicatesBinding(action, bindingIndex, allCompositeParts))
                     {
                         action.RemoveBindingOverride(bindingIndex);
@@ -380,16 +401,20 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
                         action.Disable();
 
+                        // Si hubo un duplicado, no actualizamos el binding
+                        action.ApplyBindingOverride(bindingIndex, originalOverridePath);
                         PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
                         return;
                     }
 
+                    // Si todo es correcto, actualizamos la UI y guardamos los cambios
                     UpdateBindingDisplay();
                     FindFirstObjectByType<RebindSaveLoad>()?.SaveBindings();
                     m_RebindOverlay?.SetActive(false);
                     m_RebindStopEvent?.Invoke(this, operation);
                     CleanUp();
 
+                    // Continuamos con los bindings compuestos
                     if (allCompositeParts)
                     {
                         var nextBindingIndex = bindingIndex + 1;
@@ -400,10 +425,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             m_RebindOverlay?.SetActive(true);
             m_ErrorText.gameObject.SetActive(false);
-            /*if (m_RebindText != null)
-            {
-                m_RebindText.text = "Waiting for input...";
-            }*/
 
             m_RebindOperation.Start();
         }
@@ -505,7 +526,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             if (m_ErrorText == null)
                 return;
 
-            m_ErrorText.text = ""; // just in case
+            // m_ErrorText.text = ""; // just in case
             m_ErrorText.text = localizedText;
             m_ErrorText.gameObject.SetActive(true);
         }

@@ -199,10 +199,6 @@ MonoBehaviour:
     m_Key: OptionsMenu_DisplayMode
     m_Metadata:
       m_Items: []
-  - m_Id: 69872712586092544
-    m_Key: WaitingText
-    m_Metadata:
-      m_Items: []
   - m_Id: 69872837744123904
     m_Key: ButtonAlreadyAssigned
     m_Metadata:
@@ -277,6 +273,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 91880047403651072
     m_Key: OptionsMenu_Filter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95409067462283264
+    m_Key: WaitingText
     m_Metadata:
       m_Items: []
   m_Metadata:

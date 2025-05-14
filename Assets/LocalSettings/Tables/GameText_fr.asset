@@ -200,9 +200,8 @@ MonoBehaviour:
     m_Localized: RUSH & BEAT
     m_Metadata:
       m_Items: []
-  - m_Id: 69872712586092544
-    m_Localized: "En attente d\u2019une entr\xE9e...\nAppuyez sur Esc pour ne rien
-      attribuer."
+  - m_Id: 95409067462283264
+    m_Localized: "En attente d'une entr\xE9e...\nAppuyez sur \xC9chap pour annuler."
     m_Metadata:
       m_Items: []
   - m_Id: 69872837744123904

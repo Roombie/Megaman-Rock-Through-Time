@@ -33,6 +33,8 @@ public class PageFader : MonoBehaviour
         public GameObject button;
     }
 
+    public ArrowSelector arrowSelector;
+
     private void Start()
     {
         if (pages.Count > 0)
@@ -60,6 +62,9 @@ public class PageFader : MonoBehaviour
     {
         if (isTransitioning || pages.Count == 0 || pageIndex < 0 || pageIndex >= pages.Count || pageIndex == currentPageIndex)
             return;
+
+        if (arrowSelector != null)
+            arrowSelector.SetChangingPage(true);
 
         StartCoroutine(SwitchPage(pageIndex));
     }
@@ -98,6 +103,9 @@ public class PageFader : MonoBehaviour
         // Invoke event for entering the new page
         InvokeNewPageEnterEvent(currentPageIndex);
 
+        if (arrowSelector != null)
+            arrowSelector.SetChangingPage(false);
+        
         isTransitioning = false;
     }
 

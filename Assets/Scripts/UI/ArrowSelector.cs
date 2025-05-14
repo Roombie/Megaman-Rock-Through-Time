@@ -19,6 +19,7 @@ public class ArrowSelector : MonoBehaviour
 
     [HideInInspector] public int lastSelected = -1;
     bool firstFrame = true;
+    private bool isChangingPage = false;
 
     void LateUpdate()
     {
@@ -47,7 +48,7 @@ public class ArrowSelector : MonoBehaviour
     {
         lastSelected = b;
         MoveIndicator(b);
-        if (navigateSound != null && AudioManager.Instance != null)
+        if (!isChangingPage && navigateSound != null && AudioManager.Instance != null)
         {
             AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
         }
@@ -97,6 +98,11 @@ public class ArrowSelector : MonoBehaviour
     {
         yield return null;
         MoveIndicator(b);
+    }
+
+    public void SetChangingPage(bool value)
+    {
+        isChangingPage = value;
     }
 
     public void SetSelecting(bool value)

@@ -198,10 +198,10 @@ MonoBehaviour:
     m_Localized: RUSH & BEAT
     m_Metadata:
       m_Items: []
-  - m_Id: 69872712586092544
+  - m_Id: 95409067462283264
     m_Localized: 'Esperando entrada...
 
-      Presiona Esc para asignar nada.'
+      Presiona Esc para cancelar.'
     m_Metadata:
       m_Items: []
   - m_Id: 69872837744123904

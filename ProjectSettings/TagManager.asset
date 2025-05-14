@@ -66,6 +66,9 @@ TagManager:
   - name: Water
     uniqueID: 2742064295
     locked: 0
+  - name: UI
+    uniqueID: 2063594163
+    locked: 0
   - name: GameOver
     uniqueID: 53899151
     locked: 0

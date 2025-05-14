@@ -379,9 +379,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.16666667
     y: 0
-    width: 1
+    width: 0.6666667
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -419,7 +419,7 @@ MonoBehaviour:
   smoothDampTime: 0.25
   lookAhead: {x: 0.5, y: 3.35, z: 0}
   levelBoundsMin: {x: -39.9, y: -4.19}
-  levelBoundsMax: {x: 79.2, y: 9.5}
+  levelBoundsMax: {x: 79.2, y: 9.75}
   lockHorizontal: 0
   lockVertical: 1
 --- !u!114 &227129210
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_AssetsPPU: 100
   m_RefResolutionX: 1280
   m_RefResolutionY: 960
-  m_CropFrame: 0
+  m_CropFrame: 1
   m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0
@@ -528,7 +528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.138, y: 2.5}
+  m_AnchoredPosition: {x: -1.138, y: 1.9}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &297051924
@@ -4413,33 +4413,29 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 227129208}
-    - target: {fileID: 1676853539795967271, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1676853539795967271, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
-      propertyPath: m_PlaneDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1795669808386009774, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -132.09375
+    - target: {fileID: 2366335404104408402, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2366335404104408402, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
       propertyPath: m_MatchWidthOrHeight
-      value: 0
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366335404104408402, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366335404104408402, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 4397215123691571717, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
       propertyPath: m_Name
       value: HUDCanva
       objectReference: {fileID: 0}
-    - target: {fileID: 5356441858188145463, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -132.09375
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685530217093107557, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -132.09375
+    - target: {fileID: 4955118243903316183, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7869719135105644834, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
       propertyPath: m_Pivot.x

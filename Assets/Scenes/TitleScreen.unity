@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDebugLinesOnlyOnActiveObjects: 1
-  navigateSound: {fileID: 0}
+  navigateSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   buttons:
   - button: {fileID: 68152180}
     arrowOffset: {x: -100, y: 0}
