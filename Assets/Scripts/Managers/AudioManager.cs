@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
 
     public int poolSize = 10; // Number of AudioSources to pool
     private Queue<AudioSource> sfxPool;
-    private AudioSource musicSource;
+    private AudioSource audioSource;
     private List<AudioSource> pausedSources = new();
 
     private void InitializePools()
@@ -130,7 +130,7 @@ public class AudioManager : MonoBehaviour
         {
             case SoundCategory.Music:
                 source.outputAudioMixerGroup = musicMixerGroup;
-                musicSource = source; // Store the current music source
+                audioSource = source; // Store the current music source
                 break;
             case SoundCategory.Voice:
                 source.outputAudioMixerGroup = voiceMixerGroup;
@@ -163,7 +163,7 @@ public class AudioManager : MonoBehaviour
             if (source.clip == clip)
             {
                 source.Stop();
-                if (sfxPool.Contains(source) == false && source != musicSource)
+                if (sfxPool.Contains(source) == false && source != audioSource)
                 {
                     sfxPool.Enqueue(source);
                 }
@@ -241,7 +241,7 @@ public class AudioManager : MonoBehaviour
         foreach (var source in GetComponents<AudioSource>())
         {
             source.Stop();
-            if (sfxPool.Contains(source) == false && source != musicSource)
+            if (sfxPool.Contains(source) == false && source != audioSource)
             {
                 sfxPool.Enqueue(source);
             }
@@ -257,9 +257,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBackgroundMusic(AudioClip clip, float volume = 1f, float pitch = 1f, bool loop = true)
     {
-        if (musicSource != null && musicSource.isPlaying)
+        if (audioSource != null && audioSource.isPlaying)
         {
-            StartCoroutine(FadeOutMusic(musicSource, 1f)); // Fade out current music
+            StartCoroutine(FadeOutMusic(audioSource, 1f)); // Fade out current music
         }
 
         Play(clip, SoundCategory.Music, volume, pitch, loop);

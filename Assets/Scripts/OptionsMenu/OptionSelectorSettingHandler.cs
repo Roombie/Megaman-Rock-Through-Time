@@ -116,15 +116,6 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         Vector2 input = context.ReadValue<Vector2>();
         if (input.x < 0) ChangeOption(-1);
         else if (input.x > 0) ChangeOption(1);
-
-        if (confirmSound != null && AudioManager.Instance != null)
-        {
-            AudioManager.Instance.Play(confirmSound, SoundCategory.SFX);
-        }
-        else
-        {
-            Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't on the scene");
-        }
     }
 
     private void OnSubmit(InputAction.CallbackContext context)
@@ -206,6 +197,15 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
 
         currentIndex = newIndex;
         Apply(currentIndex);
+
+        if (confirmSound != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.Play(confirmSound, SoundCategory.SFX);
+        }
+        else
+        {
+            Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't on the scene");
+        }
     }
 
     public void Next() => ChangeOption(1);
