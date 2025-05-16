@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
+public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHandler
 {
     [SettingTypeFilter(SettingType.MasterVolumeKey, SettingType.MusicVolumeKey, SettingType.SFXVolumeKey, SettingType.VoiceVolumeKey)]
     public SettingType settingType;
@@ -19,25 +19,14 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
     public float holdIncrement = 0.02f;
     public float initialIncrement = 0.01f;
 
-    private bool isNavigating;
-    private bool isHolding;
-    private float holdStartTime;
-    private float lastMoveTime;
-
     private PlayerInputActions inputActions;
 
-    public SettingType SettingType => settingType;
+    private float holdStartTime;
+    private float lastMoveTime;
+    private bool isHolding;
+    private int direction = 0;
 
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        if (!System.Enum.IsDefined(typeof(SettingType), settingType))
-        {
-            Debug.LogWarning($"[VolumeSettingHandler] Invalid SettingType: {settingType}. Resetting.");
-            settingType = SettingType.MasterVolumeKey;
-        }
-    }
-#endif
+    public SettingType SettingType => settingType;
 
     private void Awake()
     {
@@ -47,25 +36,18 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
     private void OnEnable()
     {
         inputActions.Enable();
-        inputActions.UI.Navigate.started += OnNavigateStarted;
-        inputActions.UI.Navigate.performed += OnNavigatePerformed;
-        inputActions.UI.Navigate.canceled += OnNavigateCanceled;
     }
 
     private void OnDisable()
     {
-        inputActions.UI.Navigate.started -= OnNavigateStarted;
-        inputActions.UI.Navigate.performed -= OnNavigatePerformed;
-        inputActions.UI.Navigate.canceled -= OnNavigateCanceled;
         inputActions.Disable();
     }
 
     private void OnDestroy()
     {
-        inputActions?.Disable();
         inputActions?.Dispose();
     }
-
+    
     private void Start()
     {
         slider.onValueChanged.AddListener(OnValueChanged);
@@ -74,19 +56,46 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
 
     private void Update()
     {
-        if (!isNavigating) return;
+        if (EventSystem.current.currentSelectedGameObject != gameObject)
+            return;
 
-        holdStartTime += Time.unscaledDeltaTime;
-        if (holdStartTime >= holdThreshold && !isHolding)
+        Vector2 nav = inputActions.UI.Navigate.ReadValue<Vector2>();
+        int inputDir = nav.x > 0.5f ? 1 : nav.x < -0.5f ? -1 : 0;
+
+        if (inputDir != 0)
         {
-            isHolding = true;
-            lastMoveTime = 0f;
+            if (direction == 0)
+            {
+                // New press (TAP)
+                direction = inputDir;
+                MoveSlider(initialIncrement * direction);
+                holdStartTime = 0f;
+                lastMoveTime = Time.unscaledTime;
+                isHolding = false;
+            }
+            else
+            {
+                // Holding
+                holdStartTime += Time.unscaledDeltaTime;
+
+                if (holdStartTime >= holdThreshold)
+                {
+                    isHolding = true;
+
+                    if (Time.unscaledTime - lastMoveTime >= moveCooldown)
+                    {
+                        MoveSlider(holdIncrement * direction);
+                        lastMoveTime = Time.unscaledTime;
+                    }
+                }
+            }
         }
-
-        if (isHolding && Time.unscaledTime - lastMoveTime > moveCooldown)
+        else if (direction != 0)
         {
-            MoveSlider(holdIncrement);
-            lastMoveTime = Time.unscaledTime;
+            // Released
+            direction = 0;
+            isHolding = false;
+            holdStartTime = 0f;
         }
     }
 
@@ -126,38 +135,30 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
 
     private void SetText(float volume)
     {
-        valueText.text = (volume * 100).ToString("00");
-        valueText.color = volume switch
+        int intVolume = Mathf.RoundToInt(volume * 100);
+        valueText.text = intVolume.ToString("00");
+
+        valueText.color = intVolume switch
         {
-            1f => maxVolumeColor,
-            0f => minVolumeColor,
+            0 => minVolumeColor,
+            100 => maxVolumeColor,
             _ => Color.white
         };
     }
 
-    private void MoveSlider(float incrementAmount)
+    private void MoveSlider(float amount)
     {
-        if (EventSystem.current.currentSelectedGameObject?.GetComponent<Slider>() != slider)
-            return;
-
-        Vector2 nav = inputActions.UI.Navigate.ReadValue<Vector2>();
-        float direction = nav.x > 0.5f ? 1 : nav.x < -0.5f ? -1 : 0;
-
-        if (direction != 0)
-        {
-            slider.value = Mathf.Clamp(slider.value + direction * incrementAmount, slider.minValue, slider.maxValue);
-            SetText(slider.value);
-        }
+        float newValue = Mathf.Clamp(slider.value + amount, slider.minValue, slider.maxValue);
+        newValue = Mathf.Round(newValue * 100f) / 100f;
+        slider.value = newValue;
+        SetText(newValue);
     }
 
-    private void OnNavigateStarted(InputAction.CallbackContext _) => (isNavigating, holdStartTime, isHolding) = (true, 0f, false);
-    private void OnNavigateCanceled(InputAction.CallbackContext _) => (isNavigating, holdStartTime, isHolding) = (false, 0f, false);
-    private void OnNavigatePerformed(InputAction.CallbackContext _)
+    public void OnDeselect(BaseEventData eventData)
     {
-        if (!isHolding)
-        {
-            MoveSlider(initialIncrement);
-            lastMoveTime = Time.unscaledTime;
-        }
+        direction = 0;
+        isHolding = false;
+        holdStartTime = 0f;
+        EventSystem.current.sendNavigationEvents = true;
     }
 }

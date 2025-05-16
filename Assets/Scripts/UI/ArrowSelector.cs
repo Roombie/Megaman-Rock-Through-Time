@@ -83,8 +83,9 @@ public class ArrowSelector : MonoBehaviour
         // This is to avoid playing the audio when the scene loads, which it's the first time it is automatically selected
         if (suppressFirstSound)
         {
-            suppressFirstSound = false; 
-            if (b == lastSelected) return;
+            suppressFirstSound = false;
+            Debug.Log("First sound suppressed");
+            return;
         }
 
         if (!isChangingPage && navigateSound != null && AudioManager.Instance != null)

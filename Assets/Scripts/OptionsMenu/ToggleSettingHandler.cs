@@ -68,7 +68,7 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
         currentValue = value;
 
         if (toggle != null)
-            toggle.isOn = currentValue;
+            toggle.SetIsOnWithoutNotify(currentValue);
 
         if (LocalizationSettings.SelectedLocale == null)
         {
