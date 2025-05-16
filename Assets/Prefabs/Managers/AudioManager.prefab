@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667bfd9137d832d4586289ee1c1ece91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
-  sfxMixerGroup: {fileID: -3588671416588361874, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
-  musicMixerGroup: {fileID: 8126865308339870810, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
-  voiceMixerGroup: {fileID: 8917366234205726741, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
+  mixer: {fileID: 24100000, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
+  sfxMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
+  musicMixerGroup: {fileID: -6035012027753669652, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
+  voiceMixerGroup: {fileID: -1318403191123919015, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
   poolSize: 15

@@ -20,6 +20,36 @@ public class ArrowSelector : MonoBehaviour
     [HideInInspector] public int lastSelected = -1;
     bool firstFrame = true;
     private bool isChangingPage = false;
+    private bool suppressFirstSound = true;
+
+    void Start()
+    {
+        StartCoroutine(SuppressFirstAutoSelect());
+    }
+
+    IEnumerator SuppressFirstAutoSelect()
+    {
+        yield return null;
+
+        GameObject selected = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+        if (selected != null)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                if (buttons[i].button != null && buttons[i].button.gameObject == selected)
+                {
+                    lastSelected = i;
+                    suppressFirstSound = true;
+                    MoveIndicator(i);
+                    yield return null;
+                    suppressFirstSound = false;
+                    yield break;
+                }
+            }
+        }
+
+        suppressFirstSound = false;
+    }
 
     void LateUpdate()
     {
@@ -29,9 +59,9 @@ public class ArrowSelector : MonoBehaviour
         }
 
         if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == null || isSelectingOption)
-    {
-        arrowIndicator.gameObject.SetActive(false);
-    }
+        {
+            arrowIndicator.gameObject.SetActive(false);
+        }
     }
 
     public void PointerEnter(int b)
@@ -48,9 +78,19 @@ public class ArrowSelector : MonoBehaviour
     {
         lastSelected = b;
         MoveIndicator(b);
+        Debug.Log($"suppressFirstSound: {suppressFirstSound}");
+
+        // This is to avoid playing the audio when the scene loads, which it's the first time it is automatically selected
+        if (suppressFirstSound)
+        {
+            suppressFirstSound = false; 
+            if (b == lastSelected) return;
+        }
+
         if (!isChangingPage && navigateSound != null && AudioManager.Instance != null)
         {
             AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
+            Debug.Log("Audio plays, you're not changing pages or it's not the first time time scene has loaded");
         }
         else
         {
