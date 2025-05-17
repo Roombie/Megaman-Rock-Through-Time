@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHandler
+public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
 {
     [SettingTypeFilter(SettingType.MasterVolumeKey, SettingType.MusicVolumeKey, SettingType.SFXVolumeKey, SettingType.VoiceVolumeKey)]
     public SettingType settingType;
@@ -19,12 +19,17 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHan
     public float holdIncrement = 0.02f;
     public float initialIncrement = 0.01f;
 
+    [Header("Preview")]
+    public AudioClip previewClip;
+    public SoundCategory previewCategory = SoundCategory.SFX;
+    public bool loopPreview = false;
+
     private PlayerInputActions inputActions;
 
     private float holdStartTime;
     private float lastMoveTime;
-    private bool isHolding;
     private int direction = 0;
+    private bool wasSelected = false;
 
     public SettingType SettingType => settingType;
 
@@ -47,7 +52,7 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHan
     {
         inputActions?.Dispose();
     }
-    
+
     private void Start()
     {
         slider.onValueChanged.AddListener(OnValueChanged);
@@ -56,47 +61,67 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHan
 
     private void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject != gameObject)
-            return;
-
-        Vector2 nav = inputActions.UI.Navigate.ReadValue<Vector2>();
-        int inputDir = nav.x > 0.5f ? 1 : nav.x < -0.5f ? -1 : 0;
-
-        if (inputDir != 0)
+        // Movement input
+        if (EventSystem.current.currentSelectedGameObject == gameObject)
         {
-            if (direction == 0)
-            {
-                // New press (TAP)
-                direction = inputDir;
-                MoveSlider(initialIncrement * direction);
-                holdStartTime = 0f;
-                lastMoveTime = Time.unscaledTime;
-                isHolding = false;
-            }
-            else
-            {
-                // Holding
-                holdStartTime += Time.unscaledDeltaTime;
+            Vector2 nav = inputActions.UI.Navigate.ReadValue<Vector2>();
+            int inputDir = nav.x > 0.5f ? 1 : nav.x < -0.5f ? -1 : 0;
 
-                if (holdStartTime >= holdThreshold)
+            if (inputDir != 0)
+            {
+                if (direction == 0)
                 {
-                    isHolding = true;
+                    direction = inputDir;
+                    MoveSlider(initialIncrement * direction);
+                    holdStartTime = 0f;
+                    lastMoveTime = Time.unscaledTime;
+                }
+                else
+                {
+                    holdStartTime += Time.unscaledDeltaTime;
 
-                    if (Time.unscaledTime - lastMoveTime >= moveCooldown)
+                    if (holdStartTime >= holdThreshold)
                     {
-                        MoveSlider(holdIncrement * direction);
-                        lastMoveTime = Time.unscaledTime;
+                        if (Time.unscaledTime - lastMoveTime >= moveCooldown)
+                        {
+                            MoveSlider(holdIncrement * direction);
+                            lastMoveTime = Time.unscaledTime;
+                        }
                     }
                 }
             }
+            else if (direction != 0)
+            {
+                direction = 0;
+                holdStartTime = 0f;
+            }
         }
-        else if (direction != 0)
+
+        bool isSelectedNow = EventSystem.current.currentSelectedGameObject == slider.gameObject;
+
+        if (wasSelected && !isSelectedNow)
         {
-            // Released
-            direction = 0;
-            isHolding = false;
-            holdStartTime = 0f;
+            Debug.Log("[VolumeSettingHandler] Deselected (via slider focus)");
+
+            if (previewCategory != SoundCategory.SFX && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.StopCategory(previewCategory);
+            }
         }
+
+        wasSelected = isSelectedNow;
+
+    }
+
+    private void PlayPreview()
+    {
+        if (previewClip == null || AudioManager.Instance == null)
+            return;
+
+        if (AudioManager.Instance.IsPlaying(previewClip))
+            return;
+
+        AudioManager.Instance.Play(previewClip, previewCategory, 1f, 1f, loopPreview);
     }
 
     public void OnValueChanged(float value)
@@ -104,11 +129,10 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHan
         SetText(value);
 
         if (AudioManager.Instance != null)
-        {
             AudioManager.Instance.SetVolume(settingType, value);
-        }
 
         Save();
+        PlayPreview();
     }
 
     public void ApplyFromSaved()
@@ -118,9 +142,7 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHan
         SetText(saved);
 
         if (AudioManager.Instance != null)
-        {
             AudioManager.Instance.SetVolume(settingType, saved);
-        }
     }
 
     public void Save()
@@ -152,13 +174,5 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler, IDeselectHan
         newValue = Mathf.Round(newValue * 100f) / 100f;
         slider.value = newValue;
         SetText(newValue);
-    }
-
-    public void OnDeselect(BaseEventData eventData)
-    {
-        direction = 0;
-        isHolding = false;
-        holdStartTime = 0f;
-        EventSystem.current.sendNavigationEvents = true;
     }
 }

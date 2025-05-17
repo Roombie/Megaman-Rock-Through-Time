@@ -11,6 +11,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     /// picking the binding which to rebind.
     /// </summary>
     [CustomEditor(typeof(RebindActionUI))]
+    [CanEditMultipleObjects]
     public class RebindActionUIEditor : UnityEditor.Editor
     {
 
@@ -30,7 +31,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             m_AllowKeyboardBindingsProperty = serializedObject.FindProperty("allowKeyboardBindings");
             m_AllowGamepadBindingsProperty = serializedObject.FindProperty("allowGamepadBindings");
             m_ErrorTextProperty = serializedObject.FindProperty("m_ErrorText");
-            
+            m_RebindStartClipProperty = serializedObject.FindProperty("m_rebindStartClip");
+            m_RebindSuccessClipProperty = serializedObject.FindProperty("m_rebindSuccessClip");
+            m_RebindFailedClipProperty = serializedObject.FindProperty("m_rebindFailedClip");
+            m_RebindCancelClipProperty = serializedObject.FindProperty("m_rebindCancelClip");
 
             RefreshBindingOptions();
         }
@@ -44,12 +48,19 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 EditorGUILayout.PropertyField(m_ActionProperty);
 
-                var newSelectedBinding = EditorGUILayout.Popup(m_BindingLabel, m_SelectedBindingOption, m_BindingOptions);
-                if (newSelectedBinding != m_SelectedBindingOption)
+                if (!serializedObject.isEditingMultipleObjects && m_BindingOptions != null)
                 {
-                    var bindingId = m_BindingOptionValues[newSelectedBinding];
-                    m_BindingIdProperty.stringValue = bindingId;
-                    m_SelectedBindingOption = newSelectedBinding;
+                    var newSelectedBinding = EditorGUILayout.Popup(m_BindingLabel, m_SelectedBindingOption, m_BindingOptions);
+                    if (newSelectedBinding != m_SelectedBindingOption)
+                    {
+                        var bindingId = m_BindingOptionValues[newSelectedBinding];
+                        m_BindingIdProperty.stringValue = bindingId;
+                        m_SelectedBindingOption = newSelectedBinding;
+                    }
+                }
+                else
+                {
+                    EditorGUILayout.HelpBox("Binding selection not supported for multi-object editing.", MessageType.Info);
                 }
 
                 var optionsOld = (InputBinding.DisplayStringOptions)m_DisplayStringOptionsProperty.intValue;
@@ -71,15 +82,22 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 EditorGUILayout.PropertyField(m_ErrorTextProperty);
             }
 
-            EditorGUILayout.Space();
+             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Allowed Devices", Styles.boldLabel);
             using (new EditorGUI.IndentLevelScope())
             {
-                var allowKeyboard = serializedObject.FindProperty("allowKeyboardBindings");
-                var allowGamepad = serializedObject.FindProperty("allowGamepadBindings");
+                EditorGUILayout.PropertyField(m_AllowKeyboardBindingsProperty);
+                EditorGUILayout.PropertyField(m_AllowGamepadBindingsProperty);
+            }
 
-                EditorGUILayout.PropertyField(allowKeyboard, new GUIContent("Allow Keyboard Bindings"));
-                EditorGUILayout.PropertyField(allowGamepad, new GUIContent("Allow Gamepad Bindings"));
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Feedback Audio", Styles.boldLabel);
+            using (new EditorGUI.IndentLevelScope())
+            {
+                EditorGUILayout.PropertyField(m_RebindStartClipProperty);
+                EditorGUILayout.PropertyField(m_RebindSuccessClipProperty);
+                EditorGUILayout.PropertyField(m_RebindFailedClipProperty);
+                EditorGUILayout.PropertyField(m_RebindCancelClipProperty);
             }
 
             // Events section.
@@ -101,6 +119,14 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         protected void RefreshBindingOptions()
         {
+            if (serializedObject.isEditingMultipleObjects)
+            {
+                m_BindingOptions = new GUIContent[] { new GUIContent("[Multiple Objects Selected]") };
+                m_BindingOptionValues = new string[] { "" };
+                m_SelectedBindingOption = -1;
+                return;
+            }
+
             var actionReference = (InputActionReference)m_ActionProperty.objectReferenceValue;
             var action = actionReference?.action;
 
@@ -124,14 +150,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 var binding = bindings[i];
                 var bindingId = binding.id.ToString();
-                var haveBindingGroups = !string.IsNullOrEmpty(binding.groups);
+                var displayOptions = InputBinding.DisplayStringOptions.DontUseShortDisplayNames |
+                                      InputBinding.DisplayStringOptions.IgnoreBindingOverrides;
 
-                // If we don't have a binding groups (control schemes), show the device that if there are, for example,
-                // there are two bindings with the display string "A", the user can see that one is for the keyboard
-                // and the other for the gamepad.
-                var displayOptions =
-                    InputBinding.DisplayStringOptions.DontUseShortDisplayNames | InputBinding.DisplayStringOptions.IgnoreBindingOverrides;
-                if (!haveBindingGroups)
+                if (string.IsNullOrEmpty(binding.groups))
                     displayOptions |= InputBinding.DisplayStringOptions.DontOmitDevice;
 
                 // Create display string.
@@ -146,19 +168,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 displayString = displayString.Replace('/', '\\');
 
                 // If the binding is part of control schemes, mention them.
-                if (haveBindingGroups)
-                {
-                    var asset = action.actionMap?.asset;
-                    if (asset != null)
-                    {
-                        var controlSchemes = string.Join(", ",
-                            binding.groups.Split(InputBinding.Separator)
-                                .Select(x => asset.controlSchemes.FirstOrDefault(c => c.bindingGroup == x).name));
-
-                        displayString = $"{displayString} ({controlSchemes})";
-                    }
-                }
-
                 m_BindingOptions[i] = new GUIContent(displayString);
                 m_BindingOptionValues[i] = bindingId;
 
@@ -180,8 +189,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private SerializedProperty m_DisplayStringOptionsProperty;
         private SerializedProperty m_AllowKeyboardBindingsProperty;
         private SerializedProperty m_AllowGamepadBindingsProperty;
-        private SerializedProperty m_ErrorTextProperty;       
-
+        private SerializedProperty m_ErrorTextProperty;
+        private SerializedProperty m_RebindStartClipProperty;
+        private SerializedProperty m_RebindSuccessClipProperty;
+        private SerializedProperty m_RebindFailedClipProperty;
+        private SerializedProperty m_RebindCancelClipProperty;
+        
         private GUIContent m_BindingLabel = new GUIContent("Binding");
         private GUIContent m_DisplayOptionsLabel = new GUIContent("Display Options");
         private GUIContent m_UILabel = new GUIContent("UI");

@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
     private Queue<AudioSource> sfxPool;
     private AudioSource musicSource;
     private readonly List<AudioSource> pausedSources = new();
+    private readonly Dictionary<AudioClip, AudioSource> activeSounds = new();
+
 
     private void Awake()
     {
@@ -101,41 +103,112 @@ public class AudioManager : MonoBehaviour
         source.loop = loop;
         source.Play();
 
+        activeSounds[clip] = source;
+
         if (category == SoundCategory.SFX)
             StartCoroutine(ReturnToPoolAfterPlayback(source, clip.length / Mathf.Abs(pitch)));
     }
 
+    public void PlayOnce(AudioClip clip, SoundCategory category = SoundCategory.SFX, float volume = 1f, float pitch = 1f)
+    {
+        if (clip == null) return;
+        if (!IsPlaying(clip))
+            Play(clip, category, volume, pitch);
+    }
+
+    public void PlayOrReplace(AudioClip clip, SoundCategory category, bool loop = false)
+    {
+        if (clip == null) return;
+
+        // Stop any other clip currently playing in this category (optional)
+        StopCategory(category);
+
+        Play(clip, category, 1f, 1f, loop);
+    }
+
+    public void StopCategory(SoundCategory category)
+    {
+        // Detener todos los clips registrados en esa categoría
+        var toRemove = new List<AudioClip>();
+
+        foreach (var (clip, src) in activeSounds)
+        {
+            if (src != null && GetCategory(src.outputAudioMixerGroup) == category)
+            {
+                src.Stop();
+                toRemove.Add(clip);
+            }
+        }
+
+        foreach (var clip in toRemove)
+        {
+            activeSounds.Remove(clip);
+        }
+
+        // Forzar apagado de musicSource
+        if (category == SoundCategory.Music && musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+
+            // También eliminar el clip si sigue registrado
+            if (musicSource.clip != null && activeSounds.ContainsKey(musicSource.clip))
+                activeSounds.Remove(musicSource.clip);
+        }
+    }
+
+    private SoundCategory GetCategory(AudioMixerGroup group)
+    {
+        if (group == musicMixerGroup) return SoundCategory.Music;
+        if (group == voiceMixerGroup) return SoundCategory.Voice;
+        return SoundCategory.SFX;
+    }
+
     private AudioSource GetAudioSource(SoundCategory category)
     {
+        if (category == SoundCategory.Music)
+        {
+            if (musicSource == null)
+            {
+                musicSource = gameObject.AddComponent<AudioSource>();
+                musicSource.playOnAwake = false;
+                musicSource.outputAudioMixerGroup = musicMixerGroup;
+            }
+
+            return musicSource;
+        }
+
         AudioSource source = (category == SoundCategory.SFX && sfxPool.Count > 0)
             ? sfxPool.Dequeue()
             : gameObject.AddComponent<AudioSource>();
 
         source.outputAudioMixerGroup = category switch
         {
-            SoundCategory.Music => musicMixerGroup,
             SoundCategory.Voice => voiceMixerGroup,
             _ => sfxMixerGroup
         };
 
-        if (category == SoundCategory.Music)
-            musicSource = source;
-
+        source.playOnAwake = false;
         return source;
     }
 
     public void Stop(AudioClip clip)
     {
-        foreach (var source in GetComponents<AudioSource>())
+        if (clip == null || !activeSounds.ContainsKey(clip))
         {
-            if (source.clip == clip)
-            {
-                source.Stop();
-                if (!sfxPool.Contains(source) && source != musicSource)
-                    sfxPool.Enqueue(source);
-            }
+            Debug.LogWarning($"[AudioManager] Tried to stop unregistered clip: {clip?.name ?? "null"}");
+            return;
         }
+
+        AudioSource source = activeSounds[clip];
+        if (source != null)
+        {
+            Debug.Log($"[AudioManager] Stopping clip: {clip.name} from source: {source}");
+            source.Stop();
+        }
+
+        activeSounds.Remove(clip);
     }
+
 
     public bool IsPlaying(AudioClip clip)
         => System.Array.Exists(GetComponents<AudioSource>(), src => src.clip == clip && src.isPlaying);

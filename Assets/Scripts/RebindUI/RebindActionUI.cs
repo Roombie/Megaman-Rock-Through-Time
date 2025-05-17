@@ -340,6 +340,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 m_Action.action.Enable();
             }
 
+            // Save the previous overridePath in case we need to restore it
+            string previousPath = action.bindings[bindingIndex].effectivePath;
+            string previousOverridePath = action.bindings[bindingIndex].overridePath;
+
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
                 .WithControlsExcluding("<Mouse>")
                 .WithControlsExcluding("<Mouse>/leftButton")
@@ -347,6 +351,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .WithCancelingThrough("<Keyboard>/escape")
                 .OnCancel(operation =>
                 {
+                    if (m_rebindCancelClip != null && AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlayOnce(m_rebindCancelClip);
+                    }
                     m_RebindStopEvent?.Invoke(this, operation);
                     m_RebindOverlay?.SetActive(false);
                     UpdateBindingDisplay();
@@ -375,11 +383,19 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 {
                     if (CheckDuplicatesBinding(action, bindingIndex, allCompositeParts))
                     {
-                        action.RemoveBindingOverride(bindingIndex);
+                        // Restore the previous override path instead of removing it entirely
+                        if (!string.IsNullOrEmpty(previousOverridePath))
+                        {
+                            action.ApplyBindingOverride(bindingIndex, previousOverridePath);
+                        }
+                        else
+                        {
+                            action.ApplyBindingOverride(bindingIndex, previousPath);
+                        }
+
                         ShowError("ButtonAlreadyAssigned");
 
                         action.Disable();
-
                         PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
                         return;
                     }
@@ -388,6 +404,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                     FindFirstObjectByType<RebindSaveLoad>()?.SaveBindings();
                     m_RebindOverlay?.SetActive(false);
                     m_RebindStopEvent?.Invoke(this, operation);
+
+                    if (m_rebindSuccessClip != null && AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlayOnce(m_rebindSuccessClip);
+                    }
+
                     CleanUp();
 
                     if (allCompositeParts)
@@ -404,6 +426,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 m_RebindText.text = "Waiting for input...";
             }*/
+
+            if (m_rebindStartClip != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayOnce(m_rebindStartClip);
+            }
 
             m_RebindOperation.Start();
         }
@@ -497,6 +524,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                     }
                     m_ErrorText.gameObject.SetActive(true);
                 };
+            }
+
+            if (m_rebindFailedClip != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayOnce(m_rebindFailedClip);
             }
         }
 
@@ -632,6 +664,15 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         public bool allowKeyboardBindings = true;
         public bool allowGamepadBindings = true;
+
+        [SerializeField]
+        private AudioClip m_rebindStartClip;
+        [SerializeField]
+        private AudioClip m_rebindSuccessClip;
+        [SerializeField]
+        private AudioClip m_rebindFailedClip;
+        [SerializeField]
+        private AudioClip m_rebindCancelClip;
 
         [Tooltip("Event that is triggered when the way the binding is display should be updated. This allows displaying "
             + "bindings in custom ways, e.g. using images instead of text.")]
