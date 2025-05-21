@@ -30,12 +30,24 @@ public class CameraFollow : MonoBehaviour
     {
         if (player == null) return;
 
-        // Asegurarse de que el PixelPerfectCamera ha ajustado el pixel ratio
         float orthoSize = cam.orthographicSize;
         float aspect = cam.aspect;
 
         camHalfHeight = orthoSize;
         camHalfWidth = orthoSize * aspect;
+
+        // Ajustar los límites si el modo es WidedExpand
+        if (ScreenDisplayManager.Instance != null &&
+            PlayerPrefs.GetInt(SettingsKeys.ScreenKey, 0) == (int)ScreenDisplayMode.WidedExpand)
+        {
+            float baseWidth = 240f / 2f / 16f; // Altura ortográfica por defecto
+            float baseAspect = 4f / 3f;
+            float baseHalfWidth = baseWidth * baseAspect;
+            float extraSpace = camHalfWidth - baseHalfWidth;
+
+            levelBoundsMin.x -= extraSpace;
+            levelBoundsMax.x += extraSpace;
+        }
 
         Vector3 targetPos = player.position + lookAhead;
         targetPos.z = transform.position.z;
@@ -45,7 +57,6 @@ public class CameraFollow : MonoBehaviour
         float minY = levelBoundsMin.y + camHalfHeight;
         float maxY = levelBoundsMax.y - camHalfHeight;
 
-        // Bloquear el movimiento horizontal si es necesario
         if (!lockHorizontal)
         {
             if (levelBoundsMax.x - levelBoundsMin.x < camHalfWidth * 2)
@@ -55,11 +66,9 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            // Si está bloqueado, mantiene la posición X original
             targetPos.x = transform.position.x;
         }
 
-        // Bloquear el movimiento vertical si es necesario
         if (!lockVertical)
         {
             if (levelBoundsMax.y - levelBoundsMin.y < camHalfHeight * 2)
@@ -69,7 +78,6 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            // Si está bloqueado, mantiene la posición Y original
             targetPos.y = transform.position.y;
         }
 

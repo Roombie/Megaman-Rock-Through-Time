@@ -63,8 +63,8 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
         // ApplySetting(SettingType.Resolution, 0);
         // SaveSetting(SettingType.Resolution, 0);
 
-        ApplySetting(SettingType.Screen, 0);
-        SaveSetting(SettingType.Screen, 0);
+        ApplySetting(SettingType.Screen, 1); // Full (no lines)
+        SaveSetting(SettingType.Screen, 1);
 
         ApplySetting(SettingType.Border, 0);
         SaveSetting(SettingType.Border, 0);
@@ -117,7 +117,7 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
                 return GetLocalizedDisplayModeOptions();
                 
             case SettingType.Screen:
-                return GetLocalizedStrings("Screen_Original", "Screen_Full", "Screen_Windowed");
+                return GetLocalizedStrings("Screen_Original", "Screen_Full", "Screen_Windowed", "Screen_Wided");
 
             case SettingType.Filter:
                 return GetLocalizedStrings("Filter_None", "Filter_TV", "Filter_Monitor");
