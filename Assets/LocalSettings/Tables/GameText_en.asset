@@ -285,7 +285,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 97697873909567488
-    m_Localized: Wided
+    m_Localized: Wide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225099264
+    m_Localized: Wind. Full
     m_Metadata:
       m_Items: []
   references:

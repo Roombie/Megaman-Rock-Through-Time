@@ -4676,7 +4676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDebugLinesOnlyOnActiveObjects: 1
-  navigateSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
   buttons:
   - button: {fileID: 1570925171}
     arrowOffset: {x: -25, y: 0}
@@ -11819,6 +11819,7 @@ MonoBehaviour:
   label: {fileID: 1734171097}
   leftArrow: {fileID: 456853997}
   rightArrow: {fileID: 104525381}
+  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
   confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   options: []
   currentIndex: 0
@@ -12650,8 +12651,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 79.91901, y: 0}
-  m_SizeDelta: {x: 599.072, y: 0}
+  m_AnchoredPosition: {x: -37.69507, y: 0}
+  m_SizeDelta: {x: 1823.1902, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657303608
 MonoBehaviour:
@@ -13472,6 +13473,7 @@ MonoBehaviour:
   label: {fileID: 1876064518}
   leftArrow: {fileID: 457231236}
   rightArrow: {fileID: 2092594264}
+  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
   confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   options: []
   currentIndex: 0
@@ -17341,6 +17343,7 @@ MonoBehaviour:
   label: {fileID: 178860085}
   leftArrow: {fileID: 1576672774}
   rightArrow: {fileID: 1845447550}
+  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
   confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   options: []
   currentIndex: 0
@@ -25635,6 +25638,7 @@ MonoBehaviour:
   label: {fileID: 1548708244}
   leftArrow: {fileID: 600469795}
   rightArrow: {fileID: 1842562191}
+  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
   confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   options: []
   currentIndex: 0
@@ -28494,6 +28498,7 @@ MonoBehaviour:
   label: {fileID: 454692586}
   leftArrow: {fileID: 1578414252}
   rightArrow: {fileID: 895212041}
+  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
   confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   options: []
   currentIndex: 0

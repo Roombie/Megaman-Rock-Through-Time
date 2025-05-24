@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.U2D;
 
 [RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour
@@ -10,7 +9,7 @@ public class CameraFollow : MonoBehaviour
 
     public Vector2 levelBoundsMin;
     public Vector2 levelBoundsMax;
-    
+
     public bool lockHorizontal = false;
     public bool lockVertical = false;
 
@@ -18,36 +17,20 @@ public class CameraFollow : MonoBehaviour
     private float camHalfHeight;
 
     private Camera cam;
-    private PixelPerfectCamera pixelPerfect;
+
+    private Vector3 velocity = Vector3.zero;
 
     void Awake()
     {
         cam = GetComponent<Camera>();
-        pixelPerfect = GetComponent<PixelPerfectCamera>();
     }
 
     void LateUpdate()
     {
         if (player == null) return;
 
-        float orthoSize = cam.orthographicSize;
-        float aspect = cam.aspect;
-
-        camHalfHeight = orthoSize;
-        camHalfWidth = orthoSize * aspect;
-
-        // Ajustar los límites si el modo es WidedExpand
-        if (ScreenDisplayManager.Instance != null &&
-            PlayerPrefs.GetInt(SettingsKeys.ScreenKey, 0) == (int)ScreenDisplayMode.WidedExpand)
-        {
-            float baseWidth = 240f / 2f / 16f; // Altura ortográfica por defecto
-            float baseAspect = 4f / 3f;
-            float baseHalfWidth = baseWidth * baseAspect;
-            float extraSpace = camHalfWidth - baseHalfWidth;
-
-            levelBoundsMin.x -= extraSpace;
-            levelBoundsMax.x += extraSpace;
-        }
+        camHalfHeight = cam.orthographicSize;
+        camHalfWidth = camHalfHeight * cam.aspect;
 
         Vector3 targetPos = player.position + lookAhead;
         targetPos.z = transform.position.z;
@@ -81,8 +64,7 @@ public class CameraFollow : MonoBehaviour
             targetPos.y = transform.position.y;
         }
 
-        float t = 1f - Mathf.Pow(1f - smoothDampTime, Time.deltaTime * 30);
-        transform.position = Vector3.Lerp(transform.position, targetPos, t);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothDampTime);
     }
 
     void OnDrawGizmos()

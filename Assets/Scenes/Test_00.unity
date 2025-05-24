@@ -342,8 +342,8 @@ GameObject:
   - component: {fileID: 227129208}
   - component: {fileID: 227129213}
   - component: {fileID: 227129212}
-  - component: {fileID: 227129209}
   - component: {fileID: 227129210}
+  - component: {fileID: 227129209}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -382,9 +382,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 40
   orthographic: 1
   orthographic size: 7.5
   m_Depth: 0
@@ -415,12 +415,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1206865205}
-  smoothDampTime: 0.25
-  lookAhead: {x: 0.5, y: 3.35, z: 0}
-  levelBoundsMin: {x: -39.9, y: -4.19}
-  levelBoundsMax: {x: 79.2, y: 9.75}
+  smoothDampTime: 0
+  lookAhead: {x: 0, y: 0, z: 0}
+  levelBoundsMin: {x: -39.9, y: -5.65}
+  levelBoundsMax: {x: 79.2, y: 9.35}
   lockHorizontal: 0
-  lockVertical: 1
+  lockVertical: 0
 --- !u!114 &227129210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,9 +434,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 32
-  m_RefResolutionX: 640
-  m_RefResolutionY: 480
+  m_AssetsPPU: 16
+  m_RefResolutionX: 256
+  m_RefResolutionY: 240
   m_CropFrame: 0
   m_GridSnapping: 2
   m_FilterMode: 0
@@ -505,7 +505,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227129207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -514,7 +514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.138, y: 1.9}
+  m_AnchoredPosition: {x: -1.638, y: 1.8499999}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &297051924
@@ -2345,14 +2345,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7871178886454580015, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8155964469061258265, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
-      propertyPath: m_IsGlobal
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2431,7 +2423,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 45
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2601,6 +2593,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 621ecf9d-0274-4468-a434-9ebcd6de5af7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
+      value: 86463d1f-4855-4925-824f-dca3351e7118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: 'Player/OptionsMenu[/Keyboard/space]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
+      value: 'Player/RushandBeat[/Keyboard/t]'
+      objectReference: {fileID: 0}
     - target: {fileID: 1427787303008531883, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
       propertyPath: m_Name
       value: Megaman
@@ -3337,8 +3349,8 @@ Transform:
   m_GameObject: {fileID: 1659796821}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.5618, y: -4.5776997, z: 0}
-  m_LocalScale: {x: 119.142, y: 3.2717, z: 1}
+  m_LocalPosition: {x: -45.5618, y: -7.0684, z: 0}
+  m_LocalScale: {x: 119.142, y: 8.25319, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1649075158}
@@ -4090,9 +4102,21 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 227129208}
+    - target: {fileID: 58364472096636868, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2599311393938262016, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715708381174369525, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156716339910090929, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3703103714832685267, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4134,10 +4158,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3989295119334735793, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5752037769740152162, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 227129208}
+    - target: {fileID: 6002777751014965812, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565920073734047306, guid: ffbc401d613c20d4b8d525e1e688932e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

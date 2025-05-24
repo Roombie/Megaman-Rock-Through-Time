@@ -288,6 +288,10 @@ MonoBehaviour:
     m_Localized: "\xC9largi"
     m_Metadata:
       m_Items: []
+  - m_Id: 98240213225099264
+    m_Localized: "Fen. \xE9ten."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -288,6 +288,10 @@ MonoBehaviour:
     m_Localized: Amplio
     m_Metadata:
       m_Items: []
+  - m_Id: 98240213225099264
+    m_Localized: Vent. compl.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

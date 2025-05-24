@@ -12,6 +12,7 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     public TextMeshProUGUI label;
     [SerializeField] private GameObject leftArrow;
     [SerializeField] private GameObject rightArrow;
+    [SerializeField] private AudioClip navigateSound;
     [SerializeField] private AudioClip confirmSound;
     public string[] options;
     public int currentIndex;
@@ -122,17 +123,17 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     {
         if (EventSystem.current.currentSelectedGameObject != gameObject) return;
 
-        if (!isSelected)
+        if (!isSelected) // When just exploring the options
         {
             if (currentlySelecting != null && currentlySelecting != this) return;
 
-            if (confirmSound != null && AudioManager.Instance != null)
+            if (navigateSound != null && AudioManager.Instance != null)
             {
-                AudioManager.Instance.Play(confirmSound, SoundCategory.SFX);
+                AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
             }
             else
             {
-                Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't on the scene");
+                Debug.LogWarning("Either a navigateSound wasn't referenced or the AudioManager isn't on the scene");
             }
 
             isSelected = true;
@@ -143,7 +144,7 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
             SetArrowVisibility(true);
             arrowSelector?.SetSelecting(true);
         }
-        else
+        else // When you confirm an option
         {
             if (confirmSound != null && AudioManager.Instance != null)
             {
@@ -198,9 +199,9 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         currentIndex = newIndex;
         Apply(currentIndex);
 
-        if (confirmSound != null && AudioManager.Instance != null)
+        if (navigateSound != null && AudioManager.Instance != null)
         {
-            AudioManager.Instance.Play(confirmSound, SoundCategory.SFX);
+            AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
         }
         else
         {

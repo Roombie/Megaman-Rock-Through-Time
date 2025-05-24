@@ -82,6 +82,14 @@ PrefabInstance:
       propertyPath: m_MatchWidthOrHeight
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2366335404104408402, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366335404104408402, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 480
+      objectReference: {fileID: 0}
     - target: {fileID: 4397215123691571717, guid: 38a7f4d9938f95d4ca7dfb835656b627, type: 3}
       propertyPath: m_Name
       value: HUDCanva
@@ -199,6 +207,14 @@ PrefabInstance:
     - target: {fileID: 3185851931399157464, guid: 51effd1023986b344acfdabd2782974c, type: 3}
       propertyPath: m_SortingLayerID
       value: 2063594163
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067990978871629647, guid: 51effd1023986b344acfdabd2782974c, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067990978871629647, guid: 51effd1023986b344acfdabd2782974c, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 5585400825938353500, guid: 51effd1023986b344acfdabd2782974c, type: 3}
       propertyPath: m_AnchoredPosition.x

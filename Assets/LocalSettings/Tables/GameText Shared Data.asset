@@ -219,6 +219,14 @@ MonoBehaviour:
     m_Key: Screen_Windowed
     m_Metadata:
       m_Items: []
+  - m_Id: 98240213225099264
+    m_Key: Screen_WindowedFull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 97697873909567488
+    m_Key: Screen_Wide
+    m_Metadata:
+      m_Items: []
   - m_Id: 91762214577426432
     m_Key: Filter_None
     m_Metadata:
@@ -277,10 +285,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 95409067462283264
     m_Key: WaitingText
-    m_Metadata:
-      m_Items: []
-  - m_Id: 97697873909567488
-    m_Key: Screen_Wided
     m_Metadata:
       m_Items: []
   m_Metadata:

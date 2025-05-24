@@ -117,7 +117,7 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
                 return GetLocalizedDisplayModeOptions();
                 
             case SettingType.Screen:
-                return GetLocalizedStrings("Screen_Original", "Screen_Full", "Screen_Windowed", "Screen_Wided");
+                return GetLocalizedStrings("Screen_Original", "Screen_Full", "Screen_Windowed", "Screen_WindowedFull", "Screen_Wide");
 
             case SettingType.Filter:
                 return GetLocalizedStrings("Filter_None", "Filter_TV", "Filter_Monitor");

@@ -8,6 +8,7 @@ public class BorderManager : MonoBehaviour
     public static BorderManager Instance { get; private set; }
 
     [SerializeField] private PixelPerfectCamera pixelPerfectCamera;
+    private static bool isApplying = false;
 
     private void Awake()
     {
@@ -34,6 +35,10 @@ public class BorderManager : MonoBehaviour
 
     public void SetBorderMode(BorderMode mode)
     {
+        if (isApplying) return;
+
+        isApplying = true;
+
         SearchForCamera();
 
         if (pixelPerfectCamera != null)
@@ -55,11 +60,8 @@ public class BorderManager : MonoBehaviour
 
                     int minWidth = pixelPerfectCamera.refResolutionX * 2;
                     int minHeight = pixelPerfectCamera.refResolutionY * 2;
-
                     if (Screen.width < minWidth || Screen.height < minHeight)
-                    {
                         Screen.SetResolution(minWidth, minHeight, Screen.fullScreenMode);
-                    }
                     break;
             }
 
@@ -72,6 +74,8 @@ public class BorderManager : MonoBehaviour
         {
             Debug.LogWarning("PixelPerfectCamera not found in BorderManager.");
         }
+
+        isApplying = false;
     }
 
     public void ApplyBorderClean(BorderMode mode)
@@ -94,4 +98,3 @@ public class BorderManager : MonoBehaviour
 }
 
 public enum BorderMode { None, Pillarbox, Windowbox }
-
