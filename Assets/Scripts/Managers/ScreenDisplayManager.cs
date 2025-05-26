@@ -28,7 +28,6 @@ public class ScreenDisplayManager : MonoBehaviour
         Debug.Log($"Screen display set to: {mode}");
 
         int borderIndex = PlayerPrefs.GetInt(SettingsKeys.BorderKey, 0);
-
         Vector2 targetResolution = Vector2.zero;
 
         switch (mode)
@@ -62,7 +61,7 @@ public class ScreenDisplayManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        StartCoroutine(ApplyDelayedBorder(borderIndex));
+        StartCoroutine(ApplyDisplayAndBorder(borderIndex, mode));
     }
 
     void SetResolution(Vector2 targetResolution, ScreenDisplayMode mode)
@@ -70,14 +69,14 @@ public class ScreenDisplayManager : MonoBehaviour
         FullScreenMode desiredMode;
 
         if (mode == ScreenDisplayMode.WindowedFull)
-            desiredMode = FullScreenMode.MaximizedWindow;  // Aquí tu modo preferido
+            desiredMode = FullScreenMode.MaximizedWindow;
         else if (mode == ScreenDisplayMode.Windowed)
             desiredMode = FullScreenMode.Windowed;
         else
             desiredMode = FullScreenMode.FullScreenWindow;
 
         if (lastResolution == targetResolution && lastFullScreenMode == desiredMode)
-            return;  // evitar llamadas repetidas
+            return;  // avoid repetitive calls
 
         Screen.SetResolution((int)targetResolution.x, (int)targetResolution.y, desiredMode);
 
@@ -85,14 +84,32 @@ public class ScreenDisplayManager : MonoBehaviour
         lastFullScreenMode = desiredMode;
     }
 
-    private IEnumerator ApplyDelayedBorder(int borderIndex)
+    private IEnumerator ApplyDisplayAndBorder(int borderIndex, ScreenDisplayMode mode)
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSecondsRealtime(0.1f); // Wait for resolution & screen mode to settle
+
+        BorderMode selectedBorder = (BorderMode)borderIndex;
+
+        // Apply minimum resolution for Windowbox only if not in MaximizedWindow
+        if (selectedBorder == BorderMode.Windowbox && mode != ScreenDisplayMode.WindowedFull)
+        {
+            var cam = FindFirstObjectByType<PixelPerfectCamera>();
+            if (cam != null)
+            {
+                int minWidth = cam.refResolutionX * 2;
+                int minHeight = cam.refResolutionY * 2;
+
+                if (Screen.width < minWidth || Screen.height < minHeight)
+                {
+                    Debug.Log("[ScreenDisplayManager] Forcing resolution minimum for Windowbox");
+                    Screen.SetResolution(minWidth, minHeight, Screen.fullScreenMode);
+                    yield return new WaitForEndOfFrame(); // wait for resize to complete
+                }
+            }
+        }
 
         if (BorderManager.Instance != null)
-        {
-            BorderManager.Instance.SetBorderMode((BorderMode)borderIndex);
-        }
+            BorderManager.Instance.SetBorderMode(selectedBorder);
     }
 }
 

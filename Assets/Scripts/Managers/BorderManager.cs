@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 
 public class BorderManager : MonoBehaviour
 {
@@ -85,14 +84,13 @@ public class BorderManager : MonoBehaviour
 
     private IEnumerator DelayedBorderApplyWithUIRefresh(BorderMode mode)
     {
-        // Espera a que el cambio de pantalla se aplique
-        yield return new WaitForEndOfFrame(); // resolución
-        yield return null;                    // layouts y UI scaler
+        // Wait for the screen change to be applied
+        yield return new WaitForEndOfFrame(); // resolution
+        yield return null;                    // layouts and UI scaler
 
-        // Aplica el cropFrame limpio
         SetBorderMode(mode);
 
-        // Opcional: limpia UI, refresca layout, mueve flechas, etc.
+        // Clean UI
         yield return UIUtils.DelayedRefreshUI();
     }
 }

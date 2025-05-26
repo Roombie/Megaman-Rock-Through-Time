@@ -173,7 +173,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -1808,7 +1808,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -3474,7 +3474,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -5641,7 +5641,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -7043,7 +7043,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -8830,7 +8830,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -9508,7 +9508,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -10590,7 +10590,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -10837,7 +10837,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -12651,8 +12651,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.69507, y: 0}
-  m_SizeDelta: {x: 1823.1902, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657303608
 MonoBehaviour:
@@ -14724,7 +14724,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4095
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -15475,7 +15475,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -16429,7 +16429,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -17401,7 +17401,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -17692,7 +17692,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -18431,7 +18431,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -19290,7 +19290,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -19740,7 +19740,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -20980,7 +20980,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -24514,7 +24514,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.6754716, g: 0.3096973, b: 0.3096973, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -24539,7 +24539,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 45
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -24895,7 +24895,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -25392,7 +25392,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -27006,7 +27006,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -27280,7 +27280,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -28706,7 +28706,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -29960,7 +29960,7 @@ MonoBehaviour:
   allowGamepadBindings: 0
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -30957,7 +30957,7 @@ MonoBehaviour:
   allowGamepadBindings: 1
   m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
   m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
@@ -31451,6 +31451,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7694855711163640035, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871178886454580015, guid: 1bc9ab87565c6fe46959bb45e5442ca4, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

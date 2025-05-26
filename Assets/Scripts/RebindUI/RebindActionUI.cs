@@ -304,6 +304,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void StartInteractiveRebind()
         {
+            if (m_rebindStartClip != null && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayOnce(m_rebindStartClip);
+            }
+
             m_Action.action.Disable();
 
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
@@ -343,7 +348,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             // Save the previous overridePath in case we need to restore it
             string previousPath = action.bindings[bindingIndex].effectivePath;
             string previousOverridePath = action.bindings[bindingIndex].overridePath;
-
+            
+            isRebindError = false;
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
                 .WithControlsExcluding("<Mouse>")
                 .WithControlsExcluding("<Mouse>/leftButton")
@@ -351,7 +357,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .WithCancelingThrough("<Keyboard>/escape")
                 .OnCancel(operation =>
                 {
-                    if (m_rebindCancelClip != null && AudioManager.Instance != null)
+                    if (!isRebindError && m_rebindCancelClip != null && AudioManager.Instance != null)
                     {
                         AudioManager.Instance.PlayOnce(m_rebindCancelClip);
                     }
@@ -375,6 +381,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
                         action.Disable();
 
+                        isRebindError = true;
                         PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
                         return;
                     }
@@ -396,6 +403,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         ShowError("ButtonAlreadyAssigned");
 
                         action.Disable();
+
+                        isRebindError = true;
                         PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
                         return;
                     }
@@ -418,6 +427,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         if (nextBindingIndex < action.bindings.Count && action.bindings[nextBindingIndex].isPartOfComposite)
                             PerformInteractiveRebind(action, nextBindingIndex, true);
                     }
+
+                    isRebindError = false;
                 });
 
             m_RebindOverlay?.SetActive(true);
@@ -426,11 +437,6 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 m_RebindText.text = "Waiting for input...";
             }*/
-
-            if (m_rebindStartClip != null && AudioManager.Instance != null)
-            {
-                AudioManager.Instance.PlayOnce(m_rebindStartClip);
-            }
 
             m_RebindOperation.Start();
         }
@@ -673,6 +679,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private AudioClip m_rebindFailedClip;
         [SerializeField]
         private AudioClip m_rebindCancelClip;
+        private bool isRebindError = false;
 
         [Tooltip("Event that is triggered when the way the binding is display should be updated. This allows displaying "
             + "bindings in custom ways, e.g. using images instead of text.")]
