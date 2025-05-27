@@ -172,7 +172,6 @@ public class Megaman : MonoBehaviour
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private ColorSwap colorSwap;
 
     void Awake()
     {
@@ -192,7 +191,6 @@ public class Megaman : MonoBehaviour
         defaultBoxOffset = new(boxCollider.offset.x, boxCollider.offset.y);
         defaultBoxSize = new(boxCollider.size.x, boxCollider.size.y);
 
-        colorSwap = GetComponent<ColorSwap>();
         SetWeapon(playerWeapon);
         weaponSwitchIcon.SetActive(false);
     }
@@ -642,20 +640,19 @@ public class Megaman : MonoBehaviour
         currentShootLevel = 0;
         chargeTime = 0f;
 
-        // Convert Color to integer representation for ColorFromInt usage
-        int primaryColorInt = ColorSwap.ColorToHex(selectedWeapon.weaponData.primaryColor);
-        int secondaryColorInt = ColorSwap.ColorToHex(selectedWeapon.weaponData.secondaryColor);
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        spriteRenderer.GetPropertyBlock(block);
 
-        // Swap colors using the integer representation
-        // Change player's colors based on the current weapon
-        colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(primaryColorInt));
-        colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(secondaryColorInt));
-        colorSwap.ApplyColor();
+        block.SetColor("_Outline", Color.black);
 
-        Debug.Log($"Primary color: {primaryColorInt}, Secondary color: {secondaryColorInt}");
+        // Set main and secondary colors from WeaponData
+        block.SetColor("_ArmorMainColor", currentWeapon.weaponData.primaryColor);
+        block.SetColor("_ArmorSecondaryColor", currentWeapon.weaponData.secondaryColor);
+
+        spriteRenderer.SetPropertyBlock(block);
 
         // Debug log to confirm the weapon change
-        // Debug.Log($"Weapon switched to: {playerWeapon}");
+        Debug.Log($"Weapon switched to: {playerWeapon}");
     }
 
     public void SwitchWeapon(WeaponTypes weaponType)

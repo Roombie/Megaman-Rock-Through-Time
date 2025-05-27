@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6110860310967769817}
   - component: {fileID: 3372955503883790708}
   - component: {fileID: 1422703566580898831}
-  - component: {fileID: 4752652672859147621}
   m_Layer: 6
   m_Name: Megaman
   m_TagString: Player
@@ -141,7 +140,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dbac51ac6b69f2541b85d52e0992bb4d, type: 2}
+  - {fileID: 2100000, guid: d6953c34faa0245409c0726898155fea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 1998687109
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -706261057, guid: 14e97d3c49dd7854cb3a0441e15ad768, type: 3}
+  m_Sprite: {fileID: -706261057, guid: 6501be6167896be4a8ec28a06617e9b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -445,23 +444,19 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 11f585f4-a8a4-4f08-ba2a-27605ec3d099
     m_ActionName: 'Player/PreviousWeapon[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 621ecf9d-0274-4468-a434-9ebcd6de5af7
+    m_ActionName: 'Player/OptionsMenu[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 86463d1f-4855-4925-824f-dca3351e7118
+    m_ActionName: 'Player/RushandBeat[/Keyboard/t]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4752652672859147621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427787303008531883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f981578aca0d2f449ae1e36c30c338d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3137224801792183357
 GameObject:
   m_ObjectHideFlags: 0

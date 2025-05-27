@@ -2593,26 +2593,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
-      value: 621ecf9d-0274-4468-a434-9ebcd6de5af7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
-      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
-      value: 86463d1f-4855-4925-824f-dca3351e7118
-      objectReference: {fileID: 0}
-    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
-      value: 'Player/OptionsMenu[/Keyboard/space]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1422703566580898831, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
-      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
-      value: 'Player/RushandBeat[/Keyboard/t]'
-      objectReference: {fileID: 0}
     - target: {fileID: 1427787303008531883, guid: 434729b5e2e8b2d48b9c5acaeb7315a5, type: 3}
       propertyPath: m_Name
       value: Megaman
