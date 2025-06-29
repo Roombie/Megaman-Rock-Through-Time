@@ -88,10 +88,10 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
 
         // REFRESH UI
         foreach (var selector in FindObjectsByType<OptionSelectorSettingHandler>(FindObjectsSortMode.None))
-            selector.RefreshUI();
+            selector.ApplyFromSaved();
 
         foreach (var toggle in FindObjectsByType<ToggleSettingHandler>(FindObjectsSortMode.None))
-            toggle.RefreshUI();
+            toggle.ApplyFromSaved();
 
         foreach (var volume in FindObjectsByType<VolumeSettingHandler>(FindObjectsSortMode.None))
             volume.ApplyFromSaved();

@@ -50,7 +50,7 @@ Material:
     - _ArmorSecondaryColor: {r: 0, g: 0.9098039, b: 0.8470588, a: 0}
     - _NewColor: {r: 0.6519441, g: 0.59854037, b: 0.8113208, a: 0}
     - _NewColor_1: {r: 0.7433963, g: 0.464272, b: 0.48944792, a: 0}
-    - _Outline: {r: 0, g: 0, b: 0, a: 0}
+    - _Outline: {r: 0.09411765, g: 0.09411765, b: 0.09411765, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7311217060361963585

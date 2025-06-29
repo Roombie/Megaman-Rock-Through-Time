@@ -22,7 +22,7 @@ public class Megaman : MonoBehaviour
     [Header("Health state")]
     public int currentHealth;
     public int maxHealth = 28;
-    [SerializeField] GameObject deathExplosion; // Death explosion
+    [SerializeField] GameObject deathExplosion; // when player dies, this object instantiates
     [SerializeField] private float delayBeforeDeath = 0.5f;
     private bool isTakingDamage;
     private bool isInvincible;
@@ -570,34 +570,6 @@ public class Megaman : MonoBehaviour
 
     void SetWeapon(WeaponTypes weaponType)
     {
-        /* ColorSwap and Shader to change MegaMan's color scheme (Explained by Gamedev with Tony)
-         * 
-         * his spritesheets have been altered to greyscale for his outfit
-         * Red 64 for the helmet, gloves, boots, etc ( SwapIndex.Primary )
-         * Red 128 for his shirt, pants, etc ( SwapIndex.Secondary )
-         * 
-         * couple ways to code this but I settled on #2
-         * 
-         * #1 using Lists
-         * 
-         * var colorIndex = new List<int>();
-         * var playerColors = new List<Color>();
-         * colorIndex.Add((int)SwapIndex.Primary);
-         * colorIndex.Add((int)SwapIndex.Secondary);
-         * playerColors.Add(ColorSwap.ColorFromIntRGB(64, 64, 64));
-         * playerColors.Add(ColorSwap.ColorFromIntRGB(128, 128, 128));
-         * colorSwap.SwapColors(colorIndex, playerColors);
-         * 
-         * #2 using SwapColor as needed then ApplyColor
-         * 
-         * colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x0073F7));
-         * colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0x00FFFF));
-         * colorSwap.ApplyColor();
-         * 
-         * Also, we'll change the color of our weapon energy bar
-         * and adjust the energy value as given in the playerWeaponsStruct
-         * 
-         */
         // Check if the weaponsData is populated
         if (weaponsData == null || weaponsData.Length == 0)
         {
@@ -643,11 +615,10 @@ public class Megaman : MonoBehaviour
         MaterialPropertyBlock block = new MaterialPropertyBlock();
         spriteRenderer.GetPropertyBlock(block);
 
-        block.SetColor("_Outline", Color.black);
-
         // Set main and secondary colors from WeaponData
         block.SetColor("_ArmorMainColor", currentWeapon.weaponData.primaryColor);
         block.SetColor("_ArmorSecondaryColor", currentWeapon.weaponData.secondaryColor);
+        block.SetColor("_Outline", new Color32(24, 24, 24, 255));
 
         spriteRenderer.SetPropertyBlock(block);
 
@@ -900,9 +871,21 @@ public class Megaman : MonoBehaviour
             currentShootLevel = 0;
             isShooting = false;
             hasPlayedChargeSound = false;
+            ResetToDefaultColors();
             AudioManager.Instance.Stop(chargingMegaBuster);
             Debug.Log("Charge interrupted due to damage.");
         }
+    }
+
+    private void ResetToDefaultColors()
+    {
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        spriteRenderer.GetPropertyBlock(block);
+
+        block.SetColor("_ArmorMainColor", currentWeapon.weaponData.primaryColor);
+        block.SetColor("_ArmorSecondaryColor", currentWeapon.weaponData.secondaryColor);
+        block.SetColor("_Outline", Color.black);
+        spriteRenderer.SetPropertyBlock(block);
     }
 
     #region MegaBuster
@@ -931,6 +914,30 @@ public class Megaman : MonoBehaviour
             {
                 AudioManager.Instance.Play(chargingMegaBuster);
                 hasPlayedChargeSound = true;
+            }
+
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            spriteRenderer.GetPropertyBlock(block);
+
+            if (currentShootLevel > 0)
+            {
+                var chargeData = currentWeapon.weaponData.chargeLevels[currentShootLevel];
+                var animation = chargeData.colorAnimation;
+
+                if (animation.frames != null && animation.frames.Length > 0)
+                {
+                    float frameTime = animation.frameDuration;
+                    float elapsed = Time.time % (animation.frames.Length * frameTime);
+                    int index = Mathf.FloorToInt(elapsed / frameTime);
+                    var frame = animation.frames[index];
+
+                    block.SetColor("_ArmorMainColor", frame.primary);
+                    block.SetColor("_ArmorSecondaryColor", frame.secondary);
+                    block.SetColor("_Outline", frame.outline);
+
+                    spriteRenderer.SetPropertyBlock(block);
+                    return;
+                }
             }
         }
 
@@ -1007,6 +1014,7 @@ public class Megaman : MonoBehaviour
         // Reset the current shoot level and charge time after shooting
         currentShootLevel = 0;
         chargeTime = 0f;
+        ResetToDefaultColors();
     }
     #endregion
 

@@ -4,6 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
+public struct ChargeColorFrame
+{
+    public Color primary;
+    public Color secondary;
+    public Color outline;
+}
+
+[System.Serializable]
+public struct ChargeColorAnimation
+{
+    public float frameDuration;
+    public ChargeColorFrame[] frames;
+}
+
+[System.Serializable]
 public struct ChargeLevel
 {
     public float timeRequired; // Time required to reach this charge level
@@ -11,7 +26,9 @@ public struct ChargeLevel
     public GameObject projectilePrefab; // The prefab to instantiate at this charge level
     public AudioClip weaponClip;
     public float bulletSpeed;
+    public ChargeColorAnimation colorAnimation;
 }
+
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/WeaponData")]
 public class WeaponData : ScriptableObject
@@ -23,9 +40,10 @@ public class WeaponData : ScriptableObject
     public Sprite weaponIconNotSelected;
     public Sprite weaponBarSprite;
     public AudioClip weaponClip;
-    public Color primaryColor; // RGB 0x0070ec
-    public Color secondaryColor; // RGB 0x00e8d8
+    public Color primaryColor;
+    public Color secondaryColor;
     public List<ChargeLevel> chargeLevels;
+    [HideInInspector] public ChargeColorAnimation[] chargeColorAnimations;
     public float shootDelay;
     public int maxEnergy;
     public int currentEnergy;

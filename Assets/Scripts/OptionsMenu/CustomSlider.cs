@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class CustomSlider : Slider
 {
-    public float stepSmall = 0.01f;       // tap
-    public float stepBig = 0.02f;          // hold
-    public float holdDelay = 0.5f;         // time to detect hold
-    public float holdRepeatRate = 0.05f;   // time between fast moves
+    public float stepSmall = 0.01f;
+    public float stepBig = 0.02f;
+    public float holdDelay = 0.5f;
+    public float holdRepeatRate = 0.05f;
+    public bool snapModifiersToMultiples = true; // This toggles snapping behavior for modifier steps
 
     private bool isHolding = false;
     private float holdTimer = 0f;
@@ -47,22 +49,60 @@ public class CustomSlider : Slider
             return;
         }
 
-        if (awaitingRelease) return; // Prevent double tap / input lock
+        if (awaitingRelease) return;
 
-        if (eventData.moveDir == MoveDirection.Left)
-        {
-            StartHold(-1);
-        }
-        else if (eventData.moveDir == MoveDirection.Right)
-        {
-            StartHold(1);
-        }
-        else
-        {
-            base.OnMove(eventData);
-        }
+        bool hasModifier = IsAnyModifierPressed();
 
-        awaitingRelease = true;
+        switch (eventData.moveDir)
+        {
+            case MoveDirection.Left:
+                if (IsHorizontal() && FindSelectableOnLeft() == null)
+                {
+                    StartHold(-1, hasModifier);
+                    awaitingRelease = true;
+                }
+                else
+                {
+                    base.OnMove(eventData);
+                }
+                break;
+
+            case MoveDirection.Right:
+                if (IsHorizontal() && FindSelectableOnRight() == null)
+                {
+                    StartHold(1, hasModifier);
+                    awaitingRelease = true;
+                }
+                else
+                {
+                    base.OnMove(eventData);
+                }
+                break;
+
+            case MoveDirection.Up:
+                if (!IsHorizontal() && FindSelectableOnUp() == null)
+                {
+                    StartHold(-1, hasModifier);
+                    awaitingRelease = true;
+                }
+                else
+                {
+                    base.OnMove(eventData);
+                }
+                break;
+
+            case MoveDirection.Down:
+                if (!IsHorizontal() && FindSelectableOnDown() == null)
+                {
+                    StartHold(1, hasModifier);
+                    awaitingRelease = true;
+                }
+                else
+                {
+                    base.OnMove(eventData);
+                }
+                break;
+        }
     }
 
     public override void OnSelect(BaseEventData eventData)
@@ -71,40 +111,58 @@ public class CustomSlider : Slider
         awaitingRelease = false;
     }
 
-    private void StartHold(int direction)
+    public override void OnDeselect(BaseEventData eventData)
+    {
+        base.OnDeselect(eventData);
+        awaitingRelease = false;
+    }
+
+    private void StartHold(int direction, bool useModifier)
     {
         isHolding = true;
         holdDirection = direction;
         holdTimer = 0f;
         repeatTimer = 0f;
 
-        // Tap movement
-        MoveSlider(stepSmall * direction);
+        float step = useModifier ? GetModifierStep(direction) : stepSmall * direction;
+        MoveSlider(step);
     }
 
     private new void Update()
     {
-        if (!isHolding) return;
+        if (inputActions == null) return;
 
-        holdTimer += Time.unscaledDeltaTime;
-
-        if (holdTimer >= holdDelay)
+        if (isHolding)
         {
-            repeatTimer += Time.unscaledDeltaTime;
+            holdTimer += Time.unscaledDeltaTime;
 
-            if (repeatTimer >= holdRepeatRate)
+            if (holdTimer >= holdDelay)
             {
-                MoveSlider(stepBig * holdDirection);
+                repeatTimer += Time.unscaledDeltaTime;
+
+                if (repeatTimer >= holdRepeatRate)
+                {
+                    bool useModifier = IsAnyModifierPressed();
+                    float step = useModifier
+                        ? GetModifierStep(holdDirection)
+                        : stepBig * holdDirection;
+
+                    MoveSlider(step);
+                    repeatTimer = 0f;
+                }
+            }
+
+            if (!IsPressingDirection())
+            {
+                isHolding = false;
+                holdDirection = 0;
+                holdTimer = 0f;
                 repeatTimer = 0f;
             }
         }
 
-        if (!IsPressingDirection())
+        if (inputActions != null && inputActions.UI.Navigate.ReadValue<Vector2>() == Vector2.zero)
         {
-            isHolding = false;
-            holdDirection = 0;
-            holdTimer = 0f;
-            repeatTimer = 0f;
             awaitingRelease = false;
         }
     }
@@ -117,15 +175,67 @@ public class CustomSlider : Slider
         Vector2 moveInput = inputActions.UI.Navigate.ReadValue<Vector2>();
 
         if (holdDirection == -1)
-            return moveInput.x < -0.5f;
+            return IsHorizontal() ? moveInput.x < -0.5f : moveInput.y > 0.5f;
         else if (holdDirection == 1)
-            return moveInput.x > 0.5f;
+            return IsHorizontal() ? moveInput.x > 0.5f : moveInput.y < -0.5f;
 
         return false;
+    }
+
+    private bool IsHorizontal()
+    {
+        return direction == Direction.LeftToRight || direction == Direction.RightToLeft;
     }
 
     private void MoveSlider(float step)
     {
         value = Mathf.Clamp(value + step, minValue, maxValue);
+    }
+
+    private bool IsAnyModifierPressed()
+    {
+        return
+            inputActions.UI.StepModifier10.ReadValue<float>() > 0.5f ||
+            inputActions.UI.StepModifier25.ReadValue<float>() > 0.5f ||
+            inputActions.UI.StepModifier50.ReadValue<float>() > 0.5f;
+    }
+
+    private float GetModifierStep(int direction)
+    {
+        float range = maxValue - minValue;
+
+        if (inputActions.UI.StepModifier50.ReadValue<float>() > 0.5f)
+            return snapModifiersToMultiples ? SnapToMultiple(range * 0.5f, direction) : range * 0.5f * direction;
+
+        if (inputActions.UI.StepModifier25.ReadValue<float>() > 0.5f)
+            return snapModifiersToMultiples ? SnapToMultiple(range * 0.25f, direction) : range * 0.25f * direction;
+
+        if (inputActions.UI.StepModifier10.ReadValue<float>() > 0.5f)
+            return snapModifiersToMultiples ? SnapToMultiple(range * 0.1f, direction) : range * 0.1f * direction;
+
+        return stepSmall * direction;
+    }
+
+    private float SnapToMultiple(float stepSize, int direction)
+    {
+        float current = value;
+        float remainder = (current - minValue) % stepSize;
+        if (remainder < 0) remainder += stepSize;
+
+        bool isAligned = remainder < 0.001f || Mathf.Abs(remainder - stepSize) < 0.001f;
+
+        float target;
+        if (isAligned)
+        {
+            target = current + stepSize * direction;
+        }
+        else
+        {
+            float baseValue = current - remainder;
+            target = direction > 0 ? baseValue + stepSize : baseValue;
+        }
+
+        target = Mathf.Clamp(target, minValue, maxValue);
+        return target - current;
     }
 }

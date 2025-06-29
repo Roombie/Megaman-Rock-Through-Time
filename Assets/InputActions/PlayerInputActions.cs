@@ -546,6 +546,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StepModifier10"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1fd1b7f-1d7b-4253-97f6-d39c20172bba"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StepModifier25"",
+                    ""type"": ""Button"",
+                    ""id"": ""d33a05d5-1c6d-4406-bb87-459b3d9f6cbe"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StepModifier50"",
+                    ""type"": ""Button"",
+                    ""id"": ""cfd75871-d8e3-4332-8378-cc2484db867a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -966,6 +993,83 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b71f3041-52fd-4dd5-b1db-e8ee8234b726"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""StepModifier10"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9362311c-e2d4-4f08-9809-a501272ed9f9"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""StepModifier10"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c2dcd8f-fa72-4996-ad74-ffd4a470317c"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""StepModifier25"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1260bc46-9101-444e-a966-fc7af7d87f74"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""StepModifier25"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2ec4836-43da-4279-b5fd-826808e1e94a"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""StepModifier50"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e521fe86-b7a7-45c2-aed2-0c53bd355a47"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""StepModifier50"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb8a96f6-8f2e-441c-9e56-3be86586b229"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""StepModifier50"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1056,6 +1160,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_StepModifier10 = m_UI.FindAction("StepModifier10", throwIfNotFound: true);
+        m_UI_StepModifier25 = m_UI.FindAction("StepModifier25", throwIfNotFound: true);
+        m_UI_StepModifier50 = m_UI.FindAction("StepModifier50", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -1243,6 +1350,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_StepModifier10;
+    private readonly InputAction m_UI_StepModifier25;
+    private readonly InputAction m_UI_StepModifier50;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1257,6 +1367,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @StepModifier10 => m_Wrapper.m_UI_StepModifier10;
+        public InputAction @StepModifier25 => m_Wrapper.m_UI_StepModifier25;
+        public InputAction @StepModifier50 => m_Wrapper.m_UI_StepModifier50;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1296,6 +1409,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @StepModifier10.started += instance.OnStepModifier10;
+            @StepModifier10.performed += instance.OnStepModifier10;
+            @StepModifier10.canceled += instance.OnStepModifier10;
+            @StepModifier25.started += instance.OnStepModifier25;
+            @StepModifier25.performed += instance.OnStepModifier25;
+            @StepModifier25.canceled += instance.OnStepModifier25;
+            @StepModifier50.started += instance.OnStepModifier50;
+            @StepModifier50.performed += instance.OnStepModifier50;
+            @StepModifier50.canceled += instance.OnStepModifier50;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1330,6 +1452,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @StepModifier10.started -= instance.OnStepModifier10;
+            @StepModifier10.performed -= instance.OnStepModifier10;
+            @StepModifier10.canceled -= instance.OnStepModifier10;
+            @StepModifier25.started -= instance.OnStepModifier25;
+            @StepModifier25.performed -= instance.OnStepModifier25;
+            @StepModifier25.canceled -= instance.OnStepModifier25;
+            @StepModifier50.started -= instance.OnStepModifier50;
+            @StepModifier50.performed -= instance.OnStepModifier50;
+            @StepModifier50.canceled -= instance.OnStepModifier50;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1416,5 +1547,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnStepModifier10(InputAction.CallbackContext context);
+        void OnStepModifier25(InputAction.CallbackContext context);
+        void OnStepModifier50(InputAction.CallbackContext context);
     }
 }

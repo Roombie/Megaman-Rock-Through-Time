@@ -5,11 +5,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 
+public enum NavigationAxis
+{
+    Horizontal,
+    Vertical
+}
+
 public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISelectHandler, IDeselectHandler
 {
     [SettingTypeFilter(SettingType.Screen, SettingType.Border, SettingType.Filter, SettingType.Language, SettingType.DisplayMode)]
     public SettingType settingType;
     public TextMeshProUGUI label;
+    [SerializeField] private NavigationAxis navigationAxis = NavigationAxis.Horizontal;
+
     [SerializeField] private GameObject leftArrow;
     [SerializeField] private GameObject rightArrow;
     [SerializeField] private AudioClip navigateSound;
@@ -115,8 +123,19 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         if (!isSelected) return;
 
         Vector2 input = context.ReadValue<Vector2>();
-        if (input.x < 0) ChangeOption(-1);
-        else if (input.x > 0) ChangeOption(1);
+
+        switch (navigationAxis)
+        {
+            case NavigationAxis.Horizontal:
+                if (input.x < 0) ChangeOption(-1);
+                else if (input.x > 0) ChangeOption(1);
+                break;
+
+            case NavigationAxis.Vertical:
+                if (input.y < 0) ChangeOption(1);  // Down goes to next
+                else if (input.y > 0) ChangeOption(-1); // Up goes to previous
+                break;
+        }
     }
 
     private void OnSubmit(InputAction.CallbackContext context)
