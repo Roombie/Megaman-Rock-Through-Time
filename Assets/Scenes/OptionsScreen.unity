@@ -6186,6 +6186,7 @@ GameObject:
   - component: {fileID: 352400620}
   - component: {fileID: 352400624}
   - component: {fileID: 352400625}
+  - component: {fileID: 352400626}
   m_Layer: 5
   m_Name: Exit Button
   m_TagString: Untagged
@@ -6445,6 +6446,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &352400626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352400618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c46afe52750d024fbe657ecf93da93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallbackButton: {fileID: 352400620}
 --- !u!1 &356800583
 GameObject:
   m_ObjectHideFlags: 0
@@ -7251,6 +7265,7 @@ GameObject:
   - component: {fileID: 387382995}
   - component: {fileID: 387382994}
   - component: {fileID: 387382996}
+  - component: {fileID: 387382997}
   m_Layer: 5
   m_Name: Exit Keyboard Button
   m_TagString: Untagged
@@ -7560,6 +7575,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &387382997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387382989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c46afe52750d024fbe657ecf93da93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallbackButton: {fileID: 387382991}
 --- !u!1 &427456787
 GameObject:
   m_ObjectHideFlags: 0
@@ -10524,7 +10552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc7d5920cd84e8468ea26f5c1515cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingType: 2
+  settingType: 1
   slider: {fileID: 2029252569}
   valueText: {fileID: 2040551223}
   minVolumeColor: {r: 1, g: 0.2, b: 0.2, a: 1}
@@ -11817,6 +11845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingType: 7
   label: {fileID: 1734171097}
+  navigationAxis: 0
   leftArrow: {fileID: 456853997}
   rightArrow: {fileID: 104525381}
   navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
@@ -13471,6 +13500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingType: 9
   label: {fileID: 1876064518}
+  navigationAxis: 0
   leftArrow: {fileID: 457231236}
   rightArrow: {fileID: 2092594264}
   navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
@@ -13639,6 +13669,7 @@ MonoBehaviour:
   stepBig: 0.02
   holdDelay: 0.5
   holdRepeatRate: 0.05
+  snapModifiersToMultiples: 0
 --- !u!1 &719386756
 GameObject:
   m_ObjectHideFlags: 0
@@ -17341,6 +17372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingType: 13
   label: {fileID: 178860085}
+  navigationAxis: 0
   leftArrow: {fileID: 1576672774}
   rightArrow: {fileID: 1845447550}
   navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
@@ -19041,6 +19073,7 @@ MonoBehaviour:
   stepBig: 0.02
   holdDelay: 0.5
   holdRepeatRate: 0.05
+  snapModifiersToMultiples: 0
 --- !u!1 &1342110885
 GameObject:
   m_ObjectHideFlags: 0
@@ -23167,6 +23200,7 @@ GameObject:
   - component: {fileID: 1563980950}
   - component: {fileID: 1563980949}
   - component: {fileID: 1563980954}
+  - component: {fileID: 1563980955}
   m_Layer: 5
   m_Name: Exit Gamepad Button
   m_TagString: Untagged
@@ -23476,6 +23510,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1563980955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563980947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c46afe52750d024fbe657ecf93da93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallbackButton: {fileID: 1563980951}
 --- !u!1 &1570925170
 GameObject:
   m_ObjectHideFlags: 0
@@ -23666,7 +23713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc7d5920cd84e8468ea26f5c1515cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingType: 0
+  settingType: 1
   slider: {fileID: 2051493926}
   valueText: {fileID: 1725072259}
   minVolumeColor: {r: 1, g: 0.2, b: 0.2, a: 1}
@@ -24122,7 +24169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc7d5920cd84e8468ea26f5c1515cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingType: 3
+  settingType: 1
   slider: {fileID: 712962048}
   valueText: {fileID: 174943794}
   minVolumeColor: {r: 1, g: 0.2, b: 0.2, a: 1}
@@ -25636,6 +25683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingType: 8
   label: {fileID: 1548708244}
+  navigationAxis: 0
   leftArrow: {fileID: 600469795}
   rightArrow: {fileID: 1842562191}
   navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
@@ -28496,6 +28544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingType: 6
   label: {fileID: 454692586}
+  navigationAxis: 0
   leftArrow: {fileID: 1578414252}
   rightArrow: {fileID: 895212041}
   navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
@@ -30408,6 +30457,7 @@ MonoBehaviour:
   stepBig: 0.02
   holdDelay: 0.5
   holdRepeatRate: 0.05
+  snapModifiersToMultiples: 0
 --- !u!1 &2040551221
 GameObject:
   m_ObjectHideFlags: 0
@@ -30668,6 +30718,7 @@ MonoBehaviour:
   stepBig: 0.02
   holdDelay: 0.5
   holdRepeatRate: 0.05
+  snapModifiersToMultiples: 0
 --- !u!1 &2078435988
 GameObject:
   m_ObjectHideFlags: 0

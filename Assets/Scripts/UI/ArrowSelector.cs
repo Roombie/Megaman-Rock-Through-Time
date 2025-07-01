@@ -20,7 +20,8 @@ public class ArrowSelector : MonoBehaviour
     [HideInInspector] public int lastSelected = -1;
     bool firstFrame = true;
     private bool isChangingPage = false;
-    private bool suppressFirstSound = true;
+    private bool suppressSoundOnFirstAutoSelection = true;
+    public static bool suppressSoundOnNextExternalSelection = false;
 
     void Start()
     {
@@ -39,16 +40,16 @@ public class ArrowSelector : MonoBehaviour
                 if (buttons[i].button != null && buttons[i].button.gameObject == selected)
                 {
                     lastSelected = i;
-                    suppressFirstSound = true;
+                    suppressSoundOnFirstAutoSelection = true;
                     MoveIndicator(i);
                     yield return null;
-                    suppressFirstSound = false;
+                    suppressSoundOnFirstAutoSelection = false;
                     yield break;
                 }
             }
         }
 
-        suppressFirstSound = false;
+        suppressSoundOnFirstAutoSelection = false;
     }
 
     void LateUpdate()
@@ -78,12 +79,20 @@ public class ArrowSelector : MonoBehaviour
     {
         lastSelected = b;
         MoveIndicator(b);
-        Debug.Log($"suppressFirstSound: {suppressFirstSound}");
+
+        if (suppressSoundOnNextExternalSelection)
+        {
+            suppressSoundOnNextExternalSelection = false;
+            Debug.Log("Selection sound suppressed via static flag");
+            return;
+        }
+
+        Debug.Log($"suppressFirstSound: {suppressSoundOnFirstAutoSelection}");
 
         // This is to avoid playing the audio when the scene loads, which it's the first time it is automatically selected
-        if (suppressFirstSound)
+        if (suppressSoundOnFirstAutoSelection)
         {
-            suppressFirstSound = false;
+            suppressSoundOnFirstAutoSelection = false;
             Debug.Log("First sound suppressed");
             return;
         }

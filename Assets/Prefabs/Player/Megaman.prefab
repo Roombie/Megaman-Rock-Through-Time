@@ -452,6 +452,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 86463d1f-4855-4925-824f-dca3351e7118
     m_ActionName: 'Player/RushandBeat[/Keyboard/t]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e1fd1b7f-1d7b-4253-97f6-d39c20172bba
+    m_ActionName: 'UI/StepModifier10[/Keyboard/leftShift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d33a05d5-1c6d-4406-bb87-459b3d9f6cbe
+    m_ActionName: 'UI/StepModifier25[/Keyboard/leftCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cfd75871-d8e3-4332-8378-cc2484db867a
+    m_ActionName: 'UI/StepModifier50[/Keyboard/leftAlt]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

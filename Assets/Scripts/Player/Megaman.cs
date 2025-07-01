@@ -955,7 +955,14 @@ public class Megaman : MonoBehaviour
                 currentWeapon.weaponData.currentEnergy -= currentWeapon.weaponData.energyCost;
 
                 // Delay shot based on weapon data
-                Invoke(nameof(ShootMegaBuster), currentWeapon.weaponData.shootDelay);
+                if (currentWeapon.weaponData.shootDelay > 0f && currentShootLevel > 0)
+                {
+                    Invoke(nameof(ShootMegaBuster), currentWeapon.weaponData.shootDelay);
+                }
+                else
+                {
+                    ShootMegaBuster(); // First shot is instant
+                }
             }
         }
 

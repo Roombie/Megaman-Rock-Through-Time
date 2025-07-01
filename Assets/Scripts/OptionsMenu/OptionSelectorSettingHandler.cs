@@ -157,6 +157,7 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
 
             isSelected = true;
             currentlySelecting = this;
+            UIInteractionState.RegisterActive(this);
             EventSystem.current.SetSelectedGameObject(gameObject);
             EventSystem.current.sendNavigationEvents = false;
 
@@ -176,6 +177,7 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
 
             isSelected = false;
             currentlySelecting = null;
+            UIInteractionState.UnregisterActive(this);
             EventSystem.current.sendNavigationEvents = true;
 
             SetArrowVisibility(false);
@@ -281,6 +283,7 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     public void OnDeselect(BaseEventData eventData)
     {
         isSelected = false;
+        UIInteractionState.UnregisterActive(this);
         SetArrowVisibility(false);
     }
 }
