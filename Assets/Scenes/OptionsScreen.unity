@@ -10552,7 +10552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc7d5920cd84e8468ea26f5c1515cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingType: 1
+  settingType: 2
   slider: {fileID: 2029252569}
   valueText: {fileID: 2040551223}
   minVolumeColor: {r: 1, g: 0.2, b: 0.2, a: 1}
@@ -23713,7 +23713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc7d5920cd84e8468ea26f5c1515cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingType: 1
+  settingType: 0
   slider: {fileID: 2051493926}
   valueText: {fileID: 1725072259}
   minVolumeColor: {r: 1, g: 0.2, b: 0.2, a: 1}
@@ -24169,7 +24169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc7d5920cd84e8468ea26f5c1515cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingType: 1
+  settingType: 3
   slider: {fileID: 712962048}
   valueText: {fileID: 174943794}
   minVolumeColor: {r: 1, g: 0.2, b: 0.2, a: 1}
