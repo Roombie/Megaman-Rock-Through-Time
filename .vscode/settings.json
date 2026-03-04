@@ -56,7 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Megaman-Rock-Through-Time.sln",
+    "dotnet.defaultSolution": "Megaman-Rock-Through-Time.slnx",
     "git.allowForcePush": false,
     "git.allowNoVerifyCommit": false,
     "git.alwaysShowStagedChangesResourceGroup": true,
