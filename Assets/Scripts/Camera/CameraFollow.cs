@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.U2D;
 
 [RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour
@@ -20,20 +21,51 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
+    [Tooltip("Snap the rendered camera position to whole game pixels (1 / PPU). Keeps the world and the HUD from wobbling by a pixel.")]
+    public bool snapToPixelGrid = true;
+    private PixelPerfectCamera pixelPerfectCamera;
+    private Vector3 smoothPosition;    // un-snapped follow position; the transform gets the snapped one
+    private bool hasSmoothPosition;
+
     void Awake()
     {
         cam = GetComponent<Camera>();
+        pixelPerfectCamera = GetComponent<PixelPerfectCamera>();
+    }
+
+    // Moved from outside (respawn, room transition...): continue from there
+    public void SnapTo(Vector3 position)
+    {
+        smoothPosition = position;
+        hasSmoothPosition = true;
+        velocity = Vector3.zero;
+        transform.position = Snap(position);
+    }
+
+    private Vector3 Snap(Vector3 position)
+    {
+        if (!snapToPixelGrid) return position;
+        float ppu = pixelPerfectCamera != null ? pixelPerfectCamera.assetsPPU : 16f;
+        // Multiples of 1/16 are exact floats, so the Screen Space Camera HUD lands on the same pixels every frame
+        return new Vector3(Mathf.Round(position.x * ppu) / ppu, Mathf.Round(position.y * ppu) / ppu, position.z);
     }
 
     void LateUpdate()
     {
         if (player == null) return;
 
+        // Someone else moved the camera (it is no longer where we left it): follow from there
+        if (!hasSmoothPosition || (transform.position - Snap(smoothPosition)).sqrMagnitude > 0.0001f)
+        {
+            smoothPosition = transform.position;
+            hasSmoothPosition = true;
+        }
+
         camHalfHeight = cam.orthographicSize;
         camHalfWidth = camHalfHeight * cam.aspect;
 
         Vector3 targetPos = player.position + lookAhead;
-        targetPos.z = transform.position.z;
+        targetPos.z = smoothPosition.z;
 
         float minX = levelBoundsMin.x + camHalfWidth;
         float maxX = levelBoundsMax.x - camHalfWidth;
@@ -49,7 +81,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            targetPos.x = transform.position.x;
+            targetPos.x = smoothPosition.x;
         }
 
         if (!lockVertical)
@@ -61,10 +93,11 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            targetPos.y = transform.position.y;
+            targetPos.y = smoothPosition.y;
         }
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothDampTime);
+        smoothPosition = Vector3.SmoothDamp(smoothPosition, targetPos, ref velocity, smoothDampTime);
+        transform.position = Snap(smoothPosition);
     }
 
     void OnDrawGizmos()
