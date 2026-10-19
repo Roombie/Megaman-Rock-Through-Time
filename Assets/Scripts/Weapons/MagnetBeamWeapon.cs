@@ -5,6 +5,35 @@ using UnityEngine;
 public class MagnetBeamWeapon : WeaponBase
 {
     private GameObject currentMagnetBeam;
+    private int tilesThisBeam;
+
+    private bool DrainsPerTile => weaponData.tilesPerEnergy > 0;
+
+    public override bool CanShoot()
+    {
+        if (!DrainsPerTile)
+            return base.CanShoot();
+
+        // Per-tile drain: enough energy for the first tile is enough to start a beam
+        return weaponData.currentEnergy >= 1 &&
+               (!weaponData.limitBulletsOnScreen || activeBullets.Count < weaponData.maxBulletsOnScreen);
+    }
+
+    // Called by the beam before every new tile: 1 energy for the first tile of each group of tilesPerEnergy
+    private bool TryPayForTile()
+    {
+        if (tilesThisBeam % weaponData.tilesPerEnergy == 0)
+        {
+            if (weaponData.currentEnergy < 1)
+                return false;
+
+            weaponData.currentEnergy--;
+            UIEnergyBar.Instance?.SetValue(weaponData.currentEnergy / (float)weaponData.maxEnergy);
+        }
+
+        tilesThisBeam++;
+        return true;
+    }
 
     public override void Shoot(Transform shooterTransform, Vector2 bulletOffset, bool facingRight, int currentShootLevel, float shootRayLength = 1f)
     {
@@ -21,13 +50,18 @@ public class MagnetBeamWeapon : WeaponBase
 
         // Set the direction of the beam and start extending
         MagnetBeam magnetBeamScript = currentMagnetBeam.GetComponent<MagnetBeam>();
+        tilesThisBeam = 0;
         if (magnetBeamScript != null)
         {
+            if (DrainsPerTile)
+                magnetBeamScript.canAddTile = TryPayForTile;   // energy goes down while the beam grows
+
             magnetBeamScript.SetBeamDirection(facingRight ? Vector2.right : Vector2.left);
             magnetBeamScript.StartExtending();
         }
 
-        DeductEnergy();
+        if (!DrainsPerTile)
+            DeductEnergy();
 
         // Play weapon sound
         if (weaponData.weaponClip != null)

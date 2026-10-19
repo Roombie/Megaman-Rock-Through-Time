@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,14 +12,16 @@ public class UIHealthBar : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        // get the initial height of the mask before anyone calls SetValue
+        originalSize = mask.rectTransform.rect.height;
+
+        if (Instance == null && GetComponentInParent<WeaponsMenu>(true) == null)
+            Instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnDestroy()
     {
-        // get the initial height of the mask
-        originalSize = mask.rectTransform.rect.height;
+        if (Instance == this) Instance = null;
     }
 
     public void SetValue(float value)

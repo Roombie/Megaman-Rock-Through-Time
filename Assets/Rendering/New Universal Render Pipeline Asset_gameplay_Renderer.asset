@@ -9,17 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: LCDFullScreenPassRendererFeature
+  m_Script: {fileID: 11500000, guid: 28d056ac4b7f401b94e369689ffa50c7, type: 3}
+  m_Name: LCDGhostingFeature
   m_EditorClassIdentifier: 
   m_Active: 0
-  injectionPoint: 600
-  fetchColorBuffer: 1
-  requirements: 0
-  passMaterial: {fileID: 2100000, guid: ee8d16cd83cd4e54a904133a1c37252e, type: 2}
-  passIndex: 0
-  bindDepthStencilAttachment: 0
-  m_Version: 1
+  shader: {fileID: 4800000, guid: dd21e354b30a46adbfcb9fa46785f56b, type: 3}
+  amount: 0
+--- !u!114 &304558978647685813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5b45b4769e4ce3ba5d475989814cec, type: 3}
+  m_Name: GameBoyPaletteFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  shader: {fileID: 4800000, guid: edf604c3f83d432fae1c0882783375b5, type: 3}
+  shades:
+  - {r: 0.05882353, g: 0.21960784, b: 0.05882353, a: 1}
+  - {r: 0.1882353, g: 0.38431373, b: 0.1882353, a: 1}
+  - {r: 0.54509807, g: 0.6745098, b: 0.05882353, a: 1}
+  - {r: 0.60784316, g: 0.7372549, b: 0.05882353, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,8 +60,9 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
   - {fileID: 3759450601404831646}
+  - {fileID: 304558978647685813}
   - {fileID: -593233596872933530}
-  m_RendererFeatureMap: 9e175d4f67402c3466bf8fcd2f69c4f7
+  m_RendererFeatureMap: 9e175d4f67402c34b57a7307c7023a0466bf8fcd2f69c4f7
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
@@ -84,14 +99,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: CTRFullScreenPassRendererFeature
+  m_Script: {fileID: 11500000, guid: c96fbb38bb964b8abe1bce2c3dd04627, type: 3}
+  m_Name: CRTCompositeFeature
   m_EditorClassIdentifier: 
   m_Active: 0
-  injectionPoint: 600
-  fetchColorBuffer: 1
-  requirements: 0
-  passMaterial: {fileID: 2100000, guid: 4b9414aca67ee2a4aa4d373322d4c2cb, type: 2}
-  passIndex: 0
-  bindDepthStencilAttachment: 0
-  m_Version: 1
+  shader: {fileID: 4800000, guid: 0374b04ecbfc42b38351eb535f3541ff, type: 3}
+  blur: 0.15

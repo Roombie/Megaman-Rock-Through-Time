@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class ScreenDisplayManager : MonoBehaviour
 {
@@ -23,37 +22,29 @@ public class ScreenDisplayManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    // NES resolution, used to size the Windowed mode window
+    private const int GameWidth = 256;
+    private const int GameHeight = 240;
+
     public void Apply(ScreenDisplayMode mode, bool save = true)
     {
         Debug.Log($"Screen display set to: {mode}");
 
         int borderIndex = PlayerPrefs.GetInt(SettingsKeys.BorderKey, 0);
-        Vector2 targetResolution = Vector2.zero;
 
-        switch (mode)
-        {
-            case ScreenDisplayMode.Original:
-                targetResolution = new Vector2(1195f, 896f);
-                break;
+        // Fullscreen always runs at the monitor's native resolution: any other size gets stretched by the
+        // GPU/monitor with smoothing, which blurs pixel art. The frame shape is handled by BorderManager.
+        DisplayInfo display = Screen.mainWindowDisplayInfo;
+        Vector2 nativeResolution = display.width > 0
+            ? new Vector2(display.width, display.height)
+            : new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
 
-            case ScreenDisplayMode.Full:
-                targetResolution = new Vector2(1440, 1080);
-                break;
-
-            case ScreenDisplayMode.Windowed:
-                targetResolution = new Vector2(1024, 720);
-                break;
-
-            case ScreenDisplayMode.WindowedFull:
-                targetResolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
-                break;
-
-            case ScreenDisplayMode.Wide:
-                targetResolution = new Vector2(1920, 1080);
-                break;
-        }
+        Vector2 targetResolution = mode == ScreenDisplayMode.Windowed
+            ? GetWindowedResolution(display)
+            : nativeResolution;
 
         SetResolution(targetResolution, mode);
+        BorderManager.Instance?.SetScreenMode(mode);
 
         if (save)
         {
@@ -62,6 +53,18 @@ public class ScreenDisplayManager : MonoBehaviour
         }
 
         StartCoroutine(ApplyDisplayAndBorder(borderIndex, mode));
+    }
+
+    // Biggest whole multiple of the NES resolution that fits the desktop work area
+    // (minus room for the title bar), e.g. 1024x960 on 1080p and 512x480 on 768p
+    private static Vector2 GetWindowedResolution(DisplayInfo display)
+    {
+        int areaW = display.workArea.width > 0 ? display.workArea.width : Screen.currentResolution.width;
+        int areaH = display.workArea.height > 0 ? display.workArea.height : Screen.currentResolution.height;
+
+        const int windowChrome = 40;
+        int scale = Mathf.Max(1, Mathf.Min(areaW / GameWidth, (areaH - windowChrome) / GameHeight));
+        return new Vector2(GameWidth * scale, GameHeight * scale);
     }
 
     void SetResolution(Vector2 targetResolution, ScreenDisplayMode mode)
@@ -89,24 +92,6 @@ public class ScreenDisplayManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.1f); // Wait for resolution & screen mode to settle
 
         BorderMode selectedBorder = (BorderMode)borderIndex;
-
-        // Apply minimum resolution for Windowbox only if not in MaximizedWindow
-        if (selectedBorder == BorderMode.Windowbox && mode != ScreenDisplayMode.WindowedFull)
-        {
-            var cam = FindFirstObjectByType<PixelPerfectCamera>();
-            if (cam != null)
-            {
-                int minWidth = cam.refResolutionX * 2;
-                int minHeight = cam.refResolutionY * 2;
-
-                if (Screen.width < minWidth || Screen.height < minHeight)
-                {
-                    Debug.Log("[ScreenDisplayManager] Forcing resolution minimum for Windowbox");
-                    Screen.SetResolution(minWidth, minHeight, Screen.fullScreenMode);
-                    yield return new WaitForEndOfFrame(); // wait for resize to complete
-                }
-            }
-        }
 
         if (BorderManager.Instance != null)
             BorderManager.Instance.SetBorderMode(selectedBorder);

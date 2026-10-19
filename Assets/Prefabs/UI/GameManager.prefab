@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &82553750863169964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7909228031856652473}
+  - component: {fileID: 6719107436428946623}
+  - component: {fileID: 4645672005317569501}
+  - component: {fileID: 4321962828110389428}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7909228031856652473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82553750863169964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6719107436428946623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82553750863169964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c78f5029efa644990e93458667e0f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLives: 3
+  gamePlayerStartLives: 3
+  score: 0
+  delayRestartDelay: 5
+  gamePlayerReadyDelay: 3
+  checkpoints: []
+  openPauseMenuSoundClip: {fileID: 8300000, guid: 2f0b8b73f90d8354ca2a2de0431d4f50, type: 3}
+  closePauseMenuSoundClip: {fileID: 8300000, guid: 5eaeec42283e46d478d4b394739e0f2d, type: 3}
+  screwsCollected: 0
+  weaponsMenu: {fileID: 0}
+  gameOverSoundClip: {fileID: 8300000, guid: 5d10ee18dfe6be44d92677a4c97d45b4, type: 3}
+--- !u!114 &4645672005317569501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82553750863169964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04be6869afc4a34a934f445b247400d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4321962828110389428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82553750863169964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c2f283c3d54403854c0cd575e362d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  style:
+    font: {fileID: 11400000, guid: f47decd5411deaf46a0af54ba445a67e, type: 2}
+    fontSize: 9
+    panelColor: {r: 0, g: 0, b: 0, a: 1}
+    borderColor: {r: 0.23529412, g: 0.7372549, b: 0.9882353, a: 1}
+    textColor: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
+    dimTextColor: {r: 0.4862745, g: 0.4862745, b: 0.4862745, a: 1}
+    titleColor: {r: 0.23529412, g: 0.7372549, b: 0.9882353, a: 1}
+    cursorColor: {r: 0.972549, g: 0.21960784, b: 0, a: 1}
+    emptyBarColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
+    cursorSprite: {fileID: 21300000, guid: 61e7ece636e144af841af3041af283bb, type: 3}
+    eTankSprite: {fileID: -710452163, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
+    wTankSprite: {fileID: 21300000, guid: 9c1ed35af8d0d3a449b27c033c8ac628, type: 3}
+    mTankSprite: {fileID: 1375051001, guid: 2fd163e3ab88a2b419cba9aafd17059c, type: 3}
+    sTankSprite: {fileID: 21300000, guid: 5737137e1c931d74197c0958826f6ad8, type: 3}
+    lTankSprite: {fileID: -1923916706, guid: 2fd163e3ab88a2b419cba9aafd17059c, type: 3}
+    livesSprite: {fileID: -1645638713, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
+    screwSprite: {fileID: 21300000, guid: a5b2f828208691e45ad142ab56274ea0, type: 3}
+  openSound: {fileID: 8300000, guid: 2f0b8b73f90d8354ca2a2de0431d4f50, type: 3}
+  closeSound: {fileID: 8300000, guid: 5eaeec42283e46d478d4b394739e0f2d, type: 3}
+  moveSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
+  selectSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  refillSound: {fileID: 8300000, guid: fead1bb648575a14286e75058dabde4e, type: 3}
+  optionsSceneName: OptionsScreen
+  titleSceneName: TitleScreen
+  repeatDelay: 0.35
+  repeatRate: 0.1

@@ -250,7 +250,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator ReturnToPoolAfterPlayback(AudioSource source, float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);   // menu sounds play while the game is paused (timeScale 0)
         source.Stop();
         sfxPool.Enqueue(source);
     }
@@ -266,7 +266,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator FadeOutMusic(AudioSource source, float duration)
     {
         float startVolume = source.volume;
-        for (float t = 0; t < duration; t += Time.deltaTime)
+        for (float t = 0; t < duration; t += Time.unscaledDeltaTime)
         {
             source.volume = Mathf.Lerp(startVolume, 0, t / duration);
             yield return null;

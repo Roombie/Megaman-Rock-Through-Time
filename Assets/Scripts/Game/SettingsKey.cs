@@ -15,7 +15,9 @@ public enum SettingType
     VSync,
     SlideWithDownJumpKey,
     ControllerVibrationKey,
-    Language
+    Language,
+    Ghosting,
+    GameBoyPalette
 }
 
 public static class SettingsKeys
@@ -31,7 +33,9 @@ public static class SettingsKeys
         { SettingType.VSync, VSyncKey },
         { SettingType.SlideWithDownJumpKey, SlideWithDownJumpKey},
         { SettingType.ControllerVibrationKey, ControllerVibrationKey},
-        { SettingType.Language, LanguageKey }
+        { SettingType.Language, LanguageKey },
+        { SettingType.Ghosting, GhostingKey },
+        { SettingType.GameBoyPalette, GameBoyPaletteKey }
     };
 
     public static string Get(SettingType type) => keys.TryGetValue(type, out var value) ? value : type.ToString();
@@ -50,8 +54,10 @@ public static class SettingsKeys
     public const string DisplayModeKey = "DisplayMode";        // Control scheme (Xbox/PS/Nintendo)
     public const string ScreenKey = "ScreenDisplayMode";       // Original / Full / Wide
     public const string BorderKey = "Border";           // OFF / Pillar / Window
-    public const string FilterKey = "Filter";                  // OFF / TV (CRT Scanlines) / Monitor (LCD)
+    public const string FilterKey = "Filter";                  // OFF / TV / TV Curved / Monitor (LCD) / Game Boy
+    public const string GameBoyPaletteKey = "GameBoyPalette";  // Green / Pocket / Light / Super
     public const string LanguageKey = "Language";
+    public const string GhostingKey = "Ghosting";              // OFF / ON (previous frame trails, any filter)
 
     // Gameplay
     public const string SlideWithDownJumpKey = "SlideWithDown";

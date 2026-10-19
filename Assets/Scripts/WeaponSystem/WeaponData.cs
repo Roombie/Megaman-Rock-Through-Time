@@ -48,6 +48,8 @@ public class WeaponData : ScriptableObject
     public int maxEnergy;
     public int currentEnergy;
     public int energyCost;
+    [Tooltip("Beam-type weapons (Magnet Beam): 1 energy is used for every N tiles the beam grows, instead of energyCost per shot. 0 = flat energyCost per shot.")]
+    public int tilesPerEnergy = 0;
     public bool limitBulletsOnScreen = true; // Control whether to limit bullets or not
     public int maxBulletsOnScreen = 3; // Max bullets allowed on screen
 

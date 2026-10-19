@@ -57,7 +57,7 @@ public abstract class Projectile : MonoBehaviour
     }
 
     // Called when the projectile goes off-screen
-    private void OnBecameInvisible()
+    protected virtual void OnBecameInvisible()
     {
         // Destroy the projectile when it becomes invisible
         Destroy(gameObject);

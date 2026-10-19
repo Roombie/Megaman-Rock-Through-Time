@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization;
@@ -6,16 +7,20 @@ using UnityEngine.Localization.Settings;
 public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
 {
     [Header("Setting Config")]
-    [SettingTypeFilter(SettingType.VSync, SettingType.SlideWithDownJumpKey, SettingType.ControllerVibrationKey)]
+    [SettingTypeFilter(SettingType.VSync, SettingType.SlideWithDownJumpKey, SettingType.ControllerVibrationKey, SettingType.Ghosting)]
     public SettingType settingType;
     [SerializeField] private AudioClip toggleSound;
 
     [Header("UI")]
     public Toggle toggle;
-    public Image targetImage;
+    [Tooltip("Shows ON / OFF (localized) next to the setting.")]
+    public TMP_Text valueText;
+    [SerializeField] private Color onColor = new Color32(0x32, 0xC0, 0xFF, 0xFF);
+    [SerializeField] private Color offColor = new Color32(0xFF, 0x32, 0x32, 0xFF);
 
-    [Header("Localization")]
-    public LanguageSprites languageSprites;
+    [Header("Localization (GameText table)")]
+    [SerializeField] private string onKey = "Toggle_On";
+    [SerializeField] private string offKey = "Toggle_Off";
 
     private bool currentValue;
 
@@ -28,6 +33,8 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
             toggle.onValueChanged.AddListener(OnToggleChanged);
         }
 
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+
         ApplyFromSaved();
         RefreshUI();
     }
@@ -38,6 +45,20 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
         {
             toggle.onValueChanged.RemoveListener(OnToggleChanged);
         }
+
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
+    private void OnLocaleChanged(Locale locale) => UpdateValueText();
+
+    private void UpdateValueText()
+    {
+        if (valueText == null) return;
+
+        string key = currentValue ? onKey : offKey;
+        string localized = LocalizationSettings.StringDatabase.GetLocalizedString("GameText", key);
+        valueText.text = string.IsNullOrEmpty(localized) ? (currentValue ? "ON" : "OFF") : localized;
+        valueText.color = currentValue ? onColor : offColor;
     }
 
     private void OnToggleChanged(bool value)
@@ -75,19 +96,7 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
         }
 
-        if (targetImage != null && languageSprites != null && LocalizationSettings.SelectedLocale != null)
-        {
-            var sprite = languageSprites.GetSprite(LocalizationSettings.SelectedLocale, currentValue);
-            if (sprite != null)
-            {
-                targetImage.sprite = sprite;
-            }
-
-            if (sprite == null)
-            {
-                Debug.LogWarning("Sprite not found for the selected language!");
-            }
-        }
+        UpdateValueText();
 
         SettingsApplier.ApplyBoolSetting(settingType, currentValue);
     }

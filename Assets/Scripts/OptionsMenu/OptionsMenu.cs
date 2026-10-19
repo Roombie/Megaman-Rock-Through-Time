@@ -72,8 +72,14 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
         ApplySetting(SettingType.Filter, 0);
         SaveSetting(SettingType.Filter, 0);
 
+        ApplySetting(SettingType.GameBoyPalette, 0);
+        SaveSetting(SettingType.GameBoyPalette, 0);
+
         PlayerPrefs.SetInt(SettingsKeys.VSyncKey, 1);
         QualitySettings.vSyncCount = 1;
+
+        PlayerPrefs.SetInt(SettingsKeys.GhostingKey, 0);
+        FilterManager.Instance?.SetGhosting(false);
 
         ApplySetting(SettingType.Language, 0);
         SaveSetting(SettingType.Language, 0);
@@ -120,7 +126,10 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
                 return GetLocalizedStrings("Screen_Original", "Screen_Full", "Screen_Windowed", "Screen_WindowedFull", "Screen_Wide");
 
             case SettingType.Filter:
-                return GetLocalizedStrings("Filter_None", "Filter_TV", "Filter_Monitor");
+                return GetLocalizedStrings("Filter_None", "Filter_TV", "Filter_TVCurved", "Filter_Monitor", "Filter_GameBoy");
+
+            case SettingType.GameBoyPalette:
+                return GetLocalizedStrings("GBPalette_Green", "GBPalette_Pocket", "GBPalette_Light", "GBPalette_Super");
 
             case SettingType.Border:
                 return GetLocalizedStrings("Border_None", "Border_Pillar", "Border_Windowbox");
@@ -146,6 +155,7 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
             SettingType.Screen => PlayerPrefs.GetInt(SettingsKeys.ScreenKey, 0),
             SettingType.Filter => PlayerPrefs.GetInt(SettingsKeys.FilterKey, 0),
             SettingType.Border => PlayerPrefs.GetInt(SettingsKeys.BorderKey, 0),
+            SettingType.GameBoyPalette => PlayerPrefs.GetInt(SettingsKeys.GameBoyPaletteKey, 0),
             _ => 0
         };
     }
@@ -239,6 +249,10 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
                 PlayerPrefs.SetInt(SettingsKeys.FilterKey, index);
                 FilterManager.Instance?.SetFilter((FilterMode)index);
                 break;
+
+            case SettingType.GameBoyPalette:
+                FilterManager.Instance?.SetGameBoyPalette(index);
+                break;
         }
     }
 
@@ -272,6 +286,10 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
 
             case SettingType.Filter:
                 PlayerPrefs.SetInt(SettingsKeys.FilterKey, index);
+                break;
+
+            case SettingType.GameBoyPalette:
+                PlayerPrefs.SetInt(SettingsKeys.GameBoyPaletteKey, index);
                 break;
         }
 

@@ -1,13 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
+// Magnet Beam (Mega Man 1): a platform that grows tile by tile while the shoot button is held,
+// stays solid for a while after it stops, flashes, and disappears.
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class MagnetBeam : Projectile
 {
     [SerializeField] private float maxBeamLength = 30f;
     [SerializeField] private float tileExtendInterval = 0.2f;
+    [Tooltip("Seconds the beam stays solid after it stops extending, before it starts flashing.")]
     [SerializeField] private float lifetime = 5f;
+    [Tooltip("Seconds of flashing before it disappears (it is still solid while flashing).")]
     [SerializeField] private float flashDuration = 2f;
     [SerializeField] private float flashInterval = 0.1f;
     [SerializeField] private LayerMask wallLayer;
@@ -15,17 +19,24 @@ public class MagnetBeam : Projectile
 
     private SpriteRenderer beamSpriteRenderer;
     private BoxCollider2D boxCollider;
+    private float tileLength;
     private float currentBeamLength = 0f;
     private float nextTileTime = 0f;
     private bool isExtending = false;
+    private bool isFinished = false;
     public bool hasReachedMaxLength = false; // Track if beam reaches max length
-    private bool isFlashing = false;
+
+    /// <summary>
+    /// Asked before each new tile; return false (e.g. out of energy) to stop the beam where it is.
+    /// </summary>
+    public System.Func<bool> canAddTile;
 
     protected override void Awake()
     {
         base.Awake();
         beamSpriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
+        tileLength = beamSpriteRenderer.sprite != null ? beamSpriteRenderer.sprite.bounds.size.x : 1f;
     }
 
     private void Update()
@@ -35,32 +46,39 @@ public class MagnetBeam : Projectile
             ExtendBeam();
             nextTileTime = Time.time + tileExtendInterval;
         }
-
-        if (!isExtending && !isFlashing)
-        {
-            StartFlashing(); // Start flashing after stopping
-        }
-
-        PerformRaycast(); // Check for walls
     }
 
     public void StartExtending()
     {
         isExtending = true;
-        hasReachedMaxLength = false; // Reset max length flag
+        isFinished = false;
+        hasReachedMaxLength = false;
+        currentBeamLength = 0f;
+
+        // First tile appears right away, the rest follow every tileExtendInterval
+        ExtendBeam();
+        nextTileTime = Time.time + tileExtendInterval;
     }
 
+    /// <summary>
+    /// Stops growing (button released, max length or wall). The beam then stays as a platform for
+    /// `lifetime` seconds, flashes for `flashDuration` and disappears. Safe to call more than once.
+    /// </summary>
     public void StopExtending()
     {
+        if (isFinished) return;
+
+        isFinished = true;
         isExtending = false;
-        hasReachedMaxLength = true; // Mark beam as finished extending
-        Invoke(nameof(StartFlashing), lifetime);
+        hasReachedMaxLength = true;
+        StartCoroutine(LifetimeThenFlash());
     }
 
     public void SetBeamDirection(Vector2 direction)
     {
         this.direction = direction.normalized; // Using direction from Projectile class
         UpdateBeamFlip();
+        UpdateBeamLength(currentBeamLength);
     }
 
     public void UpdateBeamPosition(Vector2 newPosition)
@@ -74,15 +92,35 @@ public class MagnetBeam : Projectile
 
     private void ExtendBeam()
     {
-        if (currentBeamLength + beamSpriteRenderer.sprite.bounds.size.x <= maxBeamLength)
-        {
-            currentBeamLength += beamSpriteRenderer.sprite.bounds.size.x;
-            UpdateBeamLength(currentBeamLength);
-        }
-        else
+        float nextLength = currentBeamLength + tileLength;
+        if (nextLength > maxBeamLength + 0.001f)
         {
             StopExtending();
+            return;
         }
+
+        // Don't grow into walls: stop flush against the first wall tile in front of the beam
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, nextLength, wallLayer);
+        if (hit.collider != null)
+        {
+            float fitting = Mathf.Floor(hit.distance / tileLength + 0.001f) * tileLength;
+            if (fitting > currentBeamLength)
+            {
+                currentBeamLength = fitting;
+                UpdateBeamLength(currentBeamLength);
+            }
+            StopExtending();
+            return;
+        }
+
+        if (canAddTile != null && !canAddTile())
+        {
+            StopExtending();
+            return;
+        }
+
+        currentBeamLength = nextLength;
+        UpdateBeamLength(currentBeamLength);
     }
 
     private void UpdateBeamLength(float newLength)
@@ -95,7 +133,7 @@ public class MagnetBeam : Projectile
         if (boxCollider != null)
         {
             boxCollider.size = new Vector2(newLength, boxCollider.size.y);
-            boxCollider.offset = new Vector2(direction.x > 0 ? newLength / 2f : -newLength / 2f, boxCollider.offset.y);
+            boxCollider.offset = new Vector2(direction.x < 0 ? -newLength / 2f : newLength / 2f, boxCollider.offset.y);
         }
     }
 
@@ -107,38 +145,30 @@ public class MagnetBeam : Projectile
         }
     }
 
-    private void StartFlashing()
+    private IEnumerator LifetimeThenFlash()
     {
-        if (isFlashing) return;
+        yield return new WaitForSeconds(lifetime);
 
-        isFlashing = true;
-        StartCoroutine(FlashAndDestroy());
-    }
-
-    private IEnumerator FlashAndDestroy()
-    {
+        // Flash by toggling transparency, not the renderer: disabling the renderer fires OnBecameInvisible
+        Color visible = beamSpriteRenderer.color;
+        Color hidden = new Color(visible.r, visible.g, visible.b, 0f);
         float elapsedTime = 0f;
+        bool shown = true;
 
         while (elapsedTime < flashDuration)
         {
-            beamSpriteRenderer.enabled = !beamSpriteRenderer.enabled;
+            shown = !shown;
+            beamSpriteRenderer.color = shown ? visible : hidden;
             yield return new WaitForSeconds(flashInterval);
             elapsedTime += flashInterval;
         }
 
-        beamSpriteRenderer.enabled = true;
         Destroy(gameObject);
     }
 
-    private void PerformRaycast()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, currentBeamLength, wallLayer);
-
-        if (hit.collider != null)
-        {
-            StopExtending(); // Stop when hitting a wall
-        }
-    }
+    // The beam is a platform with its own lifetime: it must not vanish just because the camera scrolled
+    // away from it (the base Projectile destroys itself when it goes off-screen).
+    protected override void OnBecameInvisible() { }
 
     protected override void ApplyEffects(GameObject target)
     {

@@ -70,7 +70,7 @@ public class MegaBuster : Projectile
     }
 
     // Handle projectile becoming invisible (off-screen)
-    private void OnBecameInvisible()
+    protected override void OnBecameInvisible()
     {
         Destroy(gameObject);
     }

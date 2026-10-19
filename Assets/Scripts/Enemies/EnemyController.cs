@@ -50,6 +50,9 @@ public class EnemyController : MonoBehaviour
 
     public void FreezeEnemy(bool freeze)
     {
+        // Freezing twice would save the frozen values as the originals and keep the enemy frozen forever
+        if (freeze == freezeEnemy) return;
+
         if (freeze)
         {
             freezeEnemy = true;

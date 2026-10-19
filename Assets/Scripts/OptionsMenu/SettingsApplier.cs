@@ -21,6 +21,9 @@ public static class SettingsApplier
             case SettingType.Language:
                 LocalizationManager.Instance?.ApplyLanguage(index);
                 break;
+            case SettingType.GameBoyPalette:
+                FilterManager.Instance?.SetGameBoyPalette(index);
+                break;
         }
     }
 
@@ -30,6 +33,9 @@ public static class SettingsApplier
         {
             case SettingType.VSync:
                 QualitySettings.vSyncCount = value ? 1 : 0;
+                break;
+            case SettingType.Ghosting:
+                FilterManager.Instance?.SetGhosting(value);
                 break;
         }
     }

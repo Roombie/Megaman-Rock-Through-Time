@@ -83,7 +83,7 @@ public class PageFader : MonoBehaviour
 
         // Fade out the current page
         yield return StartCoroutine(FadeCanvasGroup(currentPage, 1f, 0f));
-        yield return new WaitForSeconds(delayBeforeNextPage);
+        yield return new WaitForSecondsRealtime(delayBeforeNextPage);   // menus also run while the game is paused (timeScale 0)
 
         // Switch to the next page
         ShowPage(nextPageIndex);
@@ -146,7 +146,7 @@ public class PageFader : MonoBehaviour
         {
             float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
             canvasGroup.alpha = alpha;
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
         canvasGroup.alpha = endAlpha; // Ensure the final value is set

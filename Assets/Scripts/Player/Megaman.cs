@@ -17,7 +17,6 @@ public class Megaman : MonoBehaviour
     [HideInInspector]
     public bool freezeInput = false;
     private bool freezePlayer = false;
-    private bool freezeEverything = false;
 
     [Header("Health state")]
     public int currentHealth;
@@ -191,8 +190,28 @@ public class Megaman : MonoBehaviour
         defaultBoxOffset = new(boxCollider.offset.x, boxCollider.offset.y);
         defaultBoxSize = new(boxCollider.size.x, boxCollider.size.y);
 
+        RefillWeaponsOncePerSession();
         SetWeapon(playerWeapon);
         weaponSwitchIcon.SetActive(false);
+    }
+
+    // Weapon energy is stored in the WeaponData assets. Fill every weapon once when the game starts, so energy
+    // used in Play mode doesn't carry over to the next run (or into builds); afterwards it persists between stages.
+    private static bool weaponsRefilledThisSession;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetWeaponSession() => weaponsRefilledThisSession = false;
+
+    private void RefillWeaponsOncePerSession()
+    {
+        if (weaponsRefilledThisSession || weaponsData == null) return;
+        weaponsRefilledThisSession = true;
+
+        foreach (var weapon in weaponsData)
+        {
+            if (weapon.weaponData != null)
+                weapon.weaponData.currentEnergy = weapon.weaponData.maxEnergy;
+        }
     }
 
     void Update()
@@ -324,6 +343,8 @@ public class Megaman : MonoBehaviour
 
     public void FreezePlayer(bool shouldFreeze)
     {
+        // Freezing twice would save FreezeAll as the "original" constraints and leave Mega Man stuck on unfreeze
+        if (shouldFreeze == freezePlayer) return;
         freezePlayer = shouldFreeze;
 
         if (shouldFreeze)
@@ -369,7 +390,8 @@ public class Megaman : MonoBehaviour
             Debug.Log("Current health: " + currentHealth);
             healthToRestore--;
 
-            yield return new WaitForSeconds(0.05f);
+            // Real time: tanks used from the paused weapons menu refill while timeScale is 0
+            yield return new WaitForSecondsRealtime(0.05f);
         }
         AudioManager.Instance.Stop(itemSound);
         GameManager.Instance.FreezeEverything(false);
@@ -415,8 +437,8 @@ public class Megaman : MonoBehaviour
 
             energyToRestore--;
 
-            // Wait for a small interval before restoring the next point of energy
-            yield return new WaitForSeconds(0.05f);
+            // Wait for a small interval before restoring the next point of energy (real time, see above)
+            yield return new WaitForSecondsRealtime(0.05f);
         }
 
         // Stop the sound once the restoration process is complete
@@ -498,23 +520,45 @@ public class Megaman : MonoBehaviour
         // It's referenced as an Animation Event, this function is called at the end of the Hit animation
         isTakingDamage = false;
         FreezeInput(false);
-        StartCoroutine(FlashAfterDamage());
+        if (flashRoutine != null) StopCoroutine(flashRoutine);
+        flashRoutine = StartCoroutine(FlashAfterDamage());
     }
+
+    private Coroutine flashRoutine;
+    private bool isBlinking;
+    private bool blinkHidden;
 
     private IEnumerator FlashAfterDamage()
     {
         // hit animation is 12 samples, keep flashing consistent with 1/12 secs
         float flashDelay = 0.0833f;
+        isBlinking = true;
         for (int i = 0; i < 10; i++)
         {
-            // Toggle transparency
-            // Calling the sprite renderer's material transparency and change it to 0 and 1 for 
-            spriteRenderer.material.SetFloat("_Transparency", 0f);
+            // Classic NES blink: hide/show the sprite. Applied in LateUpdate, because the Animator
+            // (Megaman_Hit animates SpriteRenderer.enabled, Write Defaults on) resets it every frame.
+            blinkHidden = true;
             yield return new WaitForSeconds(flashDelay);
-            spriteRenderer.material.SetFloat("_Transparency", 1f);
+            blinkHidden = false;
             yield return new WaitForSeconds(flashDelay);
         }
+        StopBlink();
+        flashRoutine = null;
         Invincible(false);
+    }
+
+    private void StopBlink()
+    {
+        isBlinking = false;
+        blinkHidden = false;
+        spriteRenderer.enabled = true;
+    }
+
+    private void LateUpdate()
+    {
+        // Runs after the Animator has written its values for this frame
+        if (isBlinking)
+            spriteRenderer.enabled = !blinkHidden;
     }
     #endregion
 
@@ -526,6 +570,14 @@ public class Megaman : MonoBehaviour
 
     private IEnumerator StartDeathAnimation()
     {
+        // Never die halfway through a blink with the sprite hidden
+        if (flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+            flashRoutine = null;
+        }
+        StopBlink();
+
         FreezeInput(true);
         FreezePlayer(true);
         yield return new WaitForSeconds(delayBeforeDeath);
@@ -587,6 +639,9 @@ public class Megaman : MonoBehaviour
             return;
         }
 
+        // Nothing from the previous weapon (charge sound, delayed shot, beam) carries over
+        CancelWeaponAction();
+
         // Initialize the weapon using the selected weapon type
         InitializeWeapon(weaponType);
 
@@ -624,6 +679,20 @@ public class Megaman : MonoBehaviour
 
         // Debug log to confirm the weapon change
         Debug.Log($"Weapon switched to: {playerWeapon}");
+    }
+
+    private void CancelWeaponAction()
+    {
+        CancelInvoke(nameof(ShootMegaBuster));
+
+        if (hasPlayedChargeSound && AudioManager.Instance != null && AudioManager.Instance.IsPlaying(chargingMegaBuster))
+            AudioManager.Instance.Stop(chargingMegaBuster);
+        hasPlayedChargeSound = false;
+
+        if (currentWeapon is MagnetBeamWeapon magnetBeam)
+            magnetBeam.StopBeam();
+
+        isShooting = false;
     }
 
     public void SwitchWeapon(WeaponTypes weaponType)
@@ -1057,7 +1126,9 @@ public class Megaman : MonoBehaviour
         // Update the beam position while the player is shooting
         if (magnetBeamWeapon != null && isShooting && !isInvincible)
         {
-            Vector2 newBeamPosition = (Vector2)transform.position + new Vector2(facingRight ? bulletShootOffset.x : -bulletShootOffset.x, bulletShootOffset.y);
+            // Same spot the beam was fired from (offset + shootRayLength), so it doesn't jump after the first frame
+            Vector2 newBeamPosition = (Vector2)transform.position + new Vector2(facingRight ? bulletShootOffset.x : -bulletShootOffset.x, bulletShootOffset.y)
+                                      + (facingRight ? Vector2.right : Vector2.left) * shootRayLength;
             magnetBeamWeapon.UpdateMagnetBeamPosition(newBeamPosition, facingRight);
         }
 
@@ -1442,17 +1513,13 @@ public class Megaman : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.started) 
-        {
-            freezeEverything = !freezeEverything;
-            GameManager.Instance.FreezeEverything(freezeEverything);
-            GameManager.Instance.ToggleWeaponsMenu();
-        }       
+        // The weapons / pause menus are handled by PauseManager (it listens to the WeaponsMenu and
+        // OptionsMenu actions itself). Kept so the PlayerInput event binding stays valid.
     }
 
     public void OnNextWeaponSwitch(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !freezeInput)
         {
             SwitchToNextWeapon();
         }
@@ -1460,7 +1527,7 @@ public class Megaman : MonoBehaviour
 
     public void OnPreviousWeaponSwitch(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !freezeInput)
         {
             SwitchToPreviousWeapon();
         }

@@ -564,11 +564,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         protected void OnDisable()
         {
-            m_RebindOperation?.Dispose();
-            m_RebindOperation = null;
-
-            if (m_Action != null && m_Action.action != null)
-                m_Action.action.Disable();
+            StopRebindAndRestoreAction();
 
             if (s_RebindActionUIs != null && s_RebindActionUIs.Contains(this))
                 s_RebindActionUIs.Remove(this);
@@ -599,9 +595,23 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private void OnDestroy()
         {
             _localizedErrorString.StringChanged -= UpdateErrorText;
+            StopRebindAndRestoreAction();
+        }
+
+        // The action belongs to the shared PlayerInputActions asset that Mega Man's PlayerInput also uses.
+        // Leaving it disabled when this page closes (or the Options screen unloads over the paused game)
+        // would leave the player unable to move, so only a rebind in progress is stopped, and the action
+        // is re-enabled.
+        private void StopRebindAndRestoreAction()
+        {
+            if (m_RebindOperation == null) return;
+
+            m_RebindOperation.Cancel();
+            m_RebindOperation?.Dispose();
+            m_RebindOperation = null;
 
             if (m_Action != null && m_Action.action != null)
-                m_Action.action.Disable();
+                m_Action.action.Enable();
         }
 
         // When the action system re-resolves bindings, we want to update our UI in response. While this will

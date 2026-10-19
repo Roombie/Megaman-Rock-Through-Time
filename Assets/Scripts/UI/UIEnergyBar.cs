@@ -11,12 +11,19 @@ public class UIEnergyBar : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        // Read the full height before anyone calls SetValue (Megaman sets the bar in its own Start)
+        originalSize = mask.rectTransform.rect.height;
+
+        // Only the HUD bar is the player's weapon bar. The bars inside the weapons menu also use this
+        // component; letting them take over Instance (they wake up when the menu first opens) made the
+        // HUD bar stop updating on weapon switches.
+        if (Instance == null && GetComponentInParent<WeaponsMenu>(true) == null)
+            Instance = this;
     }
 
-    void Start()
+    private void OnDestroy()
     {
-        originalSize = mask.rectTransform.rect.height;
+        if (Instance == this) Instance = null;
     }
 
     public void SetValue(float value)

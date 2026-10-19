@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 155521536483328
-    m_Localized: MAESTRO
+    m_Localized: GENERAL
     m_Metadata:
       m_Items: []
   - m_Id: 161066360233984
@@ -48,6 +48,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 162597637709824
     m_Localized: V-SYNC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225103360
+    m_Localized: EFECTO FANTASMA
     m_Metadata:
       m_Items: []
   - m_Id: 162880795172864
@@ -244,8 +248,32 @@ MonoBehaviour:
     m_Localized: TV
     m_Metadata:
       m_Items: []
+  - m_Id: 98240213225107456
+    m_Localized: TV CURVA
+    m_Metadata:
+      m_Items: []
   - m_Id: 91762265789878272
     m_Localized: Monitor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225111552
+    m_Localized: GAME BOY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225115648
+    m_Localized: VERDE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225119744
+    m_Localized: POCKET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225123840
+    m_Localized: LIGHT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225127936
+    m_Localized: SUPER
     m_Metadata:
       m_Items: []
   - m_Id: 91761167473627136
@@ -284,12 +312,64 @@ MonoBehaviour:
     m_Localized: FILTRO
     m_Metadata:
       m_Items: []
+  - m_Id: 98240213225132032
+    m_Localized: PALETA GB
+    m_Metadata:
+      m_Items: []
   - m_Id: 97697873909567488
     m_Localized: Amplio
     m_Metadata:
       m_Items: []
   - m_Id: 98240213225099264
     m_Localized: Vent. compl.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225136128
+    m_Localized: ACTIVADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225140224
+    m_Localized: DESACTIVADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225144320
+    m_Localized: ARMAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225148416
+    m_Localized: PAUSA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225152512
+    m_Localized: CONTINUAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225156608
+    m_Localized: OPCIONES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225160704
+    m_Localized: SALIR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225164800
+    m_Localized: "\xBFVOLVER AL T\xCDTULO?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225168896
+    m_Localized: "SE PERDER\xC1 EL PROGRESO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225172992
+    m_Localized: "S\xCD"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225177088
+    m_Localized: NO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 98240213225181184
+    m_Localized: OBJETOS
     m_Metadata:
       m_Items: []
   references:

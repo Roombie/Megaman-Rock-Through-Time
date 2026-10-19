@@ -63,17 +63,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = FindFirstObjectByType<Megaman>();
+        // Legacy weapons menu (optional): the pause / weapons menus are now handled by PauseManager
         var weaponsMenus = Object.FindObjectsByType<WeaponsMenu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        if (weaponsMenus.Length > 0) weaponsMenu = weaponsMenus[0].gameObject;
 
-        if (weaponsMenus.Length > 0)
-        {
-            weaponsMenu = weaponsMenus[0].gameObject; // Assuming you want the first instance
-            Debug.Log("WeaponsMenu found successfully");
-        }
-        else
-        {
-            Debug.LogError("WeaponsMenu not found in the scene");
-        }
+        if (player == null) return;   // scenes without Mega Man (title, options...)
 
         // Ensure we fetch the player's weapons
         playerWeapons = player.GetWeapons();
@@ -231,33 +225,36 @@ public class GameManager : MonoBehaviour
     #region Freeze entities
     public void FreezePlayer(bool freeze)
     {
+        // The GameManager outlives scenes (it can come from the Title screen, and respawns reload the level),
+        // so look the player up again whenever the stored one is gone
+        if (player == null) player = FindFirstObjectByType<Megaman>();
         if (player != null)
         {
-            player.GetComponent<Megaman>().FreezeInput(freeze);
-            player.GetComponent<Megaman>().FreezePlayer(freeze);
+            player.FreezeInput(freeze);
+            player.FreezePlayer(freeze);
         }
     }
 
     public void FreezeEnemies(bool freeze)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            enemy.GetComponent<EnemyController>().FreezeEnemy(freeze);
-        }
+        // By component, not tag: an enemy without the "Enemy" tag must still freeze
+        foreach (var enemy in FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+            enemy.FreezeEnemy(freeze);
     }
 
     public void FreezeExplosions(bool freeze)
     {
-        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
-        foreach (GameObject explosion in explosions)
-        {
-            explosion.GetComponent<Explosion>().FreezeExplosion(freeze);
-        }
+        // By component: the ExplosionEffect prefab isn't tagged "Explosion"
+        foreach (var explosion in FindObjectsByType<Explosion>(FindObjectsSortMode.None))
+            explosion.FreezeExplosion(freeze);
     }
 
     public void FreezeEverything(bool freeze)
     {
+        // While a pause/weapons menu is open the game stays frozen (e.g. an E-Tank used from the
+        // menu asks to unfreeze when it finishes refilling)
+        if (!freeze && PauseManager.Instance != null && PauseManager.Instance.IsOpen) return;
+
         Debug.Log("Freezing everything");
         FreezeEnemies(freeze);
         FreezeExplosions(freeze);

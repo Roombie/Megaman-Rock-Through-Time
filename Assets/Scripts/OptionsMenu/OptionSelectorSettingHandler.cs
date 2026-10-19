@@ -13,7 +13,7 @@ public enum NavigationAxis
 
 public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISelectHandler, IDeselectHandler
 {
-    [SettingTypeFilter(SettingType.Screen, SettingType.Border, SettingType.Filter, SettingType.Language, SettingType.DisplayMode)]
+    [SettingTypeFilter(SettingType.Screen, SettingType.Border, SettingType.Filter, SettingType.Language, SettingType.DisplayMode, SettingType.GameBoyPalette)]
     public SettingType settingType;
     public TextMeshProUGUI label;
     [SerializeField] private NavigationAxis navigationAxis = NavigationAxis.Horizontal;
@@ -47,7 +47,8 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
             SettingType.Border,
             SettingType.Filter,
             SettingType.Language,
-            SettingType.DisplayMode
+            SettingType.DisplayMode,
+            SettingType.GameBoyPalette
         };
 
         if (!System.Array.Exists(allowed, t => t == settingType))

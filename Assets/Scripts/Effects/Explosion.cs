@@ -68,6 +68,8 @@ public class Explosion : MonoBehaviour
     {
         // freeze/unfreeze the explosions on screen
         // NOTE: this will be called from the GameManager but could be used in other scripts
+        if (freeze == freezeExplosion) return;   // freezing twice would save speed 0 as the original
+
         if (freeze)
         {
             freezeExplosion = true;

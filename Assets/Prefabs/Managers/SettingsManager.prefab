@@ -97,7 +97,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crtVolume: {fileID: 8155964469061258265}
   crtRendererFeature: {fileID: 3759450601404831646, guid: 81563abf2ac4e0a459ade5009bd495bc, type: 2}
-  monitorFeature: {fileID: -593233596872933530, guid: 81563abf2ac4e0a459ade5009bd495bc, type: 2}
+  crtScanlineShader: {fileID: 4800000, guid: f2a2234fdc36400d837cd91e2f2e8c86, type: 3}
+  scanlineStrength: 0.35
+  apertureGrilleStrength: 0.12
+  gameBoyFeature: {fileID: 304558978647685813, guid: 81563abf2ac4e0a459ade5009bd495bc, type: 2}
+  gameBoyGridStrength: 0.2
+  lcdGridShader: {fileID: 4800000, guid: c062280c89bd430faefe82d559b2ad43, type: 3}
+  gridStrength: 0.3
+  gridGapWidth: 0.12
+  subpixelStrength: 0.15
+  saturation: -15
+  contrast: -8
+  ghosting: 0.35
+  ghostingFeature: {fileID: -593233596872933530, guid: 81563abf2ac4e0a459ade5009bd495bc, type: 2}
 --- !u!114 &2662731416658686041
 MonoBehaviour:
   m_ObjectHideFlags: 0

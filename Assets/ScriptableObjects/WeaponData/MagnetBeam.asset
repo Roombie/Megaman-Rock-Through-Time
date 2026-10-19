@@ -24,8 +24,9 @@ MonoBehaviour:
   chargeLevels: []
   shootDelay: 0.25
   maxEnergy: 28
-  currentEnergy: 26
+  currentEnergy: 28
   energyCost: 2
+  tilesPerEnergy: 2
   limitBulletsOnScreen: 1
   maxBulletsOnScreen: 5
   baseDamage: 0

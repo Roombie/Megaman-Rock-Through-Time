@@ -98,7 +98,7 @@ public class ScreenFader : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         yield return FadeIn();
     }
 
@@ -112,7 +112,7 @@ public class ScreenFader : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         yield return FadeIn();
     }
 
@@ -123,7 +123,7 @@ public class ScreenFader : MonoBehaviour
 
         while (timer < fadeDuration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;   // fades also run while the game is paused (timeScale 0)
             float alpha = Mathf.Lerp(startAlpha, targetAlpha, timer / fadeDuration);
             fadeImage.color = new Color(color.r, color.g, color.b, alpha);
             yield return null;
