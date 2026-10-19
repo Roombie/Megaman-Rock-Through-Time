@@ -75,18 +75,54 @@ public class PauseMenuUI : MonoBehaviour
     private Canvas canvas;
     public Canvas Canvas => canvas != null ? canvas : canvas = GetComponent<Canvas>();
 
+    private bool opening;
+
     private void Awake()
     {
-        // The canvas is saved visible so it can be edited; in game it starts hidden
-        gameObject.SetActive(false);
+        // Saved visible (to edit it) it starts hidden in game. Saved hidden, Awake first runs inside Open: stay open.
+        if (!opening) gameObject.SetActive(false);
     }
 
     #region Visibility & pages
     public void Open(int page)
     {
+        opening = true;
         gameObject.SetActive(true);
+        opening = false;
+        ShowParts();
         if (confirmPanel != null) confirmPanel.SetActive(false);
         SetPage(page);
+    }
+
+    /// <summary>
+    /// Turns on everything the menu drives, so any of it can be saved hidden in the scene (inactive objects
+    /// can't be measured by the pixel layout, and TMP doesn't build their text). Arrows, cursor, confirm panel,
+    /// templates and the item grid are shown / hidden by the menu itself.
+    /// </summary>
+    private void ShowParts()
+    {
+        Show(pageStrip);
+        if (pages != null) foreach (var p in pages) Show(p);
+        if (pageLabels != null) foreach (var l in pageLabels) Show(l);
+        Show(pausePanel);
+        if (pausePanel != null) { Show(pausePanel.content); Show(pausePanel.border); Show(pausePanel.background); }
+        if (pauseOptions != null) foreach (var o in pauseOptions) Show(o);
+        Show(weaponsPanel);
+        if (weaponsPanel != null) { Show(weaponsPanel.content); Show(weaponsPanel.border); Show(weaponsPanel.background); }
+        Show(weaponsStack);
+        Show(weaponGrid);
+        Show(livesText);
+        Show(screwsText);
+        Show(healthBar);
+    }
+
+    /// <summary>Activates the object and its parents up to `stopAt` (default: this canvas).</summary>
+    private void Show(Component part, Transform stopAt = null)
+    {
+        if (part == null) return;
+        if (stopAt == null) stopAt = transform;
+        for (var t = part.transform; t != null && t != stopAt; t = t.parent)
+            if (!t.gameObject.activeSelf) t.gameObject.SetActive(true);
     }
 
     public void Close()
@@ -100,7 +136,14 @@ public class PauseMenuUI : MonoBehaviour
     {
         if (confirmPanel == null) return;
         confirmPanel.SetActive(show);
-        if (show && confirmPanel.TryGetComponent(out PixelPanelFit fit)) fit.Fit();
+        if (!show) return;
+        Show(confirmNo, confirmPanel.transform);
+        Show(confirmYes, confirmPanel.transform);
+        if (confirmPanel.TryGetComponent(out PixelPanelFit fit))
+        {
+            Show(fit.content, confirmPanel.transform); Show(fit.border, confirmPanel.transform); Show(fit.background, confirmPanel.transform);
+            fit.Fit();
+        }
     }
 
     private float PageWidth()
@@ -190,7 +233,8 @@ public class PauseMenuUI : MonoBehaviour
         foreach (var entry in items)
             if (!hideEmptyItems || countOf(entry.item) > 0) shownItems.Add(entry);
 
-        itemGrid.gameObject.SetActive(shownItems.Count > 0);
+        if (shownItems.Count > 0) Show(itemGrid);
+        else itemGrid.gameObject.SetActive(false);
         itemGrid.Fill(shownItems.Count);
         for (int i = 0; i < itemGrid.cells.Count; i++)
         {

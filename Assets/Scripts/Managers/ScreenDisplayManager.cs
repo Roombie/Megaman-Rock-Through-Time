@@ -8,9 +8,15 @@ public class ScreenDisplayManager : MonoBehaviour
     private Vector2 lastResolution = Vector2.zero;
     private FullScreenMode lastFullScreenMode = FullScreenMode.FullScreenWindow;
 
+    [Tooltip("Draws camera / resolution info in the top-left corner (debug).")]
+    [SerializeField] private bool showDebugInfo = true;
+
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 300, 20), $"Orthographic Size: {Camera.main.orthographicSize}");
+        if (!showDebugInfo) return;
+        // No main camera while the Options overlay hides the game's cameras, or during a scene change
+        var cam = Camera.main;
+        GUI.Label(new Rect(10, 10, 300, 20), cam != null ? $"Orthographic Size: {cam.orthographicSize}" : "Orthographic Size: (no main camera)");
         GUI.Label(new Rect(10, 30, 300, 20), $"Screen Resolution: {Screen.width}x{Screen.height}");
         GUI.Label(new Rect(10, 50, 300, 20), $"Aspect Ratio: {(float)Screen.width / Screen.height:F2}");
     }

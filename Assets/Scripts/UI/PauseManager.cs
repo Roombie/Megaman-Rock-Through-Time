@@ -80,6 +80,10 @@ public class PauseManager : MonoBehaviour
 
     private readonly List<GameObject> hiddenForOptions = new();
     private Image fadeImage;
+    private bool optionsBusy;      // opening / closing the Options overlay (fades, scene load / unload)
+
+    /// <summary>A menu fade / Options swap is running: menus should ignore input until it ends.</summary>
+    public bool IsTransitioning => optionsBusy;
 
     private Vector2Int heldDirection;
     private float nextRepeatTime;
@@ -191,6 +195,7 @@ public class PauseManager : MonoBehaviour
     // Opens on that page; if open on another page slides to it; if already on it, closes
     private void OnPageButton(int page)
     {
+        if (optionsBusy) return;
         if (state == State.Closed)
         {
             if (CanOpen()) Open(page);
@@ -263,6 +268,7 @@ public class PauseManager : MonoBehaviour
 
     private void GoToPage(int page)
     {
+        if (optionsBusy) return;
         if (ui.SlideTo(page))
         {
             Play(pageSound != null ? pageSound : moveSound);
@@ -274,7 +280,7 @@ public class PauseManager : MonoBehaviour
     #region Input
     private void Update()
     {
-        if (state == State.Closed || state == State.Options || ui == null) return;
+        if (state == State.Closed || state == State.Options || ui == null || optionsBusy) return;
 
         if (state == State.Open && ui.CurrentPage == WeaponsPage) RefreshWeaponValues();   // e.g. life refilling
         if (selectionDirty && !ui.IsSliding) UpdateSelection();
@@ -339,7 +345,7 @@ public class PauseManager : MonoBehaviour
 
     private void OnSubmit(InputAction.CallbackContext context)
     {
-        if (ui == null || ui.IsSliding) return;
+        if (ui == null || ui.IsSliding || optionsBusy) return;
         if (state == State.ConfirmExit) { SubmitConfirm(); return; }
         if (state != State.Open) return;
 
@@ -349,6 +355,7 @@ public class PauseManager : MonoBehaviour
 
     private void OnCancel(InputAction.CallbackContext context)
     {
+        if (optionsBusy || (ui != null && ui.IsSliding)) return;
         if (state == State.ConfirmExit)
         {
             Play(closeSound);
@@ -536,6 +543,8 @@ public class PauseManager : MonoBehaviour
     #region Options overlay
     private IEnumerator OpenOptions()
     {
+        if (optionsBusy) yield break;
+        optionsBusy = true;
         state = State.Options;
 
         // NES-style: the whole screen steps down to black, the Options screen is swapped in, then it steps back up
@@ -554,6 +563,7 @@ public class PauseManager : MonoBehaviour
         yield return SceneManager.LoadSceneAsync(optionsSceneName, LoadSceneMode.Additive);
         yield return null;    // let the Options screen lay itself out before it shows
         yield return Fade(false);
+        optionsBusy = false;
     }
 
     // Steps a black screen over everything (darker each step), or back to clear. No smooth blending.
@@ -606,12 +616,13 @@ public class PauseManager : MonoBehaviour
     public bool TryCloseOptionsOverlay()
     {
         if (state != State.Options) return false;
-        StartCoroutine(CloseOptions());
+        if (!optionsBusy) StartCoroutine(CloseOptions());   // spammed Back: already on its way out
         return true;
     }
 
     private IEnumerator CloseOptions()
     {
+        optionsBusy = true;
         yield return Fade(true);
 
         Scene options = SceneManager.GetSceneByName(optionsSceneName);
@@ -640,6 +651,7 @@ public class PauseManager : MonoBehaviour
 
         yield return null;
         yield return Fade(false);
+        optionsBusy = false;
     }
     #endregion
 

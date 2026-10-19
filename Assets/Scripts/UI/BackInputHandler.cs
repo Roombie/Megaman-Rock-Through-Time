@@ -34,7 +34,12 @@ public class BackInputHandler : MonoBehaviour
 
     private void OnCancelPressed(InputAction.CallbackContext context)
     {
-        if (!UIInteractionState.IsAnyInteractionActive() && !ScreenFader.Instance.IsTransitioning)
+        if (UIInteractionState.IsAnyInteractionActive()) return;
+        // Spamming Esc: ignore it while any fade or page change is still running
+        if (ScreenFader.Instance != null && ScreenFader.Instance.IsTransitioning) return;
+        if (PageFader.AnyTransitioning) return;
+        if (PauseManager.Instance != null && PauseManager.Instance.IsTransitioning) return;
+
         {
             if (fallbackButton != null)
             {

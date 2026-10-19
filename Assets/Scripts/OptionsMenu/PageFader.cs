@@ -19,7 +19,31 @@ public class PageFader : MonoBehaviour
     public float fadeDuration = 0.5f;
     public float delayBeforeNextPage = 0.5f;
     private int currentPageIndex = 0;
-    private bool isTransitioning = false;
+    private bool transitioning;
+    private bool isTransitioning
+    {
+        get => transitioning;
+        set
+        {
+            if (value == transitioning) return;
+            transitioning = value;
+            transitioningCount += value ? 1 : -1;
+        }
+    }
+
+    // Any page change in progress (Back / Esc is ignored meanwhile)
+    private static int transitioningCount;
+    public static bool AnyTransitioning => transitioningCount > 0;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => transitioningCount = 0;
+
+    // Unloaded / disabled mid-transition (e.g. the Options overlay closing): the coroutine dies, release the flag
+    private void OnDisable()
+    {
+        isTransitioning = false;
+        if (arrowSelector != null) arrowSelector.SetChangingPage(false);
+    }
 
     public Dictionary<(int fromPage, int toPage), GameObject> transitionButtons = new Dictionary<(int, int), GameObject>();
 
