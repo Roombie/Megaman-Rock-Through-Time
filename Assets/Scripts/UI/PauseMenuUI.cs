@@ -158,10 +158,15 @@ public class PauseMenuUI : MonoBehaviour
     {
         CurrentPage = Mathf.Clamp(page, 0, pages.Length - 1);
         float width = PageWidth();
-        for (int i = 0; i < pages.Length; i++)
-            if (pages[i] != null) pages[i].anchoredPosition = new Vector2(i * width, 0);
+        LayOutPages(width);
         if (pageStrip != null) pageStrip.anchoredPosition = new Vector2(-CurrentPage * width, 0);
         UpdateIndicator();
+    }
+
+    private void LayOutPages(float width)
+    {
+        for (int i = 0; i < pages.Length; i++)
+            if (pages[i] != null) pages[i].anchoredPosition = new Vector2(i * width, 0);
     }
 
     /// <summary>Slides to a neighbouring page, moving in whole pixels every frame.</summary>
@@ -177,7 +182,10 @@ public class PauseMenuUI : MonoBehaviour
         IsSliding = true;
         if (cursor != null) cursor.gameObject.SetActive(false);
 
+        // Laid out again with the width the slide uses: when the menu reopens after the Options screen, the canvas
+        // can still have its old size at that moment, which would leave the page part way off screen
         float width = PageWidth();
+        LayOutPages(width);
         float from = -CurrentPage * width, to = -page * width;
         CurrentPage = page;
         UpdateIndicator();
