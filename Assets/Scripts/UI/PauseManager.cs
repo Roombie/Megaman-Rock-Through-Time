@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// Logic of the in-game menus. The menus are scene objects (PauseMenuUI on its own canvas, created with
-/// Tools > Mega Man > Create Pause Menu Canvas): pages that slide left/right with a page indicator.
+/// Logic of the in-game menus. The menus are scene objects (the Pause Menu Canvas prefab: PauseMenuUI on its own
+/// canvas): pages that slide left/right with a page indicator.
 ///   Page 0 - Pause:   Resume / Options / Exit (with confirmation). Opened with the OptionsMenu action (Start / Space).
 ///   Page 1 - Weapons: weapons, items (tanks), lives, screws. Opened with the WeaponsMenu action (Y / P).
 /// Left/right at the edge of a page, or the weapon-switch buttons (LB/RB, Q/E), slide to the next page.
@@ -27,8 +27,8 @@ public class PauseManager : MonoBehaviour
 
     private enum State { Closed, Open, ConfirmExit, Options }
 
-    [Tooltip("Used by the editor tool that creates the menu canvas, and if a scene has no PauseMenuUI.")]
-    [SerializeField] private PauseMenuStyle style = new();
+    [Tooltip("The Pause Menu Canvas prefab: a scene without its own pause menu gets a copy, so the game always has one.")]
+    [SerializeField] private GameObject menuPrefab;
 
     [Header("Sounds")]
     [SerializeField] private AudioEvent openSound;
@@ -54,7 +54,6 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private float repeatRate = 0.1f;
 
     public bool IsOpen => state != State.Closed;
-    public PauseMenuStyle Style => style;
 
     private State state = State.Closed;
     private LocalPlayerInput owner;     // the player who paused: only they drive the menus (MenuInput)
@@ -183,16 +182,17 @@ public class PauseManager : MonoBehaviour
         MenuInput.SetOwner(null);
     }
 
-    // The scene's PauseMenuUI; scenes without one get a generated copy so the game always has menus
+    // The scene's PauseMenuUI; scenes without one get a copy of the prefab so the game always has menus
     private PauseMenuUI FindMenu()
     {
         if (ui != null) return ui;
         ui = FindFirstObjectByType<PauseMenuUI>(FindObjectsInactive.Include);
-        if (ui == null)
+        if (ui == null && menuPrefab != null)
         {
-            ui = PauseMenuFactory.Build(style, GameCamera());
-            Debug.Log("PauseManager: no PauseMenuUI in the scene, generated one (Tools > Mega Man > Create Pause Menu Canvas adds an editable one).");
+            ui = Instantiate(menuPrefab).GetComponent<PauseMenuUI>();
+            Debug.Log("PauseManager: no pause menu in the scene, added a copy of the Pause Menu Canvas prefab.");
         }
+        if (ui == null) Debug.LogWarning("PauseManager: no pause menu in the scene and no Pause Menu Canvas prefab set.");
         return ui;
     }
 

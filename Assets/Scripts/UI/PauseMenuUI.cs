@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// Pages side by side (Pause, Weapons...) slide left/right; a page indicator stays on top.
 /// Weapon rows and item slots are cloned from templates (TemplateGrid), sections stack by their content
 /// (PixelStack) and panels fit their background around it (PixelPanelFit), so the layout adapts to how many
-/// weapons/items there are. PauseManager drives it. Create one with Tools > Mega Man > Create Pause Menu Canvas.
+/// weapons/items there are. PauseManager drives it. It's the Pause Menu Canvas prefab (Prefabs/UI): put one in each level.
 /// </summary>
 public class PauseMenuUI : MonoBehaviour
 {
