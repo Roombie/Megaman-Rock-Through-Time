@@ -26,8 +26,39 @@ public class Explosion : MonoBehaviour
         SetDestroyDelay(destroyDelay);
     }
 
+    // NES: an effect that scrolls off screen is gone (with the room camera; scenes without one keep the timer only),
+    // and a screen transition clears them all
+    private const float OffScreenMargin = 1f;   // tiles past the screen edge
+    private static readonly List<Explosion> all = new();
+
+    private void OnEnable()
+    {
+        all.Add(this);
+        if (all.Count == 1) RoomTransition.Started += ClearAll;
+    }
+
+    private void OnDisable()
+    {
+        all.Remove(this);
+        if (all.Count == 0) RoomTransition.Started -= ClearAll;
+    }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => all.Clear();
+
+    private static void ClearAll(CameraRoom from, CameraRoom to, RoomTransition.Direction direction)
+    {
+        foreach (Explosion explosion in all.ToArray()) Destroy(explosion.gameObject);
+    }
+
     private void Update()
     {
+        if (RoomCamera.All.Count > 0 && !RoomCamera.Sees(transform.position, OffScreenMargin * CameraRoom.Tile))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (freezeExplosion) return;
 
         if (destroyDelay > 0)
