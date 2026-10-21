@@ -38,6 +38,7 @@ MonoBehaviour:
   slideDuration: 0.35
   slideBoxOffset: {x: 0.002129734, y: 0.153441}
   slideBoxSize: {x: 0.8771878, y: 0.3083358}
+  maxSlopeAngle: 50
   climbSpeed: 2.5
   waterLayer:
     serializedVersion: 2
@@ -54,5 +55,3 @@ MonoBehaviour:
   topCheckSize: {x: 0.79, y: 0.2}
   frontCheckOffset: {x: 0.54, y: 0.57}
   frontCheckSize: {x: 0.2, y: 0.75}
-  maxSlopeAngle: 50
-  slopeSnapDistance: 0.25
