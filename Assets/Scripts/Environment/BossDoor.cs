@@ -38,7 +38,16 @@ public class BossDoor : MonoBehaviour
         Shape(heightTiles);
     }
 
+    // The collider and the shutter follow the size in tiles. Not inside OnValidate itself: resizing a SpriteRenderer
+    // sends a message, which Unity doesn't allow there; right after it.
     private void OnValidate()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.delayCall += () => { if (this != null) FitToSize(); };
+#endif
+    }
+
+    private void FitToSize()
     {
         if (TryGetComponent(out BoxCollider2D box))
         {
