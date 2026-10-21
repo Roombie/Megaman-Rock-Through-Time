@@ -33,7 +33,7 @@ public class RoomCamera : MonoBehaviour
 
     /// <summary>The room a transition is scrolling into (shown too while it runs), or null.</summary>
     public CameraRoom IncomingRoom { get; set; }
-    private SpriteRenderer[] masks;
+    [System.NonSerialized] private SpriteRenderer[] masks;   // not kept by the editor's script reloads
     private static Sprite maskSprite;
 
     /// <summary>The cameras following rooms (one, unless split screen).</summary>
@@ -207,10 +207,10 @@ public class RoomCamera : MonoBehaviour
         bool show = maskOutsideRoom && CurrentRoom != null;
         if (!show)
         {
-            if (masks != null) foreach (var m in masks) m.enabled = false;
+            if (masks != null) foreach (var m in masks) if (m != null) m.enabled = false;
             return;
         }
-        if (masks == null) CreateMasks();
+        if (!MasksReady()) CreateMasks();
 
         Rect room = CurrentRoom.Bounds;
         if (IncomingRoom != null)
@@ -238,8 +238,17 @@ public class RoomCamera : MonoBehaviour
         strip.transform.localScale = new Vector3(xMax - xMin, yMax - yMin, 1f);
     }
 
+    // Four live strips (a script reload or a scene change can leave the array empty or the strips gone)
+    private bool MasksReady()
+    {
+        if (masks == null || masks.Length != 4) return false;
+        foreach (var m in masks) if (m == null) return false;
+        return true;
+    }
+
     private void CreateMasks()
     {
+        if (masks != null) foreach (var old in masks) if (old != null) Destroy(old.gameObject);
         if (maskSprite == null)
             maskSprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f), 4f);
         masks = new SpriteRenderer[4];
