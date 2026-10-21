@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable, IDamagePreview
 {
     bool isInvincible;
     float animatorSpeed;
@@ -19,7 +19,15 @@ public class EnemyController : MonoBehaviour
     public int contactDamage = 1;
     public int explosionDamage = 0;
     public float explosionDelayBeforeDestroy = 2f;
-    public AudioClip damageClip;
+    public AudioEvent damageClip;
+
+    [Header("Weaknesses")]
+    [Tooltip("Damage specific weapons do to this enemy (0 = immune). Weapons not listed do their normal damage.")]
+    public WeaponDamage[] weaknesses;
+    [Tooltip("Played when a weapon does no damage (immune).")]
+    public AudioEvent immuneClip;
+
+    private float weaponFreezeRemaining;
 
     GameObject explodeEffect;
     [SerializeField] GameObject explosionEffectPrefab;
@@ -28,7 +36,6 @@ public class EnemyController : MonoBehaviour
     BoxCollider2D boxCollider2D;
     Rigidbody2D rb;
     Animator animator;
-    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +44,6 @@ public class EnemyController : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
 
         // start at full health
         currentHealth = maxHealth;
@@ -71,15 +77,48 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>Hit by a weapon: uses the weakness table, then the normal damage.</summary>
+    public bool TakeDamage(in DamageInfo info)
+    {
+        if (isInvincible) return false;
+
+        int amount = WeaknessTable.Resolve(weaknesses, info);
+
+        if (amount <= 0)
+        {
+            Audio.Play(immuneClip);   // "dink"
+            return false;
+        }
+
+        TakeDamage(amount);
+        return true;
+    }
+
+    public int PreviewDamage(in DamageInfo info) => WeaknessTable.Resolve(weaknesses, info);
+
+    /// <summary>Frozen by a weapon (Ice Slasher...) for some seconds.</summary>
+    public void FreezeFor(float seconds)
+    {
+        if (seconds <= 0f) return;
+        if (!freezeEnemy) FreezeEnemy(true);
+        weaponFreezeRemaining = Mathf.Max(weaponFreezeRemaining, seconds);
+    }
+
+    private void Update()
+    {
+        if (weaponFreezeRemaining <= 0f) return;
+        weaponFreezeRemaining -= Time.deltaTime;
+        if (weaponFreezeRemaining <= 0f) FreezeEnemy(false);
+    }
+
     public void TakeDamage(int damage)
     {
         // take damage if not invincible
         if (!isInvincible)
         {
-            AudioManager.Instance.Play(damageClip);
+            Audio.Play(damageClip);
             // take damage amount from health and call defeat if no health
-            currentHealth -= damage;
-            Mathf.Clamp(currentHealth, 0, maxHealth);
+            currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
             if (currentHealth <= 0)
             {
                 Defeat();

@@ -14,33 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: M. Beam
   isEnabled: 1
-  weaponPrefab: {fileID: 4270421284652484171, guid: ad6e3e7fef98204429f097acc9fb4382, type: 3}
   weaponIcon: {fileID: 1656209130, guid: 65f8d18b4070cd24aae0bceb8044483f, type: 3}
   weaponIconNotSelected: {fileID: -1789080786, guid: 65f8d18b4070cd24aae0bceb8044483f, type: 3}
   weaponBarSprite: {fileID: 1374572244, guid: e2cd18c8525c8cb45bda6e0af562f5b7, type: 3}
-  weaponClip: {fileID: 8300000, guid: 756c4884095d30c4f8d5d2433054c8f2, type: 3}
   primaryColor: {r: 0, g: 0.4392157, b: 0.9254902, a: 1}
   secondaryColor: {r: 0, g: 0.9098039, b: 0.84705883, a: 1}
-  chargeLevels: []
-  shootDelay: 0.25
+  weaponPrefab: {fileID: 3588169172285187612, guid: 54fc8d3edba2442595d33a91dafc9d79, type: 3}
+  weaponClip: {fileID: 11400000, guid: 9a810a04c8494ab5a08645335282a52c, type: 2}
   maxEnergy: 28
-  currentEnergy: 28
   energyCost: 2
-  tilesPerEnergy: 2
+  usesHealthAsEnergy: 0
   limitBulletsOnScreen: 1
   maxBulletsOnScreen: 5
-  baseDamage: 0
-  hasHoming: 0
-  homingStrength: 0
-  allowsAngleAdjustment: 0
-  minAngle: 0
-  maxAngle: 0
-  skinSprites: []
-  canFreeze: 0
-  freezeDuration: 0
-  hasSplashDamage: 0
-  splashRadius: 0
-  splashDamage: 0
-  canSlowTime: 0
-  slowAmount: 0
-  slowDuration: 0

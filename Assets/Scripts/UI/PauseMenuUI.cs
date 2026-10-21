@@ -203,7 +203,7 @@ public class PauseMenuUI : MonoBehaviour
     #endregion
 
     #region Weapons page
-    public void BuildWeapons(IList<Megaman.WeaponsStruct> weapons, WeaponTypes equipped)
+    public void BuildWeapons(IList<WeaponData> weapons, WeaponData equipped)
     {
         weaponRows.Clear();
         if (weaponGrid == null) return;
@@ -214,12 +214,12 @@ public class PauseMenuUI : MonoBehaviour
             var w = weapons[i];
             if (row.icon != null)
             {
-                bool isEquipped = w.weaponType == equipped || w.weaponData.weaponIconNotSelected == null;
-                row.icon.sprite = isEquipped ? w.weaponData.weaponIcon : w.weaponData.weaponIconNotSelected;
+                bool isEquipped = w == equipped || w.weaponIconNotSelected == null;
+                row.icon.sprite = isEquipped ? w.weaponIcon : w.weaponIconNotSelected;
                 row.icon.color = row.icon.sprite != null ? Color.white : Color.clear;
             }
             if (row.label != null)
-                row.label.text = (string.IsNullOrEmpty(w.weaponData.weaponName) ? w.weaponType.ToString() : w.weaponData.weaponName).ToUpperInvariant();
+                row.label.text = w.DisplayName.ToUpperInvariant();
             weaponRows.Add(row);
         }
     }

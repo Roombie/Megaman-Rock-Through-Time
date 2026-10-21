@@ -1,18 +1,31 @@
-// Assets/Scripts/Weapons/Projectile.cs
-// Handles the behavior and properties of individual projectiles (like bullets or beams)
-// that are spawned when a weapon is fired.
-// THIS APPLIES TO HELP CODING THE PROJECTILES FOR THE WEAPONS
+using System;
 using UnityEngine;
 
+/// <summary>
+/// Base of everything a weapon fires. The weapon calls Initialize with the shot (damage, speed, direction).
+/// Use BasicProjectile for most weapons (movement + hit effects picked in the Inspector), or subclass this
+/// for something special (e.g. MagnetBeam).
+/// </summary>
 public abstract class Projectile : MonoBehaviour
 {
     protected Rigidbody2D rb;
-    protected Vector2 direction;
-    protected float bulletSpeed;
     protected SpriteRenderer spriteRenderer;
+    protected Vector2 direction = Vector2.right;
 
-    public delegate void BulletDestroyed();
-    public event BulletDestroyed OnBulletDestroyed;
+    public ShotInfo Shot { get; protected set; }
+    public Vector2 Direction
+    {
+        get => direction;
+        set
+        {
+            direction = value;
+            if (spriteRenderer != null && Mathf.Abs(direction.x) > 0.01f) spriteRenderer.flipX = direction.x < 0;
+        }
+    }
+    public Rigidbody2D Body => rb;
+
+    /// <summary>Raised when the projectile is gone (frees its on-screen slot).</summary>
+    public event Action Destroyed;
 
     protected virtual void Awake()
     {
@@ -20,48 +33,23 @@ public abstract class Projectile : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public virtual void Initialize(WeaponData data, bool facingRight, int level)
+    public virtual void Initialize(ShotInfo shot)
     {
-        // Set bullet speed and direction based on the facing direction
-        bulletSpeed = data.chargeLevels[level].bulletSpeed;
-        direction = facingRight ? Vector2.right : Vector2.left;
-
-        // Set velocity
-        rb.linearVelocity = bulletSpeed * direction;
-
-        AudioManager.Instance.Play(data.weaponClip);
-        // Flip sprite based on direction
-        FlipSpriteBasedOnDirection();
-    }
-
-    private void FlipSpriteBasedOnDirection()
-    {
-        if (spriteRenderer != null)
-        {
-            // Flip the sprite based on the direction (left or right)
-            spriteRenderer.flipX = direction.x < 0;
-        }
+        Shot = shot;
+        direction = shot.Direction;
+        if (spriteRenderer != null) spriteRenderer.flipX = direction.x < 0;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            ApplyEffects(other.gameObject); // Apply damage, effects, etc.
-        }
+        if (DamageInfo.TryFind(other, out IDamageable target)) OnHit(other, target);
     }
 
-    protected virtual void OnDestroy()
-    {
-        OnBulletDestroyed?.Invoke();
-    }
+    /// <summary>Touched something that can take damage.</summary>
+    protected virtual void OnHit(Collider2D other, IDamageable target) { }
 
-    // Called when the projectile goes off-screen
-    protected virtual void OnBecameInvisible()
-    {
-        // Destroy the projectile when it becomes invisible
-        Destroy(gameObject);
-    }
+    // Off-screen shots are gone (override for platforms, boomerangs...)
+    protected virtual void OnBecameInvisible() => Destroy(gameObject);
 
-    protected abstract void ApplyEffects(GameObject target);
+    protected virtual void OnDestroy() => Destroyed?.Invoke();
 }

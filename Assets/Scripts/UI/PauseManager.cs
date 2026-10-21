@@ -30,13 +30,13 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private PauseMenuStyle style = new();
 
     [Header("Sounds")]
-    [SerializeField] private AudioClip openSound;
-    [SerializeField] private AudioClip closeSound;
-    [SerializeField] private AudioClip moveSound;
-    [SerializeField] private AudioClip selectSound;
-    [SerializeField] private AudioClip refillSound;
+    [SerializeField] private AudioEvent openSound;
+    [SerializeField] private AudioEvent closeSound;
+    [SerializeField] private AudioEvent moveSound;
+    [SerializeField] private AudioEvent selectSound;
+    [SerializeField] private AudioEvent refillSound;
     [Tooltip("Played when sliding between pages (move sound if empty).")]
-    [SerializeField] private AudioClip pageSound;
+    [SerializeField] private AudioEvent pageSound;
 
     [Header("Scenes")]
     [SerializeField] private string optionsSceneName = "OptionsScreen";
@@ -65,14 +65,14 @@ public class PauseManager : MonoBehaviour
     {
         public RectTransform target;
         public TMP_Text label;
-        public Megaman.WeaponsStruct weapon;
+        public WeaponData weapon;
         public WeaponRowUI row;
         public PauseMenuUI.ItemEntry item;
         public int rowIndex, column;
         public bool IsWeapon => row != null;
     }
     private readonly List<Entry> entries = new();
-    private readonly List<Megaman.WeaponsStruct> weapons = new();
+    private readonly List<WeaponData> weapons = new();
     private int selected;
     private int pauseSelected;
     private int confirmSelected;          // 0 = NO, 1 = YES
@@ -167,7 +167,7 @@ public class PauseManager : MonoBehaviour
     {
         if (ScreenFader.Instance != null && ScreenFader.Instance.IsTransitioning) return false;
         player = FindFirstObjectByType<Megaman>();
-        return player != null && player.currentHealth > 0 && FindMenu() != null;
+        return player != null && player.CurrentHealth > 0 && FindMenu() != null;
     }
 
     // The scene's PauseMenuUI; scenes without one get a generated copy so the game always has menus
@@ -373,9 +373,9 @@ public class PauseManager : MonoBehaviour
     {
         weapons.Clear();
         foreach (var w in player.GetWeapons())
-            if (w.weaponData != null && w.weaponData.isEnabled) weapons.Add(w);
+            if (w != null && w.isEnabled) weapons.Add(w);
 
-        var equipped = player.GetCurrentWeaponType();
+        var equipped = player.GetCurrentWeapon();
         ui.BuildWeapons(weapons, equipped);
         ui.BuildItems(ItemCount);
 
@@ -403,7 +403,7 @@ public class PauseManager : MonoBehaviour
             });
         }
 
-        selected = Mathf.Max(0, entries.FindIndex(e => e.IsWeapon && e.weapon.weaponType == equipped));
+        selected = Mathf.Max(0, entries.FindIndex(e => e.IsWeapon && e.weapon == equipped));
         RefreshWeaponValues();     // creates the bar segments, so the layout below measures the real size
         ui.Relayout();
     }
@@ -414,15 +414,15 @@ public class PauseManager : MonoBehaviour
     private void RefreshWeaponValues()
     {
         if (player == null) return;
-        float health = player.currentHealth / (float)player.maxHealth;
+        float health = player.CurrentHealth / (float)player.MaxHealth;
 
         for (int i = 0; i < entries.Count; i++)
         {
             var e = entries[i];
             if (e.IsWeapon)
             {
-                var data = e.weapon.weaponData;
-                float energy = e.weapon.weaponType == WeaponTypes.MegaBuster ? health : data.currentEnergy / (float)Mathf.Max(1, data.maxEnergy);
+                var data = e.weapon;
+                float energy = data.usesHealthAsEnergy ? health : data.EnergyFraction;
                 if (e.row.bar != null) e.row.bar.SetValue(energy, data.primaryColor);
                 ui.SetLabelSelected(e.label, i == selected);
             }
@@ -475,7 +475,7 @@ public class PauseManager : MonoBehaviour
         if (e.IsWeapon)
         {
             Play(selectSound);
-            player.SwitchWeapon(e.weapon.weaponType);
+            player.SwitchWeapon(e.weapon);
             Close();
             return;
         }
@@ -489,14 +489,8 @@ public class PauseManager : MonoBehaviour
 
         bool health = effect == PauseMenuUI.ItemEffect.Health || effect == PauseMenuUI.ItemEffect.HealthAndWeapons;
         bool allWeapons = effect == PauseMenuUI.ItemEffect.Weapons || effect == PauseMenuUI.ItemEffect.HealthAndWeapons;
-        if (health) player.RestoreHealth(player.maxHealth, refillSound, false);
-        if (allWeapons)
-        {
-            foreach (var w in player.GetWeapons())
-                if (w.weaponData != null && w.weaponType != WeaponTypes.MegaBuster)
-                    w.weaponData.currentEnergy = w.weaponData.maxEnergy;
-            if (!health) Play(refillSound);
-        }
+        if (health) player.RestoreHealth(player.MaxHealth, refillSound, false);
+        if (allWeapons) player.Weapons.RestoreAllWeapons(refillSound);   // point by point, with the fill sound
         RefreshWeaponValues();
     }
     #endregion
@@ -689,8 +683,8 @@ public class PauseManager : MonoBehaviour
     }
     #endregion
 
-    private void Play(AudioClip clip)
+    private void Play(AudioEvent clip)
     {
-        if (clip != null && AudioManager.Instance != null) AudioManager.Instance.Play(clip);
+        if (clip != null && Audio.IsReady) Audio.Play(clip);
     }
 }

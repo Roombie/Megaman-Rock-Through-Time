@@ -31,6 +31,18 @@ public class MagnetBeam : Projectile
     /// </summary>
     public System.Func<bool> canAddTile;
 
+    // For the editor's Weapon Preview
+    public float MaxBeamLength => maxBeamLength;
+    public LayerMask WallLayer => wallLayer;
+    public float TileLength
+    {
+        get
+        {
+            var sr = GetComponent<SpriteRenderer>();
+            return sr != null && sr.sprite != null ? sr.sprite.bounds.size.x : 1f;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -169,9 +181,4 @@ public class MagnetBeam : Projectile
     // The beam is a platform with its own lifetime: it must not vanish just because the camera scrolled
     // away from it (the base Projectile destroys itself when it goes off-screen).
     protected override void OnBecameInvisible() { }
-
-    protected override void ApplyEffects(GameObject target)
-    {
-        // Implement damage or effects on the target if applicable
-    }
 }

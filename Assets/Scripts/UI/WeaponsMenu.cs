@@ -25,8 +25,8 @@ public class WeaponsMenu : MonoBehaviour
     public UIEnergyBar[] weaponEnergyBars;  // Array for weapon energy bars
 
     private int playerLives;
-    private WeaponTypes currentWeaponType;
-    private Megaman.WeaponsStruct[] weaponsData; // Now using WeaponsStruct[] to fetch all data
+    private WeaponData currentWeapon;
+    private System.Collections.Generic.IReadOnlyList<WeaponData> weaponsData;
 
     private void Awake()
     {
@@ -68,13 +68,13 @@ public class WeaponsMenu : MonoBehaviour
         }
     }
 
-    public void SetMenuData(int lives, WeaponTypes weaponType, Megaman.WeaponsStruct[] playerWeapons)
+    public void SetMenuData(int lives, WeaponData weapon, System.Collections.Generic.IReadOnlyList<WeaponData> playerWeapons)
     {
         // Set the player lives
         SetPlayerLives(lives);
 
         // Set the current weapon type
-        currentWeaponType = weaponType;
+        currentWeapon = weapon;
 
         // Update the weapons data for the player
         weaponsData = playerWeapons;
@@ -86,21 +86,20 @@ public class WeaponsMenu : MonoBehaviour
     void UpdateWeaponDisplays()
     {
         // Loop through the weapon data and update the corresponding UI elements
-        for (int i = 0; i < weaponsData.Length && i < weaponIcons.Length; i++)
+        for (int i = 0; i < weaponsData.Count && i < weaponIcons.Length; i++)
         {
             if (weaponIcons[i] == null || weaponNames[i] == null || weaponEnergyBars[i] == null)
                 continue; // Skip if any element is missing
 
-            Megaman.WeaponsStruct currentWeapon = weaponsData[i];
-            WeaponData weaponData = currentWeapon.weaponData;
+            WeaponData weaponData = weaponsData[i];
 
-            if (currentWeapon.weaponData.isEnabled) // Check if the weapon is unlocked
+            if (weaponData.isEnabled) // Check if the weapon is unlocked
             {
                 // Set weapon icon, name, and energy bar using the WeaponData
                 weaponIcons[i].sprite = weaponData.weaponIcon;
 
                 // Check if this is the current weapon
-                if (currentWeaponType == currentWeapon.weaponType)
+                if (currentWeapon == weaponData)
                 {
                     weaponIcons[i].sprite = weaponData.weaponIcon; // Use the selected weapon icon
                 }
@@ -127,10 +126,10 @@ public class WeaponsMenu : MonoBehaviour
         }
     }
 
-    public void SelectWeapon(WeaponTypes selectedWeaponType)
+    public void SelectWeapon(WeaponData selectedWeapon)
     {
-        currentWeaponType = selectedWeaponType;
-        Debug.Log("Weapon selected: " + selectedWeaponType);
+        currentWeapon = selectedWeapon;
+        Debug.Log("Weapon selected: " + selectedWeapon);
     }
 
     #region Enable/Disable menu
@@ -184,13 +183,13 @@ public class WeaponsMenu : MonoBehaviour
     public void AssignWeaponButtonListeners()
     {
         // Ensure we don't go beyond the length of either array
-        int buttonCount = Mathf.Min(itemButtons.Length, weaponsData.Length);
+        int buttonCount = Mathf.Min(itemButtons.Length, weaponsData.Count);
 
         for (int i = 0; i < buttonCount; i++)
         {
             if (itemButtons[i].button != null)
             {
-                WeaponTypes weaponType = weaponsData[i].weaponType;  // Get weapon type for the button
+                WeaponData weaponType = weaponsData[i];  // Get weapon type for the button
 
                 // Remove previous listeners to avoid stacking multiple listeners
                 itemButtons[i].button.onClick.RemoveAllListeners();

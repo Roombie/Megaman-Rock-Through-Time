@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
     [Header("Pause")]
     bool isGamePaused;
     bool canPauseGame;
-    [SerializeField] private AudioClip openPauseMenuSoundClip;
-    [SerializeField] private AudioClip closePauseMenuSoundClip;
+    [SerializeField] private AudioEvent openPauseMenuSoundClip;
+    [SerializeField] private AudioEvent closePauseMenuSoundClip;
 
     [Header("Screws")]
     public int screwsCollected = 0;
@@ -55,10 +55,10 @@ public class GameManager : MonoBehaviour
     public GameObject weaponsMenu;
 
     [Header("Game Over")]
-    [SerializeField] AudioClip gameOverSoundClip;
+    [SerializeField] AudioEvent gameOverSoundClip;
 
-    WeaponTypes playerWeaponType;
-    Megaman.WeaponsStruct[] playerWeapons; // Store the player's weapons
+    WeaponData playerWeapon;
+    System.Collections.Generic.IReadOnlyList<WeaponData> playerWeapons; // Store the player's weapons
 
     private void Start()
     {
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         // Ensure we fetch the player's weapons
         playerWeapons = player.GetWeapons();
         // Fetch the player's current weapon type
-        playerWeaponType = player.GetCurrentWeaponType();
+        playerWeapon = player.GetCurrentWeapon();
     }
 
     #region Lives
@@ -106,8 +106,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator PlayerRespawnRoutine()
     {
         yield return new WaitForSeconds(delayRestartDelay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        player.currentHealth = player.maxHealth;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);   // the new Mega Man starts at full health
     }
 
     public void GameOver()
@@ -119,7 +118,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayRestartDelay);
         SceneManager.LoadScene("GameOverScreen");
-        AudioManager.Instance.Play(gameOverSoundClip, SoundCategory.Music);
+        Audio.Play(gameOverSoundClip);
     }
     #endregion
 
@@ -169,13 +168,13 @@ public class GameManager : MonoBehaviour
 
             // Get player's weapon data
             playerWeapons = player.GetWeapons();  // Get the player's weapons data
-            playerWeaponType = player.GetCurrentWeaponType(); // Get the player's current weapon type
+            playerWeapon = player.GetCurrentWeapon(); // Get the player's current weapon type
 
             // Set menu data and show the menu
-            weaponsMenu.GetComponent<WeaponsMenu>().SetMenuData(playerLives, playerWeaponType, playerWeapons);
+            weaponsMenu.GetComponent<WeaponsMenu>().SetMenuData(playerLives, playerWeapon, playerWeapons);
             weaponsMenu.GetComponent<WeaponsMenu>().ShowMenu();
 
-            Debug.Log($"Lives: {playerLives}, Weapon Type: {playerWeaponType}, Information: {playerWeapons}");
+            Debug.Log($"Lives: {playerLives}, Weapon Type: {playerWeapon}, Information: {playerWeapons}");
         }
         else
         {
@@ -211,12 +210,12 @@ public class GameManager : MonoBehaviour
 
         if (isGamePaused)
         {
-            AudioManager.Instance.Play(openPauseMenuSoundClip);
+            Audio.Play(openPauseMenuSoundClip);
             ShowWeaponsMenu(); // Show weapons menu when pausing
         }
         else
         {
-            AudioManager.Instance.Play(closePauseMenuSoundClip);
+            Audio.Play(closePauseMenuSoundClip);
             HideWeaponsMenu(); // Hide weapons menu when unpausing
         }
     }

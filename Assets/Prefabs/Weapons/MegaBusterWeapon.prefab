@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7149452342418525260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8770953631915746264}
+  - component: {fileID: 3257160223369457883}
+  m_Layer: 0
+  m_Name: MegaBusterWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8770953631915746264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149452342418525260}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3257160223369457883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149452342418525260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5945634a4a64abab9bad1b01c40b3bc, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  chargeLevels:
+  - timeRequired: 0
+    damage: 1
+    projectilePrefab: {fileID: 964785331528871214, guid: 98d40c9f14d20ae459ab1565f0fa2535, type: 3}
+    weaponClip: {fileID: 11400000, guid: 29638e8cf28045ca9d998ff38f54d632, type: 2}
+    bulletSpeed: 20
+    colorAnimation:
+      frameDuration: 0
+      frames: []
+  - timeRequired: 0.5
+    damage: 2
+    projectilePrefab: {fileID: 964785331528871214, guid: e2ea1122114485145b01e50bb158dfd3, type: 3}
+    weaponClip: {fileID: 11400000, guid: b9679bcfd721471ea5ceed84f5eea4da, type: 2}
+    bulletSpeed: 20
+    colorAnimation:
+      frameDuration: 0.05
+      frames:
+      - primary: {r: 0, g: 0.4392157, b: 0.9254902, a: 0}
+        secondary: {r: 0, g: 0.9098039, b: 0.84705883, a: 0}
+        outline: {r: 0.654902, g: 0, b: 0.03137255, a: 0}
+      - primary: {r: 0, g: 0.4392157, b: 0.9254902, a: 0}
+        secondary: {r: 0, g: 0.9098039, b: 0.84705883, a: 0}
+        outline: {r: 1, g: 0, b: 0.5647059, a: 0}
+      - primary: {r: 0, g: 0.4392157, b: 0.9254902, a: 0}
+        secondary: {r: 0, g: 0.9098039, b: 0.84705883, a: 0}
+        outline: {r: 1, g: 0.46666667, b: 0.7137255, a: 0}
+  - timeRequired: 1.5
+    damage: 3
+    projectilePrefab: {fileID: 964785331528871214, guid: c17941fafe90dfe45972befcd635c5d6, type: 3}
+    weaponClip: {fileID: 11400000, guid: 5954d94c2b5b4f29a692a9c9502e7f90, type: 2}
+    bulletSpeed: 20
+    colorAnimation:
+      frameDuration: 0.05
+      frames:
+      - primary: {r: 0.09411765, g: 0.09411765, b: 0.09411765, a: 0}
+        secondary: {r: 0, g: 0.4392157, b: 0.9254902, a: 0}
+        outline: {r: 0, g: 0.9098039, b: 0.84705883, a: 0}
+      - primary: {r: 0, g: 0.9098039, b: 0.84705883, a: 0}
+        secondary: {r: 0.11698109, g: 0.112787426, b: 0.112787426, a: 0}
+        outline: {r: 0, g: 0.4392157, b: 0.9254902, a: 0}
+      - primary: {r: 0, g: 0.4392157, b: 0.9254902, a: 0}
+        secondary: {r: 0, g: 0.9098039, b: 0.84705883, a: 0}
+        outline: {r: 0.09411765, g: 0.09411765, b: 0.09411765, a: 0}
+  chargingSound: {fileID: 11400000, guid: e5272313768742d88c63d37cc945f9a0, type: 2}
+  interruptOnHurt: 0
+  poseDuration: 0.25
