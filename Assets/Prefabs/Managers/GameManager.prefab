@@ -1288,11 +1288,11 @@ MonoBehaviour:
   delayRestartDelay: 5
   gamePlayerReadyDelay: 3
   checkpoints: []
-  openPauseMenuSoundClip: {fileID: 8300000, guid: 2f0b8b73f90d8354ca2a2de0431d4f50, type: 3}
-  closePauseMenuSoundClip: {fileID: 8300000, guid: 5eaeec42283e46d478d4b394739e0f2d, type: 3}
+  openPauseMenuSoundClip: {fileID: 11400000, guid: 6638c6b7783e409691c10c5530f46e38, type: 2}
+  closePauseMenuSoundClip: {fileID: 11400000, guid: 2f52c476ed2947e9be0a895078b61047, type: 2}
   screwsCollected: 0
   weaponsMenu: {fileID: 4605508288754906091}
-  gameOverSoundClip: {fileID: 8300000, guid: 5d10ee18dfe6be44d92677a4c97d45b4, type: 3}
+  gameOverSoundClip: {fileID: 11400000, guid: 4d973c42601346ac85d3dd5dae5e06f7, type: 2}
 --- !u!114 &349594742920422992
 MonoBehaviour:
   m_ObjectHideFlags: 0

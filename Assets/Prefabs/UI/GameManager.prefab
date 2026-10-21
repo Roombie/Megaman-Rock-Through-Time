@@ -52,11 +52,11 @@ MonoBehaviour:
   delayRestartDelay: 5
   gamePlayerReadyDelay: 3
   checkpoints: []
-  openPauseMenuSoundClip: {fileID: 8300000, guid: 2f0b8b73f90d8354ca2a2de0431d4f50, type: 3}
-  closePauseMenuSoundClip: {fileID: 8300000, guid: 5eaeec42283e46d478d4b394739e0f2d, type: 3}
+  openPauseMenuSoundClip: {fileID: 11400000, guid: 6638c6b7783e409691c10c5530f46e38, type: 2}
+  closePauseMenuSoundClip: {fileID: 11400000, guid: 2f52c476ed2947e9be0a895078b61047, type: 2}
   screwsCollected: 0
   weaponsMenu: {fileID: 0}
-  gameOverSoundClip: {fileID: 8300000, guid: 5d10ee18dfe6be44d92677a4c97d45b4, type: 3}
+  gameOverSoundClip: {fileID: 11400000, guid: 4d973c42601346ac85d3dd5dae5e06f7, type: 2}
 --- !u!114 &4645672005317569501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,11 +99,11 @@ MonoBehaviour:
     lTankSprite: {fileID: -1923916706, guid: 2fd163e3ab88a2b419cba9aafd17059c, type: 3}
     livesSprite: {fileID: -1645638713, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
     screwSprite: {fileID: 21300000, guid: a5b2f828208691e45ad142ab56274ea0, type: 3}
-  openSound: {fileID: 8300000, guid: 2f0b8b73f90d8354ca2a2de0431d4f50, type: 3}
-  closeSound: {fileID: 8300000, guid: 5eaeec42283e46d478d4b394739e0f2d, type: 3}
-  moveSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
-  selectSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  refillSound: {fileID: 8300000, guid: fead1bb648575a14286e75058dabde4e, type: 3}
+  openSound: {fileID: 11400000, guid: 6638c6b7783e409691c10c5530f46e38, type: 2}
+  closeSound: {fileID: 11400000, guid: 2f52c476ed2947e9be0a895078b61047, type: 2}
+  moveSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
+  selectSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  refillSound: {fileID: 11400000, guid: c1aa22958b8746808f72ba128a811cf0, type: 2}
   optionsSceneName: OptionsScreen
   titleSceneName: TitleScreen
   repeatDelay: 0.35

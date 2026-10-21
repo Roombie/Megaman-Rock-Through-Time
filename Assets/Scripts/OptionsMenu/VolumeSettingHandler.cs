@@ -20,9 +20,9 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
     public float initialIncrement = 0.01f;
 
     [Header("Preview")]
-    public AudioClip previewClip;
-    public SoundCategory previewCategory = SoundCategory.SFX;
-    public bool loopPreview = false;
+    [Tooltip("Played while changing the value. Category and looping come from the event (music previews loop).")]
+    public AudioEvent previewClip;
+    private AudioHandle previewSound;
 
     private PlayerInputActions inputActions;
 
@@ -103,9 +103,12 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
         {
             Debug.Log("[VolumeSettingHandler] Deselected (via slider focus)");
 
-            if (previewCategory != SoundCategory.SFX && AudioManager.Instance != null)
+            // Music / voice previews stop when leaving the slider (only this preview, not the other sounds)
+            if (previewClip != null && previewClip.category != SoundCategory.SFX && previewClip.category != SoundCategory.UI)
             {
-                AudioManager.Instance.StopCategory(previewCategory);
+                if (previewClip.category == SoundCategory.BGM) Audio.StopMusic();
+                else if (previewSound.IsPlayingEvent(previewClip)) previewSound.Stop();
+                previewSound = AudioHandle.Invalid;
             }
         }
 
@@ -115,21 +118,22 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
 
     private void PlayPreview()
     {
-        if (previewClip == null || AudioManager.Instance == null)
+        if (previewClip == null || !Audio.IsReady)
             return;
 
-        if (AudioManager.Instance.IsPlaying(previewClip))
+        // Still playing (music previews play on the music sources, which Audio.IsPlaying doesn't see)
+        if (previewSound.IsPlayingEvent(previewClip))
             return;
 
-        AudioManager.Instance.Play(previewClip, previewCategory, 1f, 1f, loopPreview);
+        previewSound = Audio.Play(previewClip);
     }
 
     public void OnValueChanged(float value)
     {
         SetText(value);
 
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.SetVolume(settingType, value);
+        if (Audio.IsReady)
+            AudioSettingsBridge.Apply(settingType, value);
 
         Save();
         PlayPreview();
@@ -141,8 +145,8 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
         slider.SetValueWithoutNotify(saved);
         SetText(saved);
 
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.SetVolume(settingType, saved);
+        if (Audio.IsReady)
+            AudioSettingsBridge.Apply(settingType, saved);
     }
 
     public void Save()

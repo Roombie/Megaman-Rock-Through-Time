@@ -378,7 +378,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4067151403646916872}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -471,103 +471,19 @@ MonoBehaviour:
         - localeIdentifier:
             m_Code: fr
           value: 0
---- !u!82 &4067151403646916872
-AudioSource:
+--- !u!114 &4067151403646916872
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254572713733317410}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!114 &1151480556222533144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,10 +759,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 7830165607041690189}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1121,10 +1037,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 3446544442256376394}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1580,7 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingType: 11
-  toggleSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  toggleSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   toggle: {fileID: 4994275352486511497}
   valueText: {fileID: 1368758725751264325}
 --- !u!1 &616113608364526694
@@ -1952,10 +1868,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 7640999840794931895}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2230,10 +2146,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 525634430689738005}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2438,7 +2354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingType: 10
-  toggleSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  toggleSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   toggle: {fileID: 1853292815147118379}
   valueText: {fileID: 3269740488563190768}
 --- !u!1 &945577203660658918
@@ -2748,10 +2664,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 3682359603649730357}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3487,10 +3403,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 6181608543550545622}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3716,7 +3632,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 9147720241295615331}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -3809,103 +3725,19 @@ MonoBehaviour:
         - localeIdentifier:
             m_Code: fr
           value: 0
---- !u!82 &9147720241295615331
-AudioSource:
+--- !u!114 &9147720241295615331
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210856173836500739}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!114 &1498176004568946822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4430,10 +4262,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 5977148288605937207}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5423,10 +5255,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 5334965738272527903}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5925,10 +5757,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 6802282835701265820}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6133,7 +5965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingType: 11
-  toggleSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  toggleSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   toggle: {fileID: 13892549115170165}
   valueText: {fileID: 2592500756711757228}
 --- !u!1 &1874415986366325015
@@ -7232,10 +7064,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 6410392886056139242}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7589,7 +7421,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4567085104637354657}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -7667,103 +7499,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!82 &4567085104637354657
-AudioSource:
+--- !u!114 &4567085104637354657
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2318790192552942752}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!1 &2390176929196054978
 GameObject:
   m_ObjectHideFlags: 0
@@ -7964,7 +7712,7 @@ MonoBehaviour:
   moveCooldown: 0.15
   holdIncrement: 0.02
   initialIncrement: 0.01
-  previewClip: {fileID: 8300000, guid: 45cda902c03245442960c4c7914e11ee, type: 3}
+  previewClip: {fileID: 11400000, guid: e2cd924fdb414938838ab38c3e44893b, type: 2}
   previewCategory: 1
   loopPreview: 1
 --- !u!1 &2422474906505234339
@@ -10780,8 +10528,8 @@ MonoBehaviour:
   navigationAxis: 0
   leftArrow: {fileID: 6796891492055554422}
   rightArrow: {fileID: 4255524560585783179}
-  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
-  confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  navigateSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
+  confirmSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   options: []
   currentIndex: 0
 --- !u!114 &1797587449309718218
@@ -10988,7 +10736,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 8026711085549235494}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -11066,103 +10814,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!82 &8026711085549235494
-AudioSource:
+--- !u!114 &8026711085549235494
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3247623297455361352}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!1 &3292888164052730916
 GameObject:
   m_ObjectHideFlags: 0
@@ -11395,10 +11059,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 5630585342659155349}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12164,8 +11828,8 @@ MonoBehaviour:
   navigationAxis: 0
   leftArrow: {fileID: 7805869445530491059}
   rightArrow: {fileID: 9139760056764998347}
-  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
-  confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  navigateSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
+  confirmSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   options: []
   currentIndex: 0
 --- !u!114 &3168775906912790206
@@ -12903,7 +12567,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 343597610016516011}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -12943,103 +12607,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!82 &343597610016516011
-AudioSource:
+--- !u!114 &343597610016516011
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3871790773744526925}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!114 &5233983855795615235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14044,7 +13624,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 4877129378572117677}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -14122,103 +13702,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!82 &4877129378572117677
-AudioSource:
+--- !u!114 &4877129378572117677
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4238184511190349619}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!1 &4255524560585783179
 GameObject:
   m_ObjectHideFlags: 0
@@ -14794,8 +14290,8 @@ MonoBehaviour:
   navigationAxis: 0
   leftArrow: {fileID: 4355596725446761014}
   rightArrow: {fileID: 5495587354547576676}
-  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
-  confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  navigateSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
+  confirmSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   options: []
   currentIndex: 0
 --- !u!114 &7172086460747897221
@@ -16077,7 +15573,7 @@ MonoBehaviour:
   moveCooldown: 0.15
   holdIncrement: 0.02
   initialIncrement: 0.01
-  previewClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  previewClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   previewCategory: 0
   loopPreview: 0
 --- !u!1 &4754612229171151396
@@ -16422,8 +15918,8 @@ MonoBehaviour:
   navigationAxis: 0
   leftArrow: {fileID: 5405387153901039093}
   rightArrow: {fileID: 3777092166955873438}
-  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
-  confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  navigateSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
+  confirmSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   options: []
   currentIndex: 0
 --- !u!114 &4386897524975247786
@@ -17005,10 +16501,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 7077439696194949003}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -17649,10 +17145,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 3007022611302893634}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18064,10 +17560,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 4649198491815605990}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18750,8 +18246,8 @@ MonoBehaviour:
   navigationAxis: 0
   leftArrow: {fileID: 2057623120589858525}
   rightArrow: {fileID: 6204874405970742590}
-  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
-  confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  navigateSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
+  confirmSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   options: []
   currentIndex: 0
 --- !u!114 &7239973094258314639
@@ -19121,7 +18617,7 @@ MonoBehaviour:
   holdIncrement: 0.02
   initialIncrement: 0.01
   previewClip: {fileID: 0}
-  previewCategory: 2
+  previewCategory: 3
   loopPreview: 0
 --- !u!1 &5631810902806473542
 GameObject:
@@ -20870,10 +20366,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 9005507506219767797}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -21268,10 +20764,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 1575889547880727219}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -21732,7 +21228,7 @@ MonoBehaviour:
   moveCooldown: 0.15
   holdIncrement: 0.02
   initialIncrement: 0.01
-  previewClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  previewClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   previewCategory: 0
   loopPreview: 0
 --- !u!1 &6355864451175285062
@@ -22348,7 +21844,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3594670716074083795}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -22426,103 +21922,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!82 &3594670716074083795
-AudioSource:
+--- !u!114 &3594670716074083795
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6646572436247753386}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!1 &6726880957697413041
 GameObject:
   m_ObjectHideFlags: 0
@@ -23276,10 +22688,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 2872228931874362478}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -24554,7 +23966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingType: 12
-  toggleSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  toggleSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   toggle: {fileID: 4578313698057851392}
   valueText: {fileID: 8679631488154072419}
 --- !u!1 &7082304562183304503
@@ -24789,10 +24201,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 4451510529443712022}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -25031,7 +24443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDebugLinesOnlyOnActiveObjects: 1
-  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
+  navigateSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
   buttons:
   - button: {fileID: 6857735767222152636}
     arrowOffset: {x: -24.8889, y: 0}
@@ -26012,10 +25424,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 9016320984244813105}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -26862,7 +26274,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 6689693707630460784}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_TargetAssemblyTypeName: PlayAudioEvent, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -26940,103 +26352,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!82 &6689693707630460784
-AudioSource:
+--- !u!114 &6689693707630460784
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7597432873262237875}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4bb5992adf42f1946e9146cf542eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEvent: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
 --- !u!1 &7605951214024263577
 GameObject:
   m_ObjectHideFlags: 0
@@ -27640,7 +26968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingType: 14
-  toggleSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  toggleSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   toggle: {fileID: 415308625666199484}
   valueText: {fileID: 7866660269320265681}
 --- !u!1 &7700699489950189506
@@ -27875,10 +27203,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 5022290308666036398}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -28123,10 +27451,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 7077582133789582555}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -28642,10 +27970,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 4507198606881911402}
   allowKeyboardBindings: 0
   allowGamepadBindings: 1
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -29297,10 +28625,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 8664370321528995357}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -31263,8 +30591,8 @@ MonoBehaviour:
   navigationAxis: 0
   leftArrow: {fileID: 2988924791939739837}
   rightArrow: {fileID: 6124616833730748268}
-  navigateSound: {fileID: 8300000, guid: 7d32234441c030040b501e5d868864b8, type: 3}
-  confirmSound: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  navigateSound: {fileID: 11400000, guid: 72d4707555184431a12d955c0263651f, type: 2}
+  confirmSound: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   options: []
   currentIndex: 0
 --- !u!114 &889400644832720089
@@ -31711,10 +31039,10 @@ MonoBehaviour:
   m_BindingIcon: {fileID: 7997102316103582438}
   allowKeyboardBindings: 1
   allowGamepadBindings: 0
-  m_rebindStartClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindSuccessClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
-  m_rebindFailedClip: {fileID: 8300000, guid: cbf77bb34a7f79248859f3a06d7d76f8, type: 3}
-  m_rebindCancelClip: {fileID: 8300000, guid: 3c8dc94f0266a074ca30a622eb44c9ce, type: 3}
+  m_rebindStartClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindSuccessClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
+  m_rebindFailedClip: {fileID: 11400000, guid: f8067fab87dd4da9adc38688bf0e6373, type: 2}
+  m_rebindCancelClip: {fileID: 11400000, guid: 277d65f178e74475b7f293fbd2124086, type: 2}
   m_UpdateBindingUIEvent:
     m_PersistentCalls:
       m_Calls: []

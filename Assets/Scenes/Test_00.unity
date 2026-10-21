@@ -862,14 +862,6 @@ PrefabInstance:
       propertyPath: explosionDelayBeforeDestroy
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7595095305300121084, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
-      propertyPath: MaxDistance
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7595095305300121084, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -3588671416588361874, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
     - target: {fileID: 9006924017583881152, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
       propertyPath: m_Color.r
       value: 0.6039216
@@ -1081,10 +1073,6 @@ PrefabInstance:
       propertyPath: explosionEffectPrefab
       value: 
       objectReference: {fileID: 5852499799356427380, guid: c9da3dc231b24dd419fd3ea0f5fedf4d, type: 3}
-    - target: {fileID: 7595095305300121084, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -3588671416588361874, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
     - target: {fileID: 9006924017583881152, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
       propertyPath: m_Color.g
       value: 0.68993795
@@ -2830,10 +2818,6 @@ PrefabInstance:
       propertyPath: explosionDelayBeforeDestroy
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7595095305300121084, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -3588671416588361874, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3563,10 +3547,6 @@ PrefabInstance:
       propertyPath: explosionDelayBeforeDestroy
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7595095305300121084, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -3588671416588361874, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
     - target: {fileID: 9006924017583881152, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3786,10 +3766,6 @@ PrefabInstance:
       propertyPath: explosionDelayBeforeDestroy
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7595095305300121084, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -3588671416588361874, guid: f4cbfbb614eed924b88581a4b8d82279, type: 2}
     - target: {fileID: 9006924017583881152, guid: d40a002d1f028b449a9d9b674420cd04, type: 3}
       propertyPath: m_Color.b
       value: 0.24821647

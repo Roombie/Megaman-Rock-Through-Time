@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3830b6a2a256b14ea06904fe936dddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 1
   objectType: 0
   addToInventory: 0
   value: 2
@@ -257,6 +257,6 @@ MonoBehaviour:
   - {fileID: 928627257, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
   - {fileID: -1027202883, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
   animationSpeed: 0.25
-  itemSound: {fileID: 8300000, guid: fead1bb648575a14286e75058dabde4e, type: 3}
+  itemSound: {fileID: 11400000, guid: c1aa22958b8746808f72ba128a811cf0, type: 2}
   freezeEverything: 1
   temporalItemLifetime: 10

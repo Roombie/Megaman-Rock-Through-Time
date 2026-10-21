@@ -41,11 +41,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3373521596406854723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667bfd9137d832d4586289ee1c1ece91, type: 3}
+  m_Script: {fileID: 11500000, guid: e8fae722f7d50de42af263bd5d6e899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  sfxMixerGroup: {fileID: -2949582743868541539, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  musicMixerGroup: {fileID: -6035012027753669652, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
-  voiceMixerGroup: {fileID: -1318403191123919015, guid: 1fea44aca3422fe4d8c7d307a3416bc6, type: 2}
+  audioDatabase: {fileID: 0}
+  channelConfig: {fileID: 11400000, guid: e96cd9b631cf4bec87a57dc86fd615c9, type: 2}
   poolSize: 25
+  maxVoices: 32
+  maxUIVoices: 8
+  maxVoiceVoices: 4
+  maxSFXVoices: 24
+  crossfadeDuration: 0
+  showVolumeDebugLogs: 0
+  showDebugOverlay: 0

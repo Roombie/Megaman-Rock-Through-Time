@@ -304,9 +304,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void StartInteractiveRebind()
         {
-            if (m_rebindStartClip != null && AudioManager.Instance != null)
+            if (m_rebindStartClip != null && global::Audio.IsReady)
             {
-                AudioManager.Instance.PlayOnce(m_rebindStartClip);
+                global::Audio.PlayOnce(m_rebindStartClip);
             }
 
             m_Action.action.Disable();
@@ -357,9 +357,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .WithCancelingThrough("<Keyboard>/escape")
                 .OnCancel(operation =>
                 {
-                    if (!isRebindError && m_rebindCancelClip != null && AudioManager.Instance != null)
+                    if (!isRebindError && m_rebindCancelClip != null && global::Audio.IsReady)
                     {
-                        AudioManager.Instance.PlayOnce(m_rebindCancelClip);
+                        global::Audio.PlayOnce(m_rebindCancelClip);
                     }
                     m_RebindStopEvent?.Invoke(this, operation);
                     m_RebindOverlay?.SetActive(false);
@@ -414,9 +414,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                     m_RebindOverlay?.SetActive(false);
                     m_RebindStopEvent?.Invoke(this, operation);
 
-                    if (m_rebindSuccessClip != null && AudioManager.Instance != null)
+                    if (m_rebindSuccessClip != null && global::Audio.IsReady)
                     {
-                        AudioManager.Instance.PlayOnce(m_rebindSuccessClip);
+                        global::Audio.PlayOnce(m_rebindSuccessClip);
                     }
 
                     CleanUp();
@@ -532,9 +532,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 };
             }
 
-            if (m_rebindFailedClip != null && AudioManager.Instance != null)
+            if (m_rebindFailedClip != null && global::Audio.IsReady)
             {
-                AudioManager.Instance.PlayOnce(m_rebindFailedClip);
+                global::Audio.PlayOnce(m_rebindFailedClip);
             }
         }
 
@@ -682,13 +682,13 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         public bool allowGamepadBindings = true;
 
         [SerializeField]
-        private AudioClip m_rebindStartClip;
+        private AudioEvent m_rebindStartClip;
         [SerializeField]
-        private AudioClip m_rebindSuccessClip;
+        private AudioEvent m_rebindSuccessClip;
         [SerializeField]
-        private AudioClip m_rebindFailedClip;
+        private AudioEvent m_rebindFailedClip;
         [SerializeField]
-        private AudioClip m_rebindCancelClip;
+        private AudioEvent m_rebindCancelClip;
         private bool isRebindError = false;
 
         [Tooltip("Event that is triggered when the way the binding is display should be updated. This allows displaying "

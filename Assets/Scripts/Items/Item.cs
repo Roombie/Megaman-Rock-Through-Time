@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
 
     public Sprite[] animationSprites; // Array of sprites for the animation
     public float animationSpeed = 0.25f;
-    public AudioClip itemSound;
+    public AudioEvent itemSound;
     public bool freezeEverything = true;
 
     public float temporalItemLifetime = 10f; // Time before a temporal item disappears
@@ -102,7 +102,7 @@ public class Item : MonoBehaviour
                 break;
             case ItemType.ExtraLife:
                 GameManager.Instance.AddExtraLife(value);
-                AudioManager.Instance.Play(itemSound);
+                Audio.Play(itemSound);
                 break;
             case ItemType.ScoreBall:
                 GameManager.Instance.AddScorePoints(value);
@@ -111,7 +111,9 @@ public class Item : MonoBehaviour
                 GameManager.Instance.AddScrew(value);
                 break;
             default:
+                // Tanks and other inventory items: stored for the weapons menu, with a pickup jingle
                 InventoryManager.Instance.AddItem(itemType, 1);
+                Audio.Play(itemSound);
                 break;
         }
     }

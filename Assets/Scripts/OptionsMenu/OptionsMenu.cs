@@ -45,7 +45,7 @@ public class OptionsMenu : MonoBehaviour, ISettingsProvider
     private void SetAndSaveVolume(SettingType type, float value)
     {
         PlayerPrefs.SetFloat(SettingsKeys.Get(type), value);
-        AudioManager.Instance?.SetVolume(type, value);
+        AudioSettingsBridge.Apply(type, value);
     }
 
     public void ResetSettingsToDefault()

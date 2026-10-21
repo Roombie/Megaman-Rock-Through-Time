@@ -20,8 +20,8 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
 
     [SerializeField] private GameObject leftArrow;
     [SerializeField] private GameObject rightArrow;
-    [SerializeField] private AudioClip navigateSound;
-    [SerializeField] private AudioClip confirmSound;
+    [SerializeField] private AudioEvent navigateSound;
+    [SerializeField] private AudioEvent confirmSound;
     public string[] options;
     public int currentIndex;
 
@@ -147,13 +147,13 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         {
             if (currentlySelecting != null && currentlySelecting != this) return;
 
-            if (navigateSound != null && AudioManager.Instance != null)
+            if (navigateSound != null && Audio.IsReady)
             {
-                AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
+                Audio.Play(navigateSound);
             }
             else
             {
-                Debug.LogWarning("Either a navigateSound wasn't referenced or the AudioManager isn't on the scene");
+                Debug.LogWarning("Either a navigateSound wasn't referenced or the AudioManager isn't in the scene");
             }
 
             isSelected = true;
@@ -167,13 +167,13 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         }
         else // When you confirm an option
         {
-            if (confirmSound != null && AudioManager.Instance != null)
+            if (confirmSound != null && Audio.IsReady)
             {
-                AudioManager.Instance.Play(confirmSound, SoundCategory.SFX);
+                Audio.Play(confirmSound);
             }
             else
             {
-                Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't on the scene");
+                Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't in the scene");
             }
 
             isSelected = false;
@@ -221,13 +221,13 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         currentIndex = newIndex;
         Apply(currentIndex);
 
-        if (navigateSound != null && AudioManager.Instance != null)
+        if (navigateSound != null && Audio.IsReady)
         {
-            AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
+            Audio.Play(navigateSound);
         }
         else
         {
-            Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't on the scene");
+            Debug.LogWarning("Either a confirmSound wasn't referenced or the AudioManager isn't in the scene");
         }
     }
 

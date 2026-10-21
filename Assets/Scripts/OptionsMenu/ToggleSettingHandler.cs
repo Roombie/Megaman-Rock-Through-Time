@@ -9,7 +9,7 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
     [Header("Setting Config")]
     [SettingTypeFilter(SettingType.VSync, SettingType.SlideWithDownJumpKey, SettingType.ControllerVibrationKey, SettingType.Ghosting)]
     public SettingType settingType;
-    [SerializeField] private AudioClip toggleSound;
+    [SerializeField] private AudioEvent toggleSound;
 
     [Header("UI")]
     public Toggle toggle;
@@ -65,13 +65,13 @@ public class ToggleSettingHandler : MonoBehaviour, ISettingHandler
     {
         Apply(value);
         Save();
-        if (toggleSound != null && AudioManager.Instance != null)
+        if (toggleSound != null && Audio.IsReady)
         {
-            AudioManager.Instance.Play(toggleSound, SoundCategory.SFX);
+            Audio.Play(toggleSound);
         }
         else
         {
-            Debug.LogWarning("Either a toggleSound wasn't referenced or the AudioManager isn't on the scene");
+            Debug.LogWarning("Either a toggleSound wasn't referenced or the AudioManager isn't in the scene");
         }
     }
 

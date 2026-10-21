@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3830b6a2a256b14ea06904fe936dddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 5
   objectType: 0
   addToInventory: 1
   value: 10
@@ -180,7 +180,7 @@ MonoBehaviour:
   - {fileID: -1923916706, guid: 2fd163e3ab88a2b419cba9aafd17059c, type: 3}
   - {fileID: -421102636, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
   animationSpeed: 0.25
-  itemSound: {fileID: 0}
+  itemSound: {fileID: 11400000, guid: a27c3af2ce024b9c8c56940507a9e2aa, type: 2}
   freezeEverything: 1
   temporalItemLifetime: 10
 --- !u!1 &4636552537423597848

@@ -12,7 +12,7 @@ public class ArrowSelector : MonoBehaviour
     }
 
     public bool showDebugLinesOnlyOnActiveObjects = true;
-    [SerializeField] private AudioClip navigateSound;
+    [SerializeField] private AudioEvent navigateSound;
     [SerializeField] ButtonData[] buttons;
     [SerializeField] RectTransform arrowIndicator;
     [HideInInspector] public bool isSelectingOption = false;
@@ -97,14 +97,14 @@ public class ArrowSelector : MonoBehaviour
             return;
         }
 
-        if (!isChangingPage && navigateSound != null && AudioManager.Instance != null)
+        if (!isChangingPage && navigateSound != null && Audio.IsReady)
         {
-            AudioManager.Instance.Play(navigateSound, SoundCategory.SFX);
+            Audio.Play(navigateSound);
             Debug.Log("Audio plays, you're not changing pages or it's not the first time time scene has loaded");
         }
         else
         {
-            Debug.LogWarning("Either a navigateSound wasn't referenced or the AudioManager isn't on the scene");
+            Debug.LogWarning("Either a navigateSound wasn't referenced or the AudioManager isn't in the scene");
         }
     }
 

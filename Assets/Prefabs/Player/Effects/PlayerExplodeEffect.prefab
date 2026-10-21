@@ -798,7 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e504c416139ec4c9fbd7e6ee5b2690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeathSound: {fileID: 8300000, guid: 061a33de82e167f47b681e8c6a39e690, type: 3}
+  playerDeathSound: {fileID: 11400000, guid: 09793deda2694f3ca5498cfc4f1fe17c, type: 2}
   explosionSpeed: 3.5
 --- !u!1 &4796414830428003431
 GameObject:

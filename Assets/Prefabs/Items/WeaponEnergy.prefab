@@ -180,7 +180,7 @@ MonoBehaviour:
   - {fileID: -445062880, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
   - {fileID: 1558157432, guid: 2eca16cf6e77efd41840da494d82692c, type: 3}
   animationSpeed: 0.25
-  itemSound: {fileID: 8300000, guid: 014c411787977924194c97466355ac35, type: 3}
+  itemSound: {fileID: 11400000, guid: b32f5996fa1e479b92ac9e9a71b7c45b, type: 2}
   freezeEverything: 1
   temporalItemLifetime: 10
   flashDuration: 2
