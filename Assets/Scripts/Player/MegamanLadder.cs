@@ -22,7 +22,7 @@ public class MegamanLadder : MonoBehaviour
     {
         Rect b = mm.Mover.BoxAt(mm.Body.position);
         b.yMin -= ReachBelowFeet;
-        ContactFilter2D filter = new ContactFilter2D().NoFilter();   // ladders are triggers, on any layer
+        ContactFilter2D filter = ContactFilter2D.noFilter;   // ladders are triggers, on any layer
         int count = Physics2D.OverlapBox(b.center, b.size, 0f, filter, overlaps);
 
         // The nearest one across, if ladders are side by side
