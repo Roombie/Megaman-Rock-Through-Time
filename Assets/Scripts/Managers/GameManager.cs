@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = FindFirstObjectByType<Megaman>();
+        player = Players.First;   // the legacy weapons menu shows player 1
         // Legacy weapons menu (optional): the pause / weapons menus are now handled by PauseManager
         var weaponsMenus = Object.FindObjectsByType<WeaponsMenu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         if (weaponsMenus.Length > 0) weaponsMenu = weaponsMenus[0].gameObject;
@@ -166,7 +166,9 @@ public class GameManager : MonoBehaviour
             // Access the first found WeaponsMenu
             weaponsMenu = weaponsMenus[0].gameObject;
 
-            // Get player's weapon data
+            // Get player 1's weapon data (the legacy menu is single-player)
+            player = Players.First;
+            if (player == null) return;
             playerWeapons = player.GetWeapons();  // Get the player's weapons data
             playerWeapon = player.GetCurrentWeapon(); // Get the player's current weapon type
 
@@ -222,15 +224,13 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Freeze entities
+    // Every player (one in the campaign, several in multiplayer)
     public void FreezePlayer(bool freeze)
     {
-        // The GameManager outlives scenes (it can come from the Title screen, and respawns reload the level),
-        // so look the player up again whenever the stored one is gone
-        if (player == null) player = FindFirstObjectByType<Megaman>();
-        if (player != null)
+        foreach (Megaman p in Players.All)
         {
-            player.FreezeInput(freeze);
-            player.FreezePlayer(freeze);
+            p.FreezeInput(freeze);
+            p.FreezePlayer(freeze);
         }
     }
 

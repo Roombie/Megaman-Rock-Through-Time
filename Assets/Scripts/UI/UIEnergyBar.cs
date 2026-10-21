@@ -1,30 +1,42 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>A player's HUD weapon energy bar. Each player's Mega Man finds theirs with For(playerIndex).</summary>
 public class UIEnergyBar : MonoBehaviour
 {
     public Image mask;  // The image mask for energy levels
     public Image weaponImage;
+    [Tooltip("Whose weapon energy this shows: 0 = player 1.")]
+    public int playerIndex;
     float originalSize;
 
-    public static UIEnergyBar Instance { get; private set; }
+    private static readonly List<UIEnergyBar> huds = new();
+
+    /// <summary>That player's HUD energy bar, or null.</summary>
+    public static UIEnergyBar For(int playerIndex)
+    {
+        foreach (UIEnergyBar hud in huds)
+            if (hud.playerIndex == playerIndex) return hud;
+        return null;
+    }
 
     private void Awake()
     {
         // Read the full height before anyone calls SetValue (Megaman sets the bar in its own Start)
         originalSize = mask.rectTransform.rect.height;
 
-        // Only the HUD bar is the player's weapon bar. The bars inside the weapons menu also use this
-        // component; letting them take over Instance (they wake up when the menu first opens) made the
-        // HUD bar stop updating on weapon switches.
-        if (Instance == null && GetComponentInParent<WeaponsMenu>(true) == null)
-            Instance = this;
+        // Only HUD bars are the players' weapon bars. The bars inside the old weapons menu also use this
+        // component; counting them (they wake up when the menu first opens) made the HUD bar stop updating
+        // on weapon switches.
+        if (GetComponentInParent<WeaponsMenu>(true) == null) huds.Add(this);
     }
 
-    private void OnDestroy()
-    {
-        if (Instance == this) Instance = null;
-    }
+    private void OnDestroy() => huds.Remove(this);
+
+    // With Enter Play Mode Options (no domain reload) statics survive between play sessions
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => huds.Clear();
 
     public void SetValue(float value)
     {

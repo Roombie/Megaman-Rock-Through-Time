@@ -93,6 +93,9 @@ public class Megaman : MonoBehaviour
         if (stats == null) Debug.LogError("Megaman: no MegamanStats asset assigned.", this);
     }
 
+    private void OnEnable() => Players.Add(this);
+    private void OnDisable() => Players.Remove(this);
+
     private void Start()
     {
         FacingRight = true;      // always start facing right

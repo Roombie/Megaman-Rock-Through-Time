@@ -3,26 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>A player's HUD health bar. Each player's Mega Man finds theirs with For(playerIndex).</summary>
 public class UIHealthBar : MonoBehaviour
 {
     public Image mask;
+    [Tooltip("Whose health this shows: 0 = player 1.")]
+    public int playerIndex;
     float originalSize;
 
-    public static UIHealthBar Instance { get; private set; }
+    private static readonly List<UIHealthBar> huds = new();
+
+    /// <summary>That player's HUD health bar, or null.</summary>
+    public static UIHealthBar For(int playerIndex)
+    {
+        foreach (UIHealthBar hud in huds)
+            if (hud.playerIndex == playerIndex) return hud;
+        return null;
+    }
 
     private void Awake()
     {
         // get the initial height of the mask before anyone calls SetValue
         originalSize = mask.rectTransform.rect.height;
 
-        if (Instance == null && GetComponentInParent<WeaponsMenu>(true) == null)
-            Instance = this;
+        // Only HUD bars: the bars inside the old weapons menu also use this component
+        if (GetComponentInParent<WeaponsMenu>(true) == null) huds.Add(this);
     }
 
-    private void OnDestroy()
-    {
-        if (Instance == this) Instance = null;
-    }
+    private void OnDestroy() => huds.Remove(this);
+
+    // With Enter Play Mode Options (no domain reload) statics survive between play sessions
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics() => huds.Clear();
 
     public void SetValue(float value)
     {

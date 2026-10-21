@@ -44,7 +44,7 @@ public class MegamanHealth : MonoBehaviour
 
         Current = Mathf.Clamp(Current - damage, 0, Stats.maxHealth);
         float health = Current / (float)Stats.maxHealth;
-        UIHealthBar.Instance.SetValue(health);
+        UIHealthBar.For(mm.PlayerIndex)?.SetValue(health);
         mm.Weapons.RefreshEnergyBar();   // the Mega Buster's bar is health
 
         if (Current <= 0) Defeat();
@@ -162,7 +162,7 @@ public class MegamanHealth : MonoBehaviour
                 refillEvent = itemSound;
             }
             Current++;
-            UIHealthBar.Instance.SetValue(Current / (float)Stats.maxHealth);
+            UIHealthBar.For(mm.PlayerIndex)?.SetValue(Current / (float)Stats.maxHealth);
             healthToRestore--;
 
             // Real time: tanks used from the paused weapons menu refill while timeScale is 0

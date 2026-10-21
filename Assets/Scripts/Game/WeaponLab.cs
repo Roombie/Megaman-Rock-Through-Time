@@ -20,13 +20,13 @@ public class WeaponLab : MonoBehaviour
 
     private void Start()
     {
-        megaman = FindFirstObjectByType<Megaman>();
+        megaman = Players.First;
         dummies = FindObjectsByType<TrainingDummy>(FindObjectsInactive.Include, FindObjectsSortMode.None);
     }
 
     private void Update()
     {
-        if (megaman == null) megaman = FindFirstObjectByType<Megaman>();   // after a respawn
+        if (megaman == null) megaman = Players.First;   // after a respawn (the lab is for player 1)
 
         var keyboard = Keyboard.current;
         if (keyboard != null)

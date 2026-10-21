@@ -17,7 +17,6 @@ public class Balloon : MonoBehaviour
     private float timer;
     private bool isFlashing = false;
     private bool isSteppedOn = false;
-    private Megaman player;
 
     void Awake()
     {
@@ -64,9 +63,10 @@ public class Balloon : MonoBehaviour
     // Mega Man stands on it through his own collision (MegamanMover), not physics contacts
     private void FixedUpdate()
     {
-        if (player == null) player = FindFirstObjectByType<Megaman>();
-        isSteppedOn = player != null && player.Mover.GroundCollider != null
-            && player.Mover.GroundCollider.attachedRigidbody == rb;
+        isSteppedOn = false;
+        foreach (Megaman player in Players.All)
+            if (player.Mover.GroundCollider != null && player.Mover.GroundCollider.attachedRigidbody == rb)
+                isSteppedOn = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

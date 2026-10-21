@@ -52,6 +52,8 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        // No target set (or it was destroyed: a respawn): follow player 1
+        if (player == null && Players.First != null) player = Players.First.transform;
         if (player == null) return;
 
         // Someone else moved the camera (it is no longer where we left it): follow from there

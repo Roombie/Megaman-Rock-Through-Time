@@ -116,8 +116,8 @@ public class MegamanWeapons : MonoBehaviour, IWeaponUser
         CurrentWeapon = weapon;
         CurrentWeapon.OnEquip();
 
-        UIEnergyBar.Instance.SetEnergyBar(data.weaponBarSprite);
-        UIEnergyBar.Instance.SetVisibility(!data.usesHealthAsEnergy);
+        UIEnergyBar.For(mm.PlayerIndex)?.SetEnergyBar(data.weaponBarSprite);
+        UIEnergyBar.For(mm.PlayerIndex)?.SetVisibility(!data.usesHealthAsEnergy);
         RefreshEnergyBar();
         SetArmorColors(data.primaryColor, data.secondaryColor, DefaultOutline);
     }
@@ -126,7 +126,7 @@ public class MegamanWeapons : MonoBehaviour, IWeaponUser
     public void RefreshEnergyBar()
     {
         if (Current == null) return;
-        UIEnergyBar.Instance.SetValue(Current.usesHealthAsEnergy ? mm.Health.Current / (float)Stats.maxHealth : Current.EnergyFraction);
+        UIEnergyBar.For(mm.PlayerIndex)?.SetValue(Current.usesHealthAsEnergy ? mm.Health.Current / (float)Stats.maxHealth : Current.EnergyFraction);
     }
 
     private void ShowSwitchIcon()
