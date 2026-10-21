@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_HealthFill
   m_EditorClassIdentifier:
   clips:
-  - {fileID: 8300000, guid: fead1bb648575a14286e75058dabde4e, type: 3}
+  - {fileID: 8300000, guid: c808c0acf3bd4630a580a0979a37bff8, type: 3}
   category: 0
   pitchRange: {x: 1, y: 1}
   volumeRange: {x: 1, y: 1}
