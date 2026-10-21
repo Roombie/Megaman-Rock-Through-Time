@@ -17,6 +17,7 @@ public class Balloon : MonoBehaviour
     private float timer;
     private bool isFlashing = false;
     private bool isSteppedOn = false;
+    private Megaman player;
 
     void Awake()
     {
@@ -60,29 +61,19 @@ public class Balloon : MonoBehaviour
         }
     }
 
+    // Mega Man stands on it through his own collision (MegamanMover), not physics contacts
+    private void FixedUpdate()
+    {
+        if (player == null) player = FindFirstObjectByType<Megaman>();
+        isSteppedOn = player != null && player.Mover.GroundCollider != null
+            && player.Mover.GroundCollider.attachedRigidbody == rb;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (playerRb != null && playerRb.linearVelocity.y < 0) // Check if the player is falling
-            {
-                Debug.Log("Player landed on the balloon!");
-                isSteppedOn = true;
-            }
-        }
-
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Explode();
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isSteppedOn = false;
         }
     }
 

@@ -50,7 +50,7 @@ public class LadderHandlers : MonoBehaviour
             // if the player is within the range (center-ish of the ladder)
             /*isNearLadder = (other.gameObject.transform.position.x > (posX - 0.05f) &&
                     other.gameObject.transform.position.x < (posX + 0.05f));*/
-            other.gameObject.GetComponent<Megaman>().ladder = this;
+            other.gameObject.GetComponent<MegamanLadder>().ladder = this;
         }
     }
 
@@ -60,7 +60,7 @@ public class LadderHandlers : MonoBehaviour
         {
             // outside of the trigger then no ladder to climb
             isNearLadder = false;
-            other.gameObject.GetComponent<Megaman>().ladder = null;
+            other.gameObject.GetComponent<MegamanLadder>().ladder = null;
         }
     }
 }

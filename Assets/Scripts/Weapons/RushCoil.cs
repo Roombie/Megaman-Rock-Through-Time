@@ -51,11 +51,11 @@ public class RushCoil : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (playerRb != null && !hasJumped && isActive)
+            Megaman player = collision.gameObject.GetComponent<Megaman>();
+            if (player != null && !hasJumped && isActive)
             {
                 isPlayerOnRush = true;
-                playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                player.Velocity += Vector2.up * jumpForce;
                 hasJumped = true;
                 isActive = false; // Deactivate the timer once the player interacts with Rush Coil
             }

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeae690f7b4cb8a4e94da4e2838d8526, type: 3}
+  m_Name: MegamanStats
+  m_EditorClassIdentifier: 
+  maxHealth: 28
+  delayBeforeDeath: 0
+  lowHealthSmoke: 5
+  hitPushForce: {x: 0.5, y: 1.5}
+  blinkCount: 10
+  blinkInterval: 0.0833
+  refillInterval: 0.05
+  gravityScale: 1
+  waterGravityScale: 0.5
+  speed: 5
+  useStepDelay: 1
+  stepDelay: 0.1
+  stepDistance: 2
+  jumpForce: 18
+  maxExtraJumps: 0
+  extraJumpForce: 12
+  jumpBufferTime: 0.125
+  coyoteTime: 0.125
+  bulletShootOffset: {x: 0, y: 0.8}
+  shootRayLength: 0.9
+  chargerEnabled: 1
+  iconDisplayTime: 1.5
+  slideSpeed: 7.5
+  slideDuration: 0.35
+  slideBoxOffset: {x: 0.002129734, y: 0.153441}
+  slideBoxSize: {x: 0.8771878, y: 0.3083358}
+  climbSpeed: 2.5
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  bubbleType: 0
+  bubbleSpawnInterval: 1.25
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 3080
+  groundCheckDistance: 0.1
+  groundCheckOffset: {x: 0, y: 0.05}
+  groundCheckWidth: 0.89
+  topCheckOffset: {x: 0, y: 1.25}
+  topCheckSize: {x: 0.79, y: 0.2}
+  frontCheckOffset: {x: 0.54, y: 0.57}
+  frontCheckSize: {x: 0.2, y: 0.75}
+  maxSlopeAngle: 50
+  slopeSnapDistance: 0.25
