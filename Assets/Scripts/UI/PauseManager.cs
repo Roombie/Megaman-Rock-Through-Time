@@ -171,6 +171,7 @@ public class PauseManager : MonoBehaviour
     private bool CanOpen(LocalPlayerInput by)
     {
         if (ScreenFader.Instance != null && ScreenFader.Instance.IsTransitioning) return false;
+        if (RoomTransition.AnyRunning) return false;   // the screen is scrolling to the next room
         player = by != null ? by.GetComponent<Megaman>() : null;
         return player != null && player.CurrentHealth > 0 && FindMenu() != null;
     }

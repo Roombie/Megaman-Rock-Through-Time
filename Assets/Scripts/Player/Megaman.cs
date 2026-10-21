@@ -98,6 +98,9 @@ public class Megaman : MonoBehaviour
 
     private void Start()
     {
+        // Back at the last checkpoint after dying (the respawn reloaded the level); other players beside player 1
+        if (Checkpoints.TryGet(out Vector2 checkpoint)) Mover.Teleport(checkpoint + Vector2.right * (PlayerIndex * 1.5f));
+
         FacingRight = true;      // always start facing right
         Health.ResetHealth();
         Slide.CacheDefaultCollider();
