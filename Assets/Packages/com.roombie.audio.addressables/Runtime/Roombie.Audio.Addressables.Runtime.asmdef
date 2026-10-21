@@ -1,0 +1,20 @@
+{
+  "name": "Roombie.Audio.Addressables.Runtime",
+  "rootNamespace": "",
+  "references": [
+    "Roombie.Audio.Runtime",
+    "Unity.Addressables",
+    "Unity.ResourceManager"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "ROOMBIE_AUDIO_ADDRESSABLES"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.unity.addressables",
+      "expression": "1.21.0",
+      "define": "ROOMBIE_AUDIO_ADDRESSABLES"
+    }
+  ]
+}

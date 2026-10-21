@@ -1,0 +1,12 @@
+{
+  "name": "com.roombie.audio.addressables",
+  "version": "0.1.0",
+  "displayName": "Roombie Audio Addressables",
+  "description": "Optional Addressables loading and lifetime management for Roombie Audio.",
+  "unity": "2022.3",
+  "dependencies": {
+    "com.roombie.audio": "0.1.0",
+    "com.unity.addressables": "1.21.21"
+  },
+  "author": { "name": "Roombie" }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "com.roombie.dialogue",
+  "version": "0.1.0",
+  "displayName": "Roombie Dialogue",
+  "description": "Reusable node-graph dialogue and lightweight cinematic runtime.",
+  "unity": "2022.3",
+  "author": {
+    "name": "Roombie"
+  }
+}

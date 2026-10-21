@@ -1,5 +1,16 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="Unity.InputSystem.RebindingUI.csproj" />
+  <Project Path="Roombie.Audio.Runtime.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Roombie.TextAnimator.Runtime.csproj" />
+  <Project Path="Roombie.Dialogue.Runtime.csproj" />
+  <Project Path="Roombie.DialogueUI.Runtime.csproj" />
+  <Project Path="Roombie.Dialogue.Editor.csproj" />
+  <Project Path="Roombie.DialogueLocalization.Runtime.csproj" />
+  <Project Path="Unity.InputSystem.RebindingUI.csproj" />
+  <Project Path="Roombie.Audio.Editor.csproj" />
+  <Project Path="Roombie.DialogueUI.Tests.Editor.csproj" />
+  <Project Path="Roombie.Audio.Addressables.Runtime.csproj" />
+  <Project Path="Roombie.DialogueAudio.Runtime.csproj" />
+  <Project Path="Roombie.Audio.InputSystem.Runtime.csproj" />
 </Solution>

@@ -1,0 +1,15 @@
+{
+  "name": "com.roombie.dialogueaudio",
+  "version": "0.1.0",
+  "displayName": "Roombie Dialogue Audio",
+  "description": "Optional reusable bridge providing typewriter speech blips through Roombie Dialogue, Text Animator, and Audio without coupling the base packages.",
+  "unity": "2022.3",
+  "dependencies": {
+    "com.roombie.audio": "0.1.0",
+    "com.roombie.dialogue": "0.1.0",
+    "com.roombie.textanimator": "0.2.1"
+  },
+  "author": {
+    "name": "Roombie"
+  }
+}

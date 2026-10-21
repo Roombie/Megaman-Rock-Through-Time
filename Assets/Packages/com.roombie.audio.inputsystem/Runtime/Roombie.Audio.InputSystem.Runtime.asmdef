@@ -1,0 +1,6 @@
+{
+  "name": "Roombie.Audio.InputSystem.Runtime",
+  "rootNamespace": "",
+  "references": ["Roombie.Audio.Runtime", "Unity.InputSystem"],
+  "autoReferenced": true
+}

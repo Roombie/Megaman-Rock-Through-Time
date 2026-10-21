@@ -1,0 +1,10 @@
+{
+  "name": "com.roombie.audio",
+  "version": "0.1.0",
+  "displayName": "Roombie Audio",
+  "description": "Reusable Unity audio service with AudioEvent assets, mixer routing, pooling, music crossfades, spatial playback, editor tooling, and project-agnostic runtime volume buses.",
+  "unity": "2022.3",
+  "author": {
+    "name": "Roombie"
+  }
+}

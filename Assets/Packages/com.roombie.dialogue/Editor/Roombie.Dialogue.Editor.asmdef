@@ -1,0 +1,11 @@
+{
+  "name": "Roombie.Dialogue.Editor",
+  "rootNamespace": "",
+  "references": [
+    "Roombie.Dialogue.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": true
+}

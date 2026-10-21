@@ -1,0 +1,8 @@
+{
+  "name": "Roombie.TextAnimator.Runtime",
+  "rootNamespace": "",
+  "references": [
+    "Unity.TextMeshPro"
+  ],
+  "autoReferenced": true
+}

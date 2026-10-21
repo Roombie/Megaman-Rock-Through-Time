@@ -1,0 +1,14 @@
+{
+  "name": "com.roombie.dialogueui",
+  "version": "0.1.0",
+  "displayName": "Roombie Dialogue UI",
+  "description": "Reusable TextMeshPro and Unity UI presentation for Roombie Dialogue.",
+  "unity": "2022.3",
+  "dependencies": {
+    "com.roombie.dialogue": "0.1.0",
+    "com.roombie.textanimator": "0.2.1",
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.ugui": "1.0.0"
+  },
+  "author": { "name": "Roombie" }
+}

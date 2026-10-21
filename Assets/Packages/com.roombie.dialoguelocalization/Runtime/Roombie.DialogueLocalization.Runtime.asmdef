@@ -1,0 +1,6 @@
+{
+  "name": "Roombie.DialogueLocalization.Runtime",
+  "rootNamespace": "",
+  "references": ["Roombie.DialogueUI.Runtime", "Unity.Localization"],
+  "autoReferenced": true
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Roombie.Audio.Editor",
+  "rootNamespace": "",
+  "references": [
+    "Roombie.Audio.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": true
+}

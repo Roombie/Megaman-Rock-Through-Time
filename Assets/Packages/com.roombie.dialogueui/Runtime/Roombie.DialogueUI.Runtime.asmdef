@@ -1,0 +1,6 @@
+{
+  "name": "Roombie.DialogueUI.Runtime",
+  "rootNamespace": "",
+  "references": ["Roombie.Dialogue.Runtime", "Roombie.TextAnimator.Runtime", "Unity.TextMeshPro", "Unity.ugui"],
+  "autoReferenced": true
+}

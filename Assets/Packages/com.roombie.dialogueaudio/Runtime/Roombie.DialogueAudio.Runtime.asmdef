@@ -1,0 +1,10 @@
+{
+  "name": "Roombie.DialogueAudio.Runtime",
+  "rootNamespace": "",
+  "references": [
+    "Roombie.Audio.Runtime",
+    "Roombie.Dialogue.Runtime",
+    "Roombie.TextAnimator.Runtime"
+  ],
+  "autoReferenced": true
+}

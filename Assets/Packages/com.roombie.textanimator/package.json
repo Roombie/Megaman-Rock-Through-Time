@@ -1,0 +1,13 @@
+{
+  "name": "com.roombie.textanimator",
+  "version": "0.2.1",
+  "displayName": "Roombie Text Animator",
+  "description": "Reusable TextMeshPro animation, inline tag parsing, pixel-perfect effects, and typewriter presentation.",
+  "unity": "2022.3",
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6"
+  },
+  "author": {
+    "name": "Roombie"
+  }
+}
