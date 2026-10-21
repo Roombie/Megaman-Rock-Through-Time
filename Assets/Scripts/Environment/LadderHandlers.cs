@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A ladder: works out its top, bottom and platform heights from its trigger. Players find it themselves
+/// (MegamanLadder looks for the ladder overlapping them), so several can use it at once.
+/// </summary>
 public class LadderHandlers : MonoBehaviour
 {
     // these offsets are for reaching the top (climb up)
     // and bottom (to let go and fall off) of the ladder
     public float handlerTopOffset = 0.04f;
     public float handlerBottomOffset = 0.04f;
-
-    // flag to let the player know that climbing is possible
-    [HideInInspector] public bool isNearLadder;
 
     // these positions are for the player's ladder climbing logic
     [HideInInspector] public float posX;
@@ -39,28 +40,5 @@ public class LadderHandlers : MonoBehaviour
         posPlatformY = ladderPlatform.transform.position.y;
         posTopHandlerY = posTopY + handlerTopOffset;
         posBottomHandlerY = posBottomY + handlerBottomOffset;
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        // only ladder climber we have is the player
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isNearLadder = true;
-            // if the player is within the range (center-ish of the ladder)
-            /*isNearLadder = (other.gameObject.transform.position.x > (posX - 0.05f) &&
-                    other.gameObject.transform.position.x < (posX + 0.05f));*/
-            other.gameObject.GetComponent<MegamanLadder>().ladder = this;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            // outside of the trigger then no ladder to climb
-            isNearLadder = false;
-            other.gameObject.GetComponent<MegamanLadder>().ladder = null;
-        }
     }
 }

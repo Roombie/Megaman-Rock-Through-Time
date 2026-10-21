@@ -162,13 +162,13 @@ public class Megaman : MonoBehaviour
     }
 
     /// <summary>
-    /// A wall right in front of him (as far ahead as the front check's far side). A walkable slope ahead isn't one,
-    /// whatever it's made of.
+    /// A wall in front of him for sliding (as far ahead as the front check's far side), checked with his slide box:
+    /// a low ceiling he can slide under isn't one, and neither is a walkable slope ahead, whatever it's made of.
     /// </summary>
     public bool IsFrontCollision()
     {
-        float reach = stats.frontCheckOffset.x + stats.frontCheckSize.x / 2 - BoxCollider.bounds.extents.x;
-        return Mover.WallAhead(FacingRight ? 1f : -1f, Mathf.Max(0.05f, reach));
+        float reach = stats.frontCheckOffset.x + stats.frontCheckSize.x / 2 - stats.slideBoxSize.x / 2;
+        return Mover.WallAhead(FacingRight ? 1f : -1f, Mathf.Max(0.05f, reach), stats.slideBoxOffset, stats.slideBoxSize);
     }
 
     public bool IsInWater()

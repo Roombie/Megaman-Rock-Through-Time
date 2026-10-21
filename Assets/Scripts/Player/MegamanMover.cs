@@ -73,6 +73,22 @@ public class MegamanMover : MonoBehaviour
         transform.position = new Vector3(position.x, position.y, transform.position.z);
     }
 
+    /// <summary>
+    /// Puts him on the ground right now if it's at most `maxDistance` below his feet (grounded this frame, not
+    /// after falling onto it: e.g. off the top of a ladder). False: no ground that close.
+    /// </summary>
+    public bool SnapToGround(float maxDistance)
+    {
+        Vector2 position = body.position;
+        Rect b = BoxAt(position);
+        if (!Cast(b.center, b.size, Vector2.down, maxDistance + Skin, b.yMin, out RaycastHit2D floor)) return false;
+        position.y -= floor.distance - Skin;
+        Teleport(position);
+        Velocity.y = 0f;
+        SetGround(floor);
+        return true;
+    }
+
     #region Step
     public void Step(float dt)
     {
@@ -216,23 +232,30 @@ public class MegamanMover : MonoBehaviour
 
     #region Queries
     /// <summary>His box (world) with its body at `position`.</summary>
-    public Rect BoxAt(Vector2 position)
+    public Rect BoxAt(Vector2 position) => BoxAt(position, box.offset, box.size);
+
+    /// <summary>A box (collider offset and size, like his BoxCollider2D's) with his body at `position`, in world.</summary>
+    public Rect BoxAt(Vector2 position, Vector2 offset, Vector2 boxSize)
     {
         Vector2 scale = transform.lossyScale;
-        Vector2 size = new(box.size.x * Mathf.Abs(scale.x), box.size.y * Mathf.Abs(scale.y));
-        Vector2 centre = position + new Vector2(box.offset.x * scale.x, box.offset.y * scale.y);
+        Vector2 size = new(boxSize.x * Mathf.Abs(scale.x), boxSize.y * Mathf.Abs(scale.y));
+        Vector2 centre = position + new Vector2(offset.x * scale.x, offset.y * scale.y);
         return new Rect(centre - size / 2, size);
     }
 
     /// <summary>
-    /// Something he can't walk into within `distance` that way, from where he is: a wall, or a slope too steep to
-    /// walk up (a walkable slope ahead isn't).
+    /// Something a box of that shape (collider offset and size; e.g. his slide box) can't walk into within
+    /// `distance` that way, from where he is: a wall, or a slope too steep to walk up (a walkable slope ahead
+    /// isn't). Something above that box, like a low ceiling he can slide under, isn't either.
     /// </summary>
-    public bool WallAhead(float direction, float distance)
+    public bool WallAhead(float direction, float distance, Vector2 offset, Vector2 boxSize)
     {
-        Vector2 position = body.position;
-        Sweep(ref position, Vector2.up, distance * MaxSlopeTan + Skin, out _);
-        Rect b = BoxAt(position);
+        Rect b = BoxAt(body.position, offset, boxSize);
+        // Lifted as walking up a slope would (as far as a ceiling allows), then across
+        float rise = distance * MaxSlopeTan + Skin;
+        if (Cast(b.center, b.size, Vector2.up, rise + Skin, b.yMin, out RaycastHit2D ceiling))
+            rise = Mathf.Max(0f, ceiling.distance - Skin);
+        b.y += rise;
         return Cast(b.center, b.size, new Vector2(Mathf.Sign(direction), 0f), distance + Skin, b.yMin, out _);
     }
 
