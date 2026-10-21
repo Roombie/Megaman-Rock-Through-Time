@@ -15,6 +15,7 @@ using UnityEngine.UI;
 ///   Page 1 - Weapons: weapons, items (tanks), lives, screws. Opened with the WeaponsMenu action (Y / P).
 /// Left/right at the edge of a page, or the weapon-switch buttons (LB/RB, Q/E), slide to the next page.
 /// Options loads the Options screen additively over the paused game and comes back to the pause menu.
+/// The player who pauses owns the menus (MenuInput): only their devices drive them until they close.
 /// Lives on the GameManager object, so it persists between scenes.
 /// </summary>
 public class PauseManager : MonoBehaviour
@@ -56,8 +57,8 @@ public class PauseManager : MonoBehaviour
     public PauseMenuStyle Style => style;
 
     private State state = State.Closed;
-    private PlayerInputActions input;
-    private Megaman player;
+    private LocalPlayerInput owner;     // the player who paused: only they drive the menus (MenuInput)
+    private Megaman player;             // their Mega Man
     private PauseMenuUI ui;
 
     // Weapons page selection: weapon rows first, then the item grid
@@ -93,39 +94,21 @@ public class PauseManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) return;   // the GameManager duplicate destroys itself
         Instance = this;
-
-        input = new PlayerInputActions();
-        if (PlayerPrefs.HasKey("rebinds"))
-            input.asset.LoadBindingOverridesFromJson(PlayerPrefs.GetString("rebinds"));
     }
 
     private void OnEnable()
     {
         if (Instance != this) return;
-        input.Player.WeaponsMenu.performed += OnWeaponsMenuPressed;
-        input.Player.OptionsMenu.performed += OnPauseMenuPressed;
-        input.Player.NextWeapon.performed += OnNextPage;
-        input.Player.PreviousWeapon.performed += OnPreviousPage;
-        input.UI.Submit.performed += OnSubmit;
-        input.UI.Cancel.performed += OnCancel;
-        input.Player.WeaponsMenu.Enable();
-        input.Player.OptionsMenu.Enable();
-        input.Player.NextWeapon.Enable();
-        input.Player.PreviousWeapon.Enable();
-        input.UI.Enable();
+        MenuInput.SubmitPerformed += OnSubmit;
+        MenuInput.CancelPerformed += OnCancel;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         if (Instance != this) return;
-        input.Player.WeaponsMenu.performed -= OnWeaponsMenuPressed;
-        input.Player.OptionsMenu.performed -= OnPauseMenuPressed;
-        input.Player.NextWeapon.performed -= OnNextPage;
-        input.Player.PreviousWeapon.performed -= OnPreviousPage;
-        input.UI.Submit.performed -= OnSubmit;
-        input.UI.Cancel.performed -= OnCancel;
-        input.Disable();
+        MenuInput.SubmitPerformed -= OnSubmit;
+        MenuInput.CancelPerformed -= OnCancel;
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -134,7 +117,7 @@ public class PauseManager : MonoBehaviour
         if (Instance == this)
         {
             PauseTime(false);   // never leave the game stuck at timeScale 0
-            input?.Dispose();
+            ReleaseMenus();
             Instance = null;
         }
     }
@@ -158,16 +141,45 @@ public class PauseManager : MonoBehaviour
             PauseTime(false);
             state = State.Closed;
             ui = null;
+            ReleaseMenus();
         }
     }
     #endregion
 
     #region Opening / closing
-    private bool CanOpen()
+    // The pause / weapons buttons, from each local player's own devices: whoever presses one pauses and then owns
+    // the menus. While open, only the owner's buttons close them or slide the pages.
+    private void PollMenuButtons()
+    {
+        if (state == State.Closed)
+        {
+            foreach (var p in LocalPlayerInput.All)
+            {
+                if (p.PausePressed) { OnPageButton(PausePage, p); return; }
+                if (p.WeaponsMenuPressed) { OnPageButton(WeaponsPage, p); return; }
+            }
+            return;
+        }
+
+        if (owner == null) return;
+        if (owner.PausePressed) OnPageButton(PausePage, owner);
+        else if (owner.WeaponsMenuPressed) OnPageButton(WeaponsPage, owner);
+        else if (state == State.Open && owner.NextWeaponPressed) GoToPage(ui.CurrentPage + 1);
+        else if (state == State.Open && owner.PreviousWeaponPressed) GoToPage(ui.CurrentPage - 1);
+    }
+
+    private bool CanOpen(LocalPlayerInput by)
     {
         if (ScreenFader.Instance != null && ScreenFader.Instance.IsTransitioning) return false;
-        player = FindFirstObjectByType<Megaman>();
+        player = by != null ? by.GetComponent<Megaman>() : null;
         return player != null && player.CurrentHealth > 0 && FindMenu() != null;
+    }
+
+    // The menus go back to any device (Title screen style) and to no one in particular
+    private void ReleaseMenus()
+    {
+        owner = null;
+        MenuInput.SetOwner(null);
     }
 
     // The scene's PauseMenuUI; scenes without one get a generated copy so the game always has menus
@@ -189,16 +201,13 @@ public class PauseManager : MonoBehaviour
         return ppc != null ? ppc.GetComponent<Camera>() : Camera.main;
     }
 
-    private void OnWeaponsMenuPressed(InputAction.CallbackContext context) => OnPageButton(WeaponsPage);
-    private void OnPauseMenuPressed(InputAction.CallbackContext context) => OnPageButton(PausePage);
-
     // Opens on that page; if open on another page slides to it; if already on it, closes
-    private void OnPageButton(int page)
+    private void OnPageButton(int page, LocalPlayerInput by)
     {
         if (optionsBusy) return;
         if (state == State.Closed)
         {
-            if (CanOpen()) Open(page);
+            if (CanOpen(by)) Open(page, by);
         }
         else if (state == State.Open)
         {
@@ -211,11 +220,11 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void OnNextPage(InputAction.CallbackContext context) { if (state == State.Open) GoToPage(ui.CurrentPage + 1); }
-    private void OnPreviousPage(InputAction.CallbackContext context) { if (state == State.Open) GoToPage(ui.CurrentPage - 1); }
-
-    private void Open(int page)
+    private void Open(int page, LocalPlayerInput by)
     {
+        owner = by;
+        MenuInput.SetOwner(by.PlayerInput);
+
         if (ui.Canvas.renderMode == RenderMode.ScreenSpaceCamera && ui.Canvas.worldCamera == null)
             ui.Canvas.worldCamera = GameCamera();
 
@@ -235,6 +244,7 @@ public class PauseManager : MonoBehaviour
     private void Close()
     {
         state = State.Closed;
+        ReleaseMenus();
         if (ui != null) ui.Close();
         Play(closeSound);
         StartCoroutine(UnfreezeNextFrame());
@@ -280,12 +290,13 @@ public class PauseManager : MonoBehaviour
     #region Input
     private void Update()
     {
+        PollMenuButtons();
         if (state == State.Closed || state == State.Options || ui == null || optionsBusy) return;
 
         if (state == State.Open && ui.CurrentPage == WeaponsPage) RefreshWeaponValues();   // e.g. life refilling
         if (selectionDirty && !ui.IsSliding) UpdateSelection();
 
-        Vector2 raw = input.UI.Navigate.ReadValue<Vector2>();
+        Vector2 raw = MenuInput.ReadNavigate();
         Vector2Int dir = new Vector2Int(Mathf.Abs(raw.x) > 0.5f ? (int)Mathf.Sign(raw.x) : 0,
                                         Mathf.Abs(raw.y) > 0.5f ? (int)Mathf.Sign(raw.y) : 0);
         if (dir.x != 0 && dir.y != 0) dir.x = 0;   // one axis at a time
@@ -526,6 +537,7 @@ public class PauseManager : MonoBehaviour
 
         Play(selectSound);
         state = State.Closed;
+        ReleaseMenus();
         ui.Close();
         PauseTime(false);
         GameManager.Instance?.FreezeEverything(false);
@@ -629,10 +641,10 @@ public class PauseManager : MonoBehaviour
         BorderManager.Instance?.RefreshCamera();
 
         // Controls may have been rebound in Options: pick them up, and make sure Mega Man's input is on
-        if (PlayerPrefs.HasKey("rebinds"))
-            input.asset.LoadBindingOverridesFromJson(PlayerPrefs.GetString("rebinds"));
+        MenuInput.ReloadBindings();
         if (player != null && player.TryGetComponent(out PlayerInput playerInput) && playerInput.actions != null)
         {
+            InputBindingStore.Load(playerInput.actions, player.PlayerIndex);
             playerInput.ActivateInput();
             playerInput.actions.Enable();
         }

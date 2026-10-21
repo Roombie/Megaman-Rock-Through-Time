@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
-/// Mega Man's core: shared references, input, sensors and the public API other scripts use.
+/// Mega Man's core: shared references, input, sensors and the public API other scripts use. Input comes from an
+/// IPlayerInputSource (LocalPlayerInput: his PlayerInput) as PlayerCommands, read once per frame.
 /// The behaviour lives in modules on the same object, which this runs every frame in a fixed order:
 ///   MegamanMotor (move, jump, gravity) · MegamanSlide · MegamanLadder · MegamanWeapons
 ///   MegamanHealth (damage, blink, death, refills) · MegamanWater (bubbles) · MegamanAnimation
@@ -81,6 +81,7 @@ public class Megaman : MonoBehaviour
 
         // Not on older copies of the prefab: added here
         Mover = TryGetComponent(out MegamanMover mover) ? mover : gameObject.AddComponent<MegamanMover>();
+        InputSource = TryGetComponent(out IPlayerInputSource source) ? source : gameObject.AddComponent<LocalPlayerInput>();
         Motor = GetComponent<MegamanMotor>();
         Health = GetComponent<MegamanHealth>();
         Weapons = GetComponent<MegamanWeapons>();
@@ -102,6 +103,7 @@ public class Megaman : MonoBehaviour
 
     private void Update()
     {
+        ReadInput();
         if (!IsInputFrozen)
         {
             if (canMove) Motor.Move();
@@ -207,51 +209,39 @@ public class Megaman : MonoBehaviour
     public void SwitchWeapon(WeaponData weapon) => Weapons.SwitchWeapon(weapon);
     #endregion
 
-    #region Input (PlayerInput Unity Events)
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        MoveInput = context.ReadValue<Vector2>();
-    }
+    #region Input
+    /// <summary>Where his commands come from (LocalPlayerInput; a network source later). 0 = player 1.</summary>
+    public IPlayerInputSource InputSource { get; private set; }
+    public int PlayerIndex => InputSource != null ? InputSource.PlayerIndex : 0;
+    private PlayerCommands lastCommands;
 
-    public void OnJump(InputAction.CallbackContext context)
+    // Turns this frame's commands into the shared input state the modules read. Presses and releases come from
+    // comparing with the last commands, so the source only has to say what's held.
+    private void ReadInput()
     {
-        if (context.started)
+        PlayerCommands commands = InputSource != null ? InputSource.ReadCommands() : default;
+        PlayerCommands last = lastCommands;
+        lastCommands = commands;
+
+        MoveInput = commands.Move;
+
+        if (commands.Pressed(PlayerButtons.Jump, last))
         {
             JumpPressed = true;
             LastJumpTime = Time.time;
         }
-        else if (context.canceled)
+        else if (commands.Released(PlayerButtons.Jump, last)) JumpPressed = false;
+
+        ShootPressed = commands.IsHeld(PlayerButtons.Shoot);
+
+        if (commands.Pressed(PlayerButtons.Slide, last)) SlidePressed = true;
+        else if (commands.Released(PlayerButtons.Slide, last)) SlidePressed = false;
+
+        if (!IsInputFrozen)
         {
-            JumpPressed = false;
+            if (commands.Pressed(PlayerButtons.NextWeapon, last)) Weapons.SwitchToNext();
+            if (commands.Pressed(PlayerButtons.PreviousWeapon, last)) Weapons.SwitchToPrevious();
         }
-    }
-
-    public void OnShoot(InputAction.CallbackContext context)
-    {
-        if (context.started) ShootPressed = true;
-        else if (context.canceled) ShootPressed = false;
-    }
-
-    public void OnSlide(InputAction.CallbackContext context)
-    {
-        if (context.started) SlidePressed = true;
-        else if (context.canceled) SlidePressed = false;
-    }
-
-    public void OnPause(InputAction.CallbackContext context)
-    {
-        // The weapons / pause menus are handled by PauseManager (it listens to the WeaponsMenu and
-        // OptionsMenu actions itself). Kept so the PlayerInput event binding stays valid.
-    }
-
-    public void OnNextWeaponSwitch(InputAction.CallbackContext context)
-    {
-        if (context.started && !IsInputFrozen) Weapons.SwitchToNext();
-    }
-
-    public void OnPreviousWeaponSwitch(InputAction.CallbackContext context)
-    {
-        if (context.started && !IsInputFrozen) Weapons.SwitchToPrevious();
     }
     #endregion
 

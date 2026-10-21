@@ -8,29 +8,10 @@ public class BackInputHandler : MonoBehaviour
     [Tooltip("Button to click when back is pressed and no interaction is active")]
     public Button fallbackButton;
 
-    private PlayerInputActions inputActions;
+    // The menus' Cancel: the player who paused, or any device (MenuInput)
+    private void OnEnable() => MenuInput.CancelPerformed += OnCancelPressed;
 
-    private void Awake()
-    {
-        inputActions = new PlayerInputActions();
-    }
-
-    private void OnEnable()
-    {
-        inputActions.Enable();
-        inputActions.UI.Cancel.performed += OnCancelPressed;
-    }
-
-    private void OnDisable()
-    {
-        inputActions.UI.Cancel.performed -= OnCancelPressed;
-        inputActions.Disable();
-    }
-
-    private void OnDestroy()
-    {
-        inputActions.Dispose();
-    }
+    private void OnDisable() => MenuInput.CancelPerformed -= OnCancelPressed;
 
     private void OnCancelPressed(InputAction.CallbackContext context)
     {

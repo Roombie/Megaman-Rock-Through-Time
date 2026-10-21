@@ -24,34 +24,12 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
     public AudioEvent previewClip;
     private AudioHandle previewSound;
 
-    private PlayerInputActions inputActions;
-
     private float holdStartTime;
     private float lastMoveTime;
     private int direction = 0;
     private bool wasSelected = false;
 
     public SettingType SettingType => settingType;
-
-    private void Awake()
-    {
-        inputActions = new PlayerInputActions();
-    }
-
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
-
-    private void OnDestroy()
-    {
-        inputActions?.Dispose();
-    }
 
     private void Start()
     {
@@ -64,7 +42,7 @@ public class VolumeSettingHandler : MonoBehaviour, ISettingHandler
         // Movement input
         if (EventSystem.current.currentSelectedGameObject == gameObject)
         {
-            Vector2 nav = inputActions.UI.Navigate.ReadValue<Vector2>();
+            Vector2 nav = MenuInput.ReadNavigate();   // the player who paused, or any device
             int inputDir = nav.x > 0.5f ? 1 : nav.x < -0.5f ? -1 : 0;
 
             if (inputDir != 0)

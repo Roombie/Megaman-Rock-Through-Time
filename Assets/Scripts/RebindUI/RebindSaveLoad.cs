@@ -3,13 +3,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Manages loading, saving, and resetting input bindings using PlayerPrefs.
+/// Manages loading, saving, and resetting input bindings, saved per player (InputBindingStore).
 /// </summary>
 public class RebindSaveLoad : MonoBehaviour
 {
     public InputActionAsset inputActions;
-
-    private const string PlayerPrefsKey = "rebinds";
+    [Tooltip("Whose controls these are: 0 = player 1. Player 1 plays with this asset itself; other players with " +
+             "their own copies (they load their rebinds when they join).")]
+    public int playerIndex;
 
     /// <summary>
     /// Event triggered when bindings are reset, allowing UI updates.
@@ -26,11 +27,9 @@ public class RebindSaveLoad : MonoBehaviour
     /// </summary>
     public void LoadBindings()
     {
-        if (PlayerPrefs.HasKey(PlayerPrefsKey))
+        if (InputBindingStore.Has(playerIndex))
         {
-            string rebinds = PlayerPrefs.GetString(PlayerPrefsKey);
-            inputActions.LoadBindingOverridesFromJson(rebinds);
-            SaveBindings();
+            InputBindingStore.Load(inputActions, playerIndex);
             NotifyUI();
         }
     }
@@ -38,12 +37,7 @@ public class RebindSaveLoad : MonoBehaviour
     /// <summary>
     /// Saves the current bindings in PlayerPrefs.
     /// </summary>
-    public void SaveBindings()
-    {
-        string rebinds = inputActions.SaveBindingOverridesAsJson();
-        PlayerPrefs.SetString(PlayerPrefsKey, rebinds);
-        PlayerPrefs.Save();
-    }
+    public void SaveBindings() => InputBindingStore.Save(inputActions, playerIndex);
 
     // KEEP IN MIND THAT THE FOLLOWING METHODS ARE FOR PROJECTS THAT WANT TO SAVE THE CHANGES AS SOON AS YOU DO THE REBIND
 

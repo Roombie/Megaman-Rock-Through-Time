@@ -16,30 +16,7 @@ public class CustomSlider : Slider
     private float repeatTimer = 0f;
     private int holdDirection = 0;
     private bool awaitingRelease = false;
-    private PlayerInputActions inputActions;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        inputActions = new PlayerInputActions();
-        inputActions.Enable();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        inputActions?.Disable();
-    }
-
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-#if UNITY_EDITOR
-        if (!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
-            return;
-#endif
-        inputActions?.Dispose();
-    }
+    // Input: the menus' (the player who paused, or any device), from MenuInput
 
     public override void OnMove(AxisEventData eventData)
     {
@@ -130,7 +107,7 @@ public class CustomSlider : Slider
 
     private new void Update()
     {
-        if (inputActions == null) return;
+        if (!Application.isPlaying) return;
 
         if (isHolding)
         {
@@ -161,7 +138,7 @@ public class CustomSlider : Slider
             }
         }
 
-        if (inputActions != null && inputActions.UI.Navigate.ReadValue<Vector2>() == Vector2.zero)
+        if (MenuInput.ReadNavigate() == Vector2.zero)
         {
             awaitingRelease = false;
         }
@@ -172,7 +149,7 @@ public class CustomSlider : Slider
         if (EventSystem.current?.currentSelectedGameObject != gameObject)
             return false;
 
-        Vector2 moveInput = inputActions.UI.Navigate.ReadValue<Vector2>();
+        Vector2 moveInput = MenuInput.ReadNavigate();
 
         if (holdDirection == -1)
             return IsHorizontal() ? moveInput.x < -0.5f : moveInput.y > 0.5f;
@@ -195,22 +172,22 @@ public class CustomSlider : Slider
     private bool IsAnyModifierPressed()
     {
         return
-            inputActions.UI.StepModifier10.ReadValue<float>() > 0.5f ||
-            inputActions.UI.StepModifier25.ReadValue<float>() > 0.5f ||
-            inputActions.UI.StepModifier50.ReadValue<float>() > 0.5f;
+            MenuInput.IsHeld(MenuInput.StepModifier10) ||
+            MenuInput.IsHeld(MenuInput.StepModifier25) ||
+            MenuInput.IsHeld(MenuInput.StepModifier50);
     }
 
     private float GetModifierStep(int direction)
     {
         float range = maxValue - minValue;
 
-        if (inputActions.UI.StepModifier50.ReadValue<float>() > 0.5f)
+        if (MenuInput.IsHeld(MenuInput.StepModifier50))
             return snapModifiersToMultiples ? SnapToMultiple(range * 0.5f, direction) : range * 0.5f * direction;
 
-        if (inputActions.UI.StepModifier25.ReadValue<float>() > 0.5f)
+        if (MenuInput.IsHeld(MenuInput.StepModifier25))
             return snapModifiersToMultiples ? SnapToMultiple(range * 0.25f, direction) : range * 0.25f * direction;
 
-        if (inputActions.UI.StepModifier10.ReadValue<float>() > 0.5f)
+        if (MenuInput.IsHeld(MenuInput.StepModifier10))
             return snapModifiersToMultiples ? SnapToMultiple(range * 0.1f, direction) : range * 0.1f * direction;
 
         return stepSmall * direction;

@@ -28,7 +28,6 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
     public SettingType SettingType => settingType;
 
     private ArrowSelector arrowSelector;
-    private PlayerInputActions inputActions;
     private bool isSelected = false;
     private static OptionSelectorSettingHandler currentlySelecting = null;
     private ISettingsProvider settingsProvider;
@@ -76,34 +75,21 @@ public class OptionSelectorSettingHandler : MonoBehaviour, ISettingHandler, ISel
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
     }
 
+    // The menus' input: the player who paused, or any device (MenuInput)
     void OnEnable()
     {
-        if (inputActions == null)
-            inputActions = new PlayerInputActions();
-
-        inputActions.UI.Navigate.performed += OnNavigate;
-        inputActions.UI.Submit.performed += OnSubmit;
-        inputActions.Enable();
+        MenuInput.NavigatePerformed += OnNavigate;
+        MenuInput.SubmitPerformed += OnSubmit;
     }
 
     void OnDisable()
     {
-        if (inputActions != null)
-        {
-            inputActions.UI.Navigate.performed -= OnNavigate;
-            inputActions.UI.Submit.performed -= OnSubmit;
-            inputActions.Disable();
-        }
+        MenuInput.NavigatePerformed -= OnNavigate;
+        MenuInput.SubmitPerformed -= OnSubmit;
     }
 
     void OnDestroy()
     {
-        if (inputActions != null)
-        {
-            inputActions.Disable();
-            inputActions.Dispose();
-        }
-
         LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
     }
 
